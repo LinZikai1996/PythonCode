@@ -31,7 +31,7 @@ def gradient_descent_function(data_x, data_y, k, b, learning_rate, max_number_of
         k = k - (learning_rate * temp_k)
 
         if i % 5 == 0:
-            print("max_number_of_iterations",i)
+            print("max_number_of_iterations", i)
             plt.plot(data_x, data_y, "b.")
             plt.plot(data_x, k * data_x + b, "r")
             plt.show()

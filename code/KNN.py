@@ -36,4 +36,10 @@ if __name__ == '__main__':
     list_x, list_y = process_data()
     example = [150, 3]
     result_data = distance(list_x, example)
-    print(result_data)
+    type_class = {}
+
+    for i in range(5):
+        value = list_y[result_data[i]]
+        type_class[value] = type_class.get(value, 0) + 1
+
+    print(type_class)
