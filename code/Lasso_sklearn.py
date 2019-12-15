@@ -3,11 +3,11 @@ import sklearn
 from sklearn import linear_model
 import matplotlib.pyplot as plt
 
-import load_data
+import Load_data
 
 
 def process_data():
-    data = load_data.load("longley.csv")
+    data = Load_data.load("longley.csv")
     print(data)
     data_x = data[1:, 2:]
     data_y = data[1:, 1]
