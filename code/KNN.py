@@ -35,7 +35,9 @@ def process_data():
 if __name__ == '__main__':
     list_x, list_y = process_data()
     example = [150, 3]
+    # 计算欧式距离
     result_data = distance(list_x, example)
+    # 分类
     type_class = {}
 
     for i in range(5):

@@ -38,8 +38,16 @@ def picture(data_x, data_y):
     plt.show()
 
 
+def sigmoid(x):
+    return 1.0 / (1 + np.exp(-x))
+
+
+def cost(Mat_x,Mat_y,Mat_weight):
+    left = np.multiarray(Mat_y,np.log(sigmoid(Mat_x * Mat_weight)))
+
+
 if __name__ == '__main__':
     data_x, data_y = process_data("LR-testSet.csv")
     data_x = np.concatenate((np.ones((100, 1)), data_x), axis=1)
     print(data_x.shape)
-    picture(data_x, data_y)
+    # picture(data_x, data_y)
