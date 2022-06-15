@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello React</title>
+        <style>
+            .title{
+                background-color: orange;
+                width: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test"></div>
+        <!--核心库-->
+        <script type="text/javascript" src="js/react.development.js"></script>
+        <!--引入react-dom，用于支持react操作dom-->
+        <script type="text/javascript" src="js/react-dom.development.js"></script>
+        <!--引入babe1，用于将jsx转为js-->
+        <script type="text/javascript" src="js/babel.min.js"></script>
+
+        <!-- 一定babel -->
+        <script type="text/babel">
+            /*
+                jsx 语法规则
+                1. {} 引用变量 
+                2. 样式列名用className
+                3. 内联样式，要用style ={{key:'value'}}
+                4. 必须只用一个根标签
+                5. 标签必须闭合
+                6. 标签首字母：
+                    a. 若小写字母开头，则转化为html同名元素，若无同名元素，报错
+                    b. 若大写开头，react渲染对应组建
+            */
+            const myId = 'Lin'
+            const myData = 'Hello, wolrd'
+            const VDOM = (
+                <div>
+                    <h1 className="title" id={myId.toLocaleLowerCase()}>
+                        <span style={{color:'white', fontSize:'29px'}}>{myData.toLocaleLowerCase()}</span>
+                    </h1>
+                    <input type="text" />
+                </div>
+                )
+
+            //渲染虚拟DOM到页面
+            ReactDOM.render(VDOM, document.getElementById('test'))
+        </script>
+    </body>
+</html>
