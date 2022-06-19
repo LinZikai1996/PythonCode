@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>00_类的基本知识</title>
+    <body>
+        <script type="text/javascript">
+            class Person{
+                // 构造器
+                constructor(name, age){
+                    this.name = name
+                    this.age = age
+                }
+                // speak在勒的原型对象上，供实例使用
+                // 通过Peason 实例调用speak()，this 就是Peason的实例
+                speak(){
+                    console.log(`我是${this.name}, 年龄是${this.age}`);
+                }
+
+            }
+            
+            class Student extends Person{
+                constructor(name, age, grade){
+                    super(name, age)
+                    this.grade = grade
+                }
+                speak(){
+                    console.log(`我是${this.name}, 年龄是${this.age}, 年级是${this.grade}`);
+                }
+
+                study(){
+                    console.log(`我努力学习`);
+                }
+            }
+            
+
+            // 创建实例
+            const p1 = new Person('Tom', 21)
+            p1.speak()
+            const p2 = new Person('Jerry', 21)
+            p2.speak()
+            // Student 实例
+            const s1 = new Student('Lin', 21, 'Grade 7')
+            s1.speak()
+            s1.study()
+        </script>
+    </body>
+</html>
