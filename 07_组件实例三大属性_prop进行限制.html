@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>07_组件实例三大属性_prop进行限制</title>
+	</head>
+	<body>
+	    <div id="test"></div>
+	    <!--核心库-->
+	    <script type="text/javascript" src="js/react.development.js"></script>
+	    <!--引入react-dom，用于支持react操作dom-->
+	    <script type="text/javascript" src="js/react-dom.development.js"></script>
+	    <!--引入babe1，用于将jsx转为js-->
+	    <script type="text/javascript" src="js/babel.min.js"></script>
+		<!--引入prop-types，用于对组件标签属性进行限制-->
+		<script type="text/javascript" src="js/prop-types.js"></script>
+	 
+	    <script type="text/babel">
+	        class Person extends React.Component{
+                render(){
+					// 以下代码会报错，因为props是只读的
+					// this.prop.name = 'Jack'
+                    return (
+                        <ul>
+                            <li>姓名: {this.props.name}</li>
+                            <li>性别: {this.props.sex}</li>
+                            <li>年龄: {this.props.age + 1}</li>
+                        </ul>
+                    )
+                }
+            }
+			
+			// 对标签属性进行类型，必要性的限制
+			Person.protoType = {
+				// 限制名字为string，必填项
+				name: PropTypes.string.isRequired,
+				sex: PropTypes.string,
+				age: PropTypes.number,
+				// 限制speak为函数
+				speak: PropTypes.func
+			}
+			
+			// 设置默认值
+			Person.defaultProps = {
+				sex:'男',
+				age:18
+			}
+			
+			const p = {name:'Tom', age:18, sex:'女'}
+			// 批量传递标签属性
+            ReactDOM.render(<Person {...p}/>, document.getElementById('test'))
+	
+	    </script>
+	</body>
+</html>
