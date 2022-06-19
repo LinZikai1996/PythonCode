@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>05_类式组件</title>
+    </head>
+    <body>
+        <div id="test"></div>
+        <!--核心库-->
+        <script type="text/javascript" src="js/react.development.js"></script>
+        <!--引入react-dom，用于支持react操作dom-->
+        <script type="text/javascript" src="js/react-dom.development.js"></script>
+        <!--引入babe1，用于将jsx转为js-->
+        <script type="text/javascript" src="js/babel.min.js"></script>
+ 
+        <script type="text/babel">
+            // 创建类似组件
+            class MyComponent extends React.Component{
+                render(){
+                    return (
+                        <h1>我是用类定义的组件，适用于复杂组件的定义</h1>
+                    )
+                }
+            }
+            // 渲染组件
+            ReactDOM.render(<MyComponent/>, document.getElementById('test'))
+            /*
+                执行 ReactDOM.render(<MyComponent/>, document.getElementById('test')) 
+                    1. react 解析组件标签，找到了 MyComponent 组件
+                    2. 发现组件是使用类定义的，随后new 出来该类实例，并通过该实例调用render()
+                    3. 将返回的虚拟DOM转为真实，随后展示
+            */
+        </script>
+    </body>
+</html>

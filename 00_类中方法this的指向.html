@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>00_类中方法this的指向</title>
+    <body>
+        <script type="text/javascript">
+
+            class Person{
+                // 构造器
+                constructor(name, age){
+                    this.name = name
+                    this.age = age
+                }
+                // speak在勒的原型对象上，供实例使用
+                // 通过Peason 实例调用speak()，this 就是Peason的实例
+                speak(){
+                    console.log(this);
+                }
+            }
+            
+            // 创建实例
+            const p1 = new Person('Tom', 21)
+            // 通过实例调用
+            p1.speak()
+        </script>
+    </body>
+</html>
