@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>08_组件实例三大属性_回调ref中回调执行的次数问题</title>
+	</head>
+	<body>
+		
+		<div id="test"></div>
+		<!--核心库-->
+		<script type="text/javascript" src="js/react.development.js"></script>
+		<!--引入react-dom，用于支持react操作dom-->
+		<script type="text/javascript" src="js/react-dom.development.js"></script>
+		<!--引入babe1，用于将jsx转为js-->
+		<script type="text/javascript" src="js/babel.min.js"></script>
+		<!--引入prop-types，用于对组件标签属性进行限制-->
+		<script type="text/javascript" src="js/prop-types.js"></script>
+		
+		<script type="text/babel">
+			class Demo extends React.Component{
+				
+				// 初始化方法
+				state = {isHot:false, wind:'微风'}
+				
+				// 自定义方法--赋值语句发形式 + 箭头函数
+				changeWeather = ()=>{
+				    this.setState({isHot:!this.state.isHot})
+				}
+				
+				// 展示左输入框的数据
+				showData = ()=>{
+					const {input1} = this
+					alert(input1.value)
+				}
+				saveInput = (c) =>{
+					this.input1 = c
+					console.log("@", c)
+				}
+				
+				render(){
+					return(
+					/*
+						在更新过程中它会被执行两次，第一次传入参数 null，然后第二次会传入参数 DOM 元素
+						<input ref={c => { this.input1 = c;console.log("@", c)}} type='text' placeholder='点击按钮提示数据' />
+						通过将 ref 的回调函数定义成 class 的绑定函数的方式可以避免上述问题，但是大多数情况下它是无关紧要的
+					*/
+						<div>
+							<h1 id='title'>今天天气很{this.state.isHot ? '炎热' : '凉爽'}，{this.state.wind}</h1>
+							
+							<input ref={this.saveInput} type='text' placeholder='点击按钮提示数据' />
+							
+							<button onClick={this.showData}>点击按钮提示数据</button>&nbsp;
+							<button onClick={this.changeWeather}>点击切换天气</button>
+						</div>
+					)
+					
+				}
+			}
+			
+			ReactDOM.render(<Demo />, document.getElementById('test'))
+		</script>
+	</body>
+</html>
