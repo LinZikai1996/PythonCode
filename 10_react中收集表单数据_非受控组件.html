@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>10_react中收集表单数据_非受控组件</title>
+	</head>
+	<body>
+		
+		<div id="test"></div>
+		<!--核心库-->
+		<script type="text/javascript" src="js/react.development.js"></script>
+		<!--引入react-dom，用于支持react操作dom-->
+		<script type="text/javascript" src="js/react-dom.development.js"></script>
+		<!--引入babe1，用于将jsx转为js-->
+		<script type="text/javascript" src="js/babel.min.js"></script>
+		<!--引入prop-types，用于对组件标签属性进行限制-->
+		<script type="text/javascript" src="js/prop-types.js"></script>
+		
+		<script type="text/babel">
+			// 创建组件
+			class Login extends React.Component{
+				
+				handleSubmit = (event)=>{
+					// 阻止表单默认提交
+					event.preventDefault()
+					const {userName, password} = this
+					alert(`你输入用户名是${userName.value}, 密码是${password.value}`)
+				}
+				
+				render(){
+					return (
+						<form action='http://www.atguigu.com' onSubmit={this.handleSubmit}>
+							用户名: <input ref={c => this.userName = c}  type='text' name='userName'/>
+							密码:  <input ref={c => this.password = c} type='password' name='password'/>
+							<button>登录</button>
+						</form>
+					)
+				}
+			}
+			
+			
+			ReactDOM.render(<Login />, document.getElementById('test'))
+		</script>
+	</body>
+</html>
