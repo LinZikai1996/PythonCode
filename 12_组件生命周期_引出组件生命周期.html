@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>12_组件生命周期_React生命周期（旧）</title>
+	</head>
+	<body>
+		
+		<div id="test"></div>
+		<!--核心库-->
+		<script type="text/javascript" src="js/react.development.js"></script>
+		<!--引入react-dom，用于支持react操作dom-->
+		<script type="text/javascript" src="js/react-dom.development.js"></script>
+		<!--引入babe1，用于将jsx转为js-->
+		<script type="text/javascript" src="js/babel.min.js"></script>
+		<!--引入prop-types，用于对组件标签属性进行限制-->
+		<script type="text/javascript" src="js/prop-types.js"></script>
+		
+		<script type="text/babel">
+			class Count extends React.Component{
+				
+				// 构造器
+				constructor(props){
+					console.log("Count constructor")
+					super(props)
+					
+					// 初始化状态
+					this.state = {count:0}
+				}
+				
+				add = () =>{
+					// 获取原状态
+					const {count} = this.state
+					// 更新
+					this.setState({count:count+1})
+				}
+				
+				// 卸载组件的按钮回调
+				death = () =>{
+					// 卸载组件
+					ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+				}
+				
+				// 组建将要挂载的钩子
+				componentWillMount(){
+					console.log("Count component will mount")
+				}
+				
+				// 组建挂载完毕的钩子
+				componentDidMount(){
+					console.log("Count component did mount")
+				}
+				
+				// 卸载组件的钩子
+				componentWillUnmount(){
+					console.log("Count component will unmount")
+				}
+				
+				
+				render(){
+					console.log("Count render")
+					return(
+						<div>
+							<h2>当前求和为 {this.state.count}</h2>
+							<button onClick={this.add}>点我加一</button>
+							<button onClick={this.death}>卸载组件</button>
+						</div>
+					)
+				}
+			}
+			
+			ReactDOM.render(<Count />, document.getElementById('test'))
+		</script>
+	</body>
+</html>

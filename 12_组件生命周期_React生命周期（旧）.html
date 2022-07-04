@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>12_组件生命周期_引出组件生命周期</title>
+	</head>
+	<body>
+		
+		<div id="test"></div>
+		<!--核心库-->
+		<script type="text/javascript" src="js/react.development.js"></script>
+		<!--引入react-dom，用于支持react操作dom-->
+		<script type="text/javascript" src="js/react-dom.development.js"></script>
+		<!--引入babe1，用于将jsx转为js-->
+		<script type="text/javascript" src="js/babel.min.js"></script>
+		<!--引入prop-types，用于对组件标签属性进行限制-->
+		<script type="text/javascript" src="js/prop-types.js"></script>
+		
+		<script type="text/babel">
+			class Life extends React.Component{
+				
+				/*
+					1. 组件从创建到死亡它会经历一些特定的阶段。
+					2. React组件中包含一系列勾子函数(生命周期回调函数), 会在特定的时刻调用。
+					3. 我们在定义组件时，会在特定的生命周期回调函数中，做特定的工作。
+				*/
+				
+				state = {
+					opacity:1
+				}
+				
+				death = () =>{
+					// 卸载组件
+					ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+				}
+				
+				// 组件挂载完毕
+				componentDidMount(){
+					this.timer = setInterval(() =>{
+						// 获取原状态
+						let {opacity} = this.state
+						
+						opacity -= 0.1
+						
+						if (opacity <= 0) opacity = 1
+						
+						this.setState({opacity})
+					}, 200)
+				}
+				
+				// 组件将要卸载
+				componentWillUnmount(){
+					// 清除定时器
+					clearInterval(this.timer)
+				}
+				
+				render(){
+					
+					return(
+						<div>
+							<h2 style={{opacity:this.state.opacity}}>Recat学不会怎么办？</h2>
+							<button onClick={this.death}>不活了</button>
+						</div>
+					)
+				}
+			}
+			
+			ReactDOM.render(<Life />, document.getElementById('test'))
+		</script>
+	</body>
+</html>
