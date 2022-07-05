@@ -17,6 +17,25 @@
 		<script type="text/javascript" src="js/prop-types.js"></script>
 		
 		<script type="text/babel">
+			
+			/*
+			生命周期的三个阶段（旧）
+				1. 初始化阶段: 由ReactDOM.render()触发---初次渲染
+					① constructor()
+					② componentWillMount()
+					③ render()
+					④ componentDidMount() -- 常用，
+											  一般在这个钩子里做一些初始化的事情，开启定时器，发送网络请求，订阅消息
+				2. 更新阶段: 由组件内部this.setSate()或父组件重新render触发
+					① shouldComponentUpdate()
+					② componentWillUpdate()
+					③ render() -- 必须
+					④ componentDidUpdate()
+				3. 卸载组件: 由ReactDOM.unmountComponentAtNode()触发
+					① componentWillUnmount() -- 常用，
+											  一般在这个钩子里做一些收尾的事情，关闭时器，取消订阅消息
+			
+			*/
 			class Count extends React.Component{
 				
 				// 构造器
