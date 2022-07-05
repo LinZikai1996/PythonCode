@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>12_组件生命周期_引出组件生命周期</title>
+		<title>12_组件生命周期_React生命周期（旧）</title>
 	</head>
 	<body>
 		
@@ -17,55 +17,142 @@
 		<script type="text/javascript" src="js/prop-types.js"></script>
 		
 		<script type="text/babel">
-			class Life extends React.Component{
+			class Count extends React.Component{
 				
-				/*
-					1. 组件从创建到死亡它会经历一些特定的阶段。
-					2. React组件中包含一系列勾子函数(生命周期回调函数), 会在特定的时刻调用。
-					3. 我们在定义组件时，会在特定的生命周期回调函数中，做特定的工作。
-				*/
-				
-				state = {
-					opacity:1
+				// 构造器
+				constructor(props){
+					console.log("Count constructor")
+					super(props)
+					
+					// 初始化状态
+					this.state = {count:0}
 				}
 				
+				add = () =>{
+					// 获取原状态
+					const {count} = this.state
+					// 更新
+					this.setState({count:count+1})
+				}
+				
+				// 卸载组件的按钮回调
 				death = () =>{
 					// 卸载组件
 					ReactDOM.unmountComponentAtNode(document.getElementById('test'))
 				}
 				
-				// 组件挂载完毕
-				componentDidMount(){
-					this.timer = setInterval(() =>{
-						// 获取原状态
-						let {opacity} = this.state
-						
-						opacity -= 0.1
-						
-						if (opacity <= 0) opacity = 1
-						
-						this.setState({opacity})
-					}, 200)
+				// 强制更新
+				force = () =>{
+					this.forceUpdate()
 				}
 				
-				// 组件将要卸载
-				componentWillUnmount(){
-					// 清除定时器
-					clearInterval(this.timer)
+				// 组建将要挂载的钩子
+				componentWillMount(){
+					console.log("Count component will mount")
 				}
+				
+				// 组建挂载完毕的钩子
+				componentDidMount(){
+					console.log("Count component did mount")
+				}
+				
+				// 组件将要卸载的钩子
+				componentWillUnmount(){
+					console.log("Count component will unmount")
+				}
+				
+				
+				// 控制组件更新的钩子
+				shouldComponentUpdate(){
+					console.log("Count component should be update")
+					// 确定更新
+					return true
+				}
+				
+				// 组件将要更新的钩子
+				componentWillUpdate(){
+					console.log("Count component will update")
+				}
+				
+				// 组件更新完成的钩子
+				componentDidUpdate(){
+					console.log("Count component did update")
+				}
+				
 				
 				render(){
-					
+					console.log("Count render")
 					return(
 						<div>
-							<h2 style={{opacity:this.state.opacity}}>Recat学不会怎么办？</h2>
-							<button onClick={this.death}>不活了</button>
+							<h2>当前求和为 {this.state.count}</h2>
+							<button onClick={this.add}>点我加一</button>
+							<button onClick={this.death}>卸载组件</button>
+							<button onClick={this.force}>强制更新</button>
 						</div>
 					)
 				}
 			}
 			
-			ReactDOM.render(<Life />, document.getElementById('test'))
+			class A extends React.Component{
+				
+				state = {carName:'奔驰'}
+				
+				changeCar = ()=>{
+					this.setState({carName:'宝马'})
+				}
+				
+				
+				render(){
+					return(
+					<div>
+						<div>A</div>
+						<button onClick={this.changeCar}>换车</button>
+						<B carName={this.state.carName}/>
+					</div>
+						
+					)
+				}
+			}
+			
+			class B extends React.Component{
+				
+				// 组件将要接受新的props的钩子
+				componentWillReceiveProps(){
+					console.log("B component will receive props")
+				}
+			
+				
+				// 控制组件更新的钩子
+				shouldComponentUpdate(){
+					console.log("B component should be update")
+					// 确定更新
+					return true
+				}
+				
+				// 组件将要更新的钩子
+				componentWillUpdate(){
+					console.log("B component will update")
+				}
+				
+				// 组件更新完成的钩子
+				componentDidUpdate(){
+					console.log("B component did update")
+				}
+				
+				
+				render(){
+					console.log("B render")
+					return(
+					<div>
+						<div>B</div>
+						<div>车的名字是{this.props.carName}</div>
+					</div>
+					
+					)
+				}
+			}
+			
+			ReactDOM.render(<A />, document.getElementById('test'))
 		</script>
 	</body>
 </html>

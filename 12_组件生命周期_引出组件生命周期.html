@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>12_组件生命周期_React生命周期（旧）</title>
+		<title>12_组件生命周期_引出组件生命周期</title>
 	</head>
 	<body>
 		
@@ -17,59 +17,55 @@
 		<script type="text/javascript" src="js/prop-types.js"></script>
 		
 		<script type="text/babel">
-			class Count extends React.Component{
+			class Life extends React.Component{
 				
-				// 构造器
-				constructor(props){
-					console.log("Count constructor")
-					super(props)
-					
-					// 初始化状态
-					this.state = {count:0}
+				/*
+					1. 组件从创建到死亡它会经历一些特定的阶段。
+					2. React组件中包含一系列勾子函数(生命周期回调函数), 会在特定的时刻调用。
+					3. 我们在定义组件时，会在特定的生命周期回调函数中，做特定的工作。
+				*/
+				
+				state = {
+					opacity:1
 				}
 				
-				add = () =>{
-					// 获取原状态
-					const {count} = this.state
-					// 更新
-					this.setState({count:count+1})
-				}
-				
-				// 卸载组件的按钮回调
 				death = () =>{
 					// 卸载组件
 					ReactDOM.unmountComponentAtNode(document.getElementById('test'))
 				}
 				
-				// 组建将要挂载的钩子
-				componentWillMount(){
-					console.log("Count component will mount")
-				}
-				
-				// 组建挂载完毕的钩子
+				// 组件挂载完毕
 				componentDidMount(){
-					console.log("Count component did mount")
+					this.timer = setInterval(() =>{
+						// 获取原状态
+						let {opacity} = this.state
+						
+						opacity -= 0.1
+						
+						if (opacity <= 0) opacity = 1
+						
+						this.setState({opacity})
+					}, 200)
 				}
 				
-				// 卸载组件的钩子
+				// 组件将要卸载
 				componentWillUnmount(){
-					console.log("Count component will unmount")
+					// 清除定时器
+					clearInterval(this.timer)
 				}
-				
 				
 				render(){
-					console.log("Count render")
+					
 					return(
 						<div>
-							<h2>当前求和为 {this.state.count}</h2>
-							<button onClick={this.add}>点我加一</button>
-							<button onClick={this.death}>卸载组件</button>
+							<h2 style={{opacity:this.state.opacity}}>Recat学不会怎么办？</h2>
+							<button onClick={this.death}>不活了</button>
 						</div>
 					)
 				}
 			}
 			
-			ReactDOM.render(<Count />, document.getElementById('test'))
+			ReactDOM.render(<Life />, document.getElementById('test'))
 		</script>
 	</body>
 </html>
