@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- %PUBLIC_URL% 表示public 文件夹路径 -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- 开始理想视口，用于做移动端网页 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 用于配置浏览器页面 + 地址栏颜色（仅仅支持安卓，兼容不太好） -->
+    <meta name="theme-color" content="#000000" />
+    <!-- 网页描述信息 -->
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+
+    <!-- 用于指定网页添加到手机主屏幕后的图标 -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <!-- 应用加壳时的配置文件 -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+  </head>
+  <body>
+    <!-- 若浏览器不支持js，则展示标签中的内容 -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- 
+      	public ---- 静态资源文件夹
+          favicon.icon ------ 网站页签图标
+          index.html -------- 主页面
+          logo192.png ------- logo图
+          logo512.png ------- logo图
+          manifest.json ----- 应用加壳的配置文件
+          robots.txt -------- 爬虫协议文件
+        src ---- 源码文件夹
+          App.css -------- App组件的样式
+          App.js --------- App组件
+          App.test.js ---- 用于给App做测试
+          index.css ------ 样式
+          index.js ------- 入口文件
+          logo.svg ------- logo图
+          reportWebVitals.js
+                   --- 页面性能分析文件(需要web-vitals库的支持)
+          setupTests.js
+                   ---- 组件单元测试的文件(需要jest-dom库的支持)
+          -->
+    <!-- 重要 -->
+    <div id="root"></div>
+  </body>
+</html>
