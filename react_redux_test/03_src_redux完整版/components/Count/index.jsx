@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // 用于获取 redux中保存的状态
 import store from '../../redux/store'
 // 引入actionCreator，专门用于action对象
-import {createIncrementAction, createDecrementAction, createIncrementAsyncAction} from '../../redux/count_action'
+import {createIncrementAction, createDecrementAction} from '../../redux/count_action'
 
 export default class index extends Component {
 
@@ -39,10 +39,12 @@ export default class index extends Component {
         }        
     }
 
-    incrementAsync = () => {
+    incrementAsYnc = () => {
         const {value} = this.selectNumber
 
-        store.dispatch(createIncrementAsyncAction(value * 1, 500))
+        setTimeout(() => {
+            store.dispatch(createIncrementAction(value * 1))
+        }, 500)
     }
 
     render() {
@@ -63,7 +65,7 @@ export default class index extends Component {
             <button onClick={this.increment}>+</button>&nbsp;
             <button onClick={this.decrement}>-</button>&nbsp;
             <button onClick={this.incrementIfOdd}>当前和为奇数再加</button>&nbsp;
-            <button onClick={this.incrementAsync}>异步加</button>
+            <button onClick={this.incrementAsYnc}>异步加</button>
         </div>
         )
     }
