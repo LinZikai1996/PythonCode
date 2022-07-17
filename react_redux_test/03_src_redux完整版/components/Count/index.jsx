@@ -5,7 +5,7 @@ import store from '../../redux/store'
 // 引入actionCreator，专门用于action对象
 import {createIncrementAction, createDecrementAction} from '../../redux/count_action'
 
-export default class index extends Component {
+export default class Count extends Component {
 
     componentDidMount(){
         // 检测redux中状态的变化，只要变化就调用render

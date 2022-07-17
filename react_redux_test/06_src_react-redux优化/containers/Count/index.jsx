@@ -1,6 +1,14 @@
+// 引入connect用于连接UI与redux
+import {connect} from 'react-redux'
+import {
+    createIncrementAction, 
+    createDecrementAction, 
+    createIncrementAsyncAction} from '../../redux/count_action'
+
 import React, { Component } from 'react'
 
-export default class index extends Component {
+// 定义UI组件
+class Count extends Component {
 
     // 加法
     increment = () => {
@@ -53,3 +61,26 @@ export default class index extends Component {
         )
     }
 }
+    
+
+// 使用connect()()创建并且暴露一个Count的容器组件
+export default connect(
+    state =>({count: state}),
+
+    // mapDispatchTopProps函数返回对象
+    // dispatch => (
+    //     {
+    //         jia : (number) => dispatch(createIncrementAction(number)),
+    //         jian : (number) => dispatch(createDecrementAction(number)),
+    //         jiaAsync : (number, time) => dispatch(createIncrementAsyncAction(number, time))
+    //     }
+    // )
+    
+    // mapDispatchTopProps简写
+    {
+        jia: createIncrementAction,
+        jian: createDecrementAction,
+        jiaAsync: createIncrementAsyncAction
+    }
+)(Count)
+

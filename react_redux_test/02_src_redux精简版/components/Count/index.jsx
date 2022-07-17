@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // 用于获取 redux中保存的状态
 import store from '../../redux/store'
 
-export default class index extends Component {
+export default class Count extends Component {
 
     componentDidMount(){
         // 检测redux中状态的变化，只要变化就调用render
