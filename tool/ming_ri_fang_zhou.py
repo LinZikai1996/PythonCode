@@ -13,90 +13,131 @@ from win32gui import IsWindow, IsWindowEnabled, IsWindowVisible, GetWindowText, 
 class MingRiFangZhouAuto:
 
     def __init__(self):
-        self.target_title = "明日方舟 - MuMu模拟器"
-        self.new_image_path = 'E:\\tmp\\screenshot\\now_img.jpg'
-        self.source_image_folder = "E:\\tmp\\screenshot\\"
-        self.top_x = 0
-        self.top_y = 0
-        self.title = {}
+        self._target_title = "明日方舟 - MuMu模拟器"
+        self._new_image_path = 'E:\\tmp\\screenshot\\now_img.jpg'
+        self._source_image_folder = "E:\\tmp\\screenshot\\"
+        self._top_x = 0
+        self._top_y = 0
+        self._window_length = 1400
+        self._window_width = 900
+        self._title = {}
 
     def start(self):
-        print("Get title handle")
+        self.prepare_window()
+        self.start_game()
+
+    def prepare_window(self):
         self.get_windows_title()
         print(
-            f"target window name : {self.title['title_name']}, handle : {self.title['handle']}, size : {self.title['size']}")
+            f"目标窗口的名字 : {self._title['title_name']}, "
+            f"handle的数值 : {self._title['handle']}, "
+            f"窗口大小 : {self._title['size']}")
         self.set_window_location()
-        index = 0
-        while index < 30:
-            if index == 0:
-                self.start_game(True)
-            else:
-                self.start_game()
-            self.check_game_status()
-            index = index + 1
 
     def get_windows_title(self):
         def foo(handle, mouse):
             if IsWindow(handle) and IsWindowEnabled(handle) and IsWindowVisible(handle):
-                if GetWindowText(handle) == self.target_title:
-                    self.title['title_name'] = GetWindowText(handle)
-                    self.title['className'] = GetClassName(handle)
-                    self.title['size'] = GetWindowRect(handle)
-                    self.title['handle'] = handle
+                if GetWindowText(handle) == self._target_title:
+                    self._title['title_name'] = GetWindowText(handle)
+                    self._title['className'] = GetClassName(handle)
+                    self._title['size'] = GetWindowRect(handle)
+                    self._title['handle'] = handle
 
         EnumWindows(foo, 0)
 
     def set_window_location(self):
-        print(f"Before set, check location {self.title['size']}")
-        SetWindowPos(self.title['handle'], HWND_TOPMOST, 0, 0, 1400, 900, SWP_SHOWWINDOW)
-        print(f"After set, check location {GetWindowRect(self.title['handle'])}")
-        self.top_x, self.top_y = int(self.title['size'][0]), int(self.title['size'][1])
+        print(f"设置前, 检查位置信息 {self._title['size']}")
+        SetWindowPos(self._title['handle'], HWND_TOPMOST, self._top_x, self._top_y, self._window_length,
+                     self._window_width,
+                     SWP_SHOWWINDOW)
+        print(f"设置后, 检查位置信息 {GetWindowRect(self._title['handle'])}")
+        if int(self._title['size'][0]) != self._top_x and int(self._title['size'][1]) != self._top_y and int(
+                self._title['size'][2]) != self._window_length and int(self._title['size'][3]) != self._window_width:
+            print("位置信息设置失败，重新设置")
+            SetWindowPos(self._title['handle'], HWND_TOPMOST, self._top_x, self._top_y, self._window_length,
+                         self._window_width, SWP_SHOWWINDOW)
 
-    def start_game(self, first_time=False):
+            if int(self._title['size'][0]) != self._top_x and int(self._title['size'][1]) != self._top_y and int(
+                    self._title['size'][2]) != self._window_length and int(
+                self._title['size'][3]) != self._window_width:
+                print("设置失败，推出程序")
+                exit(1)
+
+    def start_game(self):
+        stat_action_or_no = True
+        index = 0
+        while stat_action_or_no:
+            print("开始行动 ... ")
+            if index == 0:
+                self.start_action(True)
+            else:
+                self.start_action()
+            self.check_action_status()
+            index = index + 1
+
+    def start_action(self, first_time=False):
         if first_time:
-            print("Click '终端'")
-            self.left_click(self.top_x + 1000, self.top_y + 250)
+            print("点击 '终端'")
+            self.left_click(1000, 250)
 
-            print("Click '前往上一次作战'")
-            self.left_click(self.top_x + 1225, self.top_y + 700)
+            print("点击 '前往上一次作战'")
+            self.left_click(1225, 700)
 
-        print("Click '开始行动(蓝)'")
-        self.left_click(self.top_x + 1270, self.top_y + 780)
-        if self.check_reason_value():
-            print("Add reason value")
-            self.left_click(self.top_x + 1190, self.top_y + 675)
-            self.left_click(self.top_x + 1270, self.top_y + 780)
+        print("点击 '开始行动'")
+        self.left_click(1270, 780)
+        print("检查我们是否有理智液")
+        if not self.check_have_potion_or_no():
+            if self.check_reason_value():
+                print("Add reason value")
+                self.left_click(1190, 675)
+                self.left_click(1270, 780)
+        else:
+            print("我们没有理智液了，退出游戏")
+            return False
 
-        print("Click '开始行动(红)'")
-        self.left_click(self.top_x + 1200, self.top_y + 600)
+        print("确认阵容，开始行动")
+        self.left_click(1200, 600)
+        return True
 
-    def check_game_status(self):
-        left_top_x = self.top_x + 62
-        left_top_y = self.top_y + 243
-        bottom_right_x = left_top_x + 332
-        bottom_right_y = left_top_y + 85
-        continue_check = True
-        while continue_check:
-            self.screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, self.new_image_path)
-            if self.check_image_similarity("E:\\tmp\\screenshot\\finish_action.jpg", self.new_image_path):
+    def check_action_status(self):
+        while True:
+            if self.check_similarity_between_source_and_screenshot(
+                    source_image_path=f"{self._source_image_folder}finish_action.jpg", start_position_x=62,
+                    start_position_y=243):
+                print("行动结束")
+                self.left_click(1200, 600)
+                time.sleep(5)
                 break
             else:
                 time.sleep(20)
-        print("Click screen")
-        self.left_click(self.top_x + 1200, self.top_y + 600)
-        print("Game is finish")
-        time.sleep(5)
+
+    def check_have_potion_or_no(self):
+        return self.check_similarity_between_source_and_screenshot(
+            source_image_path=f"{self._source_image_folder}have_potion_or_no.jpg", start_position_x=666,
+            start_position_y=132)
 
     def check_reason_value(self):
-        left_top_x = self.top_x + 666
-        left_top_y = self.top_y + 534
-        bottom_right_x = left_top_x + 733
-        bottom_right_y = left_top_y + 195
-        self.screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, self.new_image_path)
-        return self.check_image_similarity(f"{self.source_image_folder}check_reason.jpg", self.new_image_path)
+        return self.check_similarity_between_source_and_screenshot(
+            source_image_path=f"{self._source_image_folder}check_reason.jpg", start_position_x=666,
+            start_position_y=534)
 
-    @staticmethod
-    def left_click(x, y):
+    def check_similarity_between_source_and_screenshot(self, source_image_path, start_position_x, start_position_y):
+        length, width = get_image_size_info(source_image_path)
+        left_top_x, left_top_y, bottom_right_x, bottom_right_y = self.get_location(start_position_x, start_position_y,
+                                                                                   length, width)
+        screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, self._new_image_path)
+        return check_image_similarity(source_image_path, self._new_image_path)
+
+    def get_location(self, tl_x, tl_y, length, width):
+        tl_x = self._top_x + tl_x
+        tl_y = self._top_y + tl_y
+        br_x = tl_x + length
+        br_y = tl_y + width
+        return tl_x, tl_y, br_x, br_y
+
+    def left_click(self, x, y):
+        x = self._top_x + x
+        y = self._top_y + y
         # Move mouse to x, y
         SetCursorPos([x, y])
         # Left click
@@ -104,26 +145,31 @@ class MingRiFangZhouAuto:
         # Wait 1 second
         time.sleep(2)
 
-    @staticmethod
-    def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path):
-        if os.path.exists(path):
-            os.remove(path)
-        ImageGrab.grab((left_top_x, left_top_y, bottom_right_x, bottom_right_y)).save(path)
-        img = cv2.imread(path, 1)
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        cv2.imwrite(path, gray)
 
-    @staticmethod
-    def check_image_similarity(source_path, target_path):
-        source_img = imagehash.average_hash(Image.open(source_path), hash_size=6)
-        target_img = imagehash.average_hash(Image.open(target_path), hash_size=6)
+def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path):
+    if os.path.exists(path):
+        os.remove(path)
+    ImageGrab.grab((left_top_x, left_top_y, bottom_right_x, bottom_right_y)).save(path)
+    img = cv2.imread(path, 1)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(path, gray)
 
-        hash_diff = 1 - (target_img - source_img) / len(target_img.hash) ** 2
-        if hash_diff >= 0.9:
-            print(f"Similarity is {hash_diff}")
-            return True
-        else:
-            return False
+
+def check_image_similarity(source_path, target_path):
+    source_img = imagehash.average_hash(Image.open(source_path), hash_size=6)
+    target_img = imagehash.average_hash(Image.open(target_path), hash_size=6)
+
+    hash_diff = 1 - (target_img - source_img) / len(target_img.hash) ** 2
+    if hash_diff >= 0.9:
+        print(f"图片的相似度是 {format(hash_diff, '.0%')}")
+        return True
+    else:
+        return False
+
+
+def get_image_size_info(path):
+    image = Image.open(path)
+    return image.size
 
 
 if __name__ == '__main__':
