@@ -24,6 +24,7 @@ class MingRiFangZhouAuto:
 
     def start(self):
         self.prepare_window()
+        self.prepare_for_action()
         self.start_game()
 
     def prepare_window(self):
@@ -63,6 +64,27 @@ class MingRiFangZhouAuto:
                 print("设置失败，推出程序")
                 exit(1)
 
+    def prepare_for_action(self):
+        print("为开始游戏做些准备 ....")
+        self.go_back_to_home_page()
+
+    def go_back_to_home_page(self):
+        print("检查下是否在首页")
+        if self.check_home_page() is False:
+            print("返回首页")
+            self.left_click(95, 95)
+            while not self.check_home_page():
+                self.left_click(95, 95)
+
+    def check_home_page(self):
+        if self.check_similarity_between_source_and_screenshot(
+                source_image_path=f"{self._source_image_folder}prepare_for_action.jpg", start_position_x=750,
+                start_position_y=372):
+            print("在首页")
+            return True
+        else:
+            return False
+
     def start_game(self):
         stat_action_or_no = True
         index = 0
@@ -93,6 +115,8 @@ class MingRiFangZhouAuto:
                 self.left_click(1270, 780)
         else:
             print("我们没有理智液了，退出游戏")
+            self.left_click(1200, 900)
+            self.go_back_to_home_page()
             return False
 
         print("确认阵容，开始行动")
