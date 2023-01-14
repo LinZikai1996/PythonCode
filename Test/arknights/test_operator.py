@@ -1,10 +1,11 @@
 from unittest import mock
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
-from Arknights.operator import get_information_from_wiki, update_operator_info
+from Arknights.operator import get_information_from_wiki, update_operator_info, get_all_operator_name_from_wiki
 from Arknights.util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
     get_potential_info, get_skill_info, get_module_info
-from Test.arknights import get_local_information, mock_information_from_wiki
+from Test.arknights import get_local_information, mock_information_from_wiki, mock_all_operator_name_from_wiki, \
+    mock_hoshiguma_information_from_wiki
 
 information_list = [
     get_local_information("6"), get_local_information("5"), get_local_information("4"), get_local_information("3"),
@@ -12,8 +13,18 @@ information_list = [
 ]
 
 
-def test_get_information_from_wiki():
-    print(get_information_from_wiki("伊芙利特").text)
+def test_get_all_operator_name_from_wiki():
+    with patch('requests.get') as mock_data:
+        mock_data.return_value.status_code = 200
+        mock_data.return_value.text = mock_all_operator_name_from_wiki()
+        print(get_all_operator_name_from_wiki())
+
+
+def test_get_information_from_wiki_200():
+    with patch('requests.get') as mock_data:
+        mock_data.return_value.status_code = 200
+        mock_data.return_value.text = mock_hoshiguma_information_from_wiki()
+        print(get_information_from_wiki("星熊").text)
 
 
 def test_get_general_info():

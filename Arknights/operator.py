@@ -11,6 +11,15 @@ class Operator(object):
         pass
 
 
+def get_all_operator_name_from_wiki():
+    operator_list = []
+    response = requests.get("https://prts.wiki/w/CHAR?filter=AAAAAAAggAAAAAAAAAAAAAAAAAAAAAAA")
+    if response.ok:
+        for soup in BeautifulSoup(response.text, features='html.parser').find_all('div', class_='smwdata'):
+            operator_list.append(soup['data-cn'])
+    return operator_list
+
+
 def update_operator_info(operator_name: str):
     source = preprocess_data_from_wiki(
         get_information_from_wiki(operator_name)
@@ -28,7 +37,7 @@ def update_operator_info(operator_name: str):
 
 
 def get_information_from_wiki(operator_name: str):
-    response = requests.get(rf'https://prts.wiki/index.php?title={operator_name}&action=edit')
+    response = requests.get(f'https://prts.wiki/index.php?title={operator_name}&action=edit')
     if response.ok:
         return BeautifulSoup(response.text, features='html.parser').find(id='wpTextbox1')
     else:

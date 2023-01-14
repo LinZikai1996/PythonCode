@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="zh-Hans-CN" dir="ltr">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>查看“星熊”的源代码 - PRTS - 玩家自由构筑的明日方舟中文Wiki</title>
+	<script>
+		document.documentElement.className="client-js";RLCONF={"wgBreakFrames":!0,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"zh","wgMonthNames":["","1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],"wgRequestId":"288ede391f3951af8fd95283","wgCSPNonce":!1,"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"星熊","wgTitle":"星熊","wgCurRevisionId":237981,"wgRevisionId":0,"wgArticleId":1776,"wgIsArticle":!1,"wgIsRedirect":!1,"wgAction":"edit","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgPageContentLanguage":"zh-cn","wgPageContentModel":"wikitext","wgRelevantPageName":"星熊","wgRelevantArticleId":1776,"wgIsProbablyEditable":!1,"wgRelevantPageIsProbablyEditable":!1,"wgRestrictionEdit":["autoconfirmed"],"wgRestrictionMove":["sysop"],"wgULSAcceptLanguageList":[],"wgULSCurrentAutonym":"中文（中国大陆）‎",
+"wgMFDisplayWikibaseDescriptions":{"search":!1,"nearby":!1,"watchlist":!1,"tagline":!1},"srfFilteredConfig":null,"wgULSPosition":"personal"};RLSTATE={"site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready","ext.smw.style":"ready","ext.smw.tooltip.styles":"ready","ext.uls.pt":"ready","ext.charinsert.styles":"ready","ext.srf.styles":"ready"};RLPAGEMODULES=["mediawiki.action.edit.collapsibleFooter","site","mediawiki.page.startup","mediawiki.page.ready","skins.vector.legacy.js","ext.gadget.copyUrl","ext.gadget.Filterable","ext.gadget.Carousel","ext.gadget.Popup","ext.gadget.Edittools","ext.gadget.HeimuToggle","ext.CodeMirror","ext.uls.interface","ext.charinsert"];
+	</script>
+	<script>
+		(RLQ=window.RLQ||[]).push(function(){mw.loader.implement("user.options@1hzgi",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});mw.user.options.set({"variant":"zh-cn"});
+});});
+	</script>
+	<link rel="stylesheet"
+		href="/load.php?lang=zh-cn&amp;modules=ext.charinsert.styles%7Cext.uls.pt%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector" />
+	<link rel="stylesheet"
+		href="/load.php?lang=zh-cn&amp;modules=ext.smw.style%7Cext.smw.tooltip.styles&amp;only=styles&amp;skin=vector" />
+	<link rel="stylesheet" href="/load.php?lang=zh-cn&amp;modules=ext.srf.styles&amp;only=styles&amp;skin=vector" />
+	<script async="" src="/load.php?lang=zh-cn&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+	<meta name="ResourceLoaderDynamicStyles" content="" />
+	<link rel="stylesheet" href="/load.php?lang=zh-cn&amp;modules=site.styles&amp;only=styles&amp;skin=vector" />
+	<meta name="generator" content="MediaWiki 1.35.7" />
+	<meta name="robots" content="noindex,nofollow" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="alternate" type="application/rdf+xml" title="星熊"
+		href="/index.php?title=%E7%89%B9%E6%AE%8A:%E5%AF%BC%E5%87%BARDF/%E6%98%9F%E7%86%8A&amp;xmlmime=rdf" />
+	<link rel="alternate" media="only screen and (max-width: 720px)" href="//m.prts.wiki/w/%E6%98%9F%E7%86%8A" />
+	<link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="PRTS (zh-cn)" />
+	<link rel="EditURI" type="application/rsd+xml" href="//prts.wiki/api.php?action=rsd" />
+	<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" />
+	<script>
+		this.globalThis || (this.globalThis = this)
+	</script>
+	<link rel="modulepreload" href="https://static.prts.wiki/widgets/release/sentry.85d1fbac.js" as="script">
+	<script type="module" src="https://static.prts.wiki/widgets/release/sentry.85d1fbac.js"></script>
+	<link rel="dns-prefetch" href="https://static.prts.wiki/">
+	<link rel="manifest" href="/manifest.json">
+	<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/font-awesome/5.15.4/css/all.min.css" type="text/css"
+		rel="stylesheet" />
+	<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/font-awesome/5.15.4/css/v4-shims.min.css"
+		type="text/css" rel="stylesheet" />
+	<link href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/animate.css/3.7.2/animate.min.css" type="text/css"
+		rel="stylesheet" />
+	<meta name="theme-color" content="#343434">
+	<link rel="apple-touch-icon" href="/ioslogo.png">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script>
+		if('serviceWorker'in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').then(function(registration){console.log('ServiceWorker registration successful with scope: ',registration.scope)}).catch(function(err){console.log('ServiceWorker registration failed: ',err)})})}
+	</script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script data-ad-client="ca-pub-3703762592545424" async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-DEE6E93G5M"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-DEE6E93G5M');
+	</script>
+	<script>
+		var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e1369c7d981281aa581e68b669c5a75c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+	</script>
+	<style type="text/css">
+		.skin-vector .mw-body {
+			margin-left: 11em !important;
+			padding: 1.25em 1.5em 1.5em 1.5em !important
+		}
+
+		.skin-vector #mw-panel {
+			padding-left: 0 !important;
+			width: 10.5em !important
+		}
+
+		.skin-vector #left-navigation,
+		.skin-vector #content {
+			margin-left: 11em
+		}
+
+		div#MenuSidebar {
+			margin-bottom: 5rem;
+			position: absolute;
+			top: 200px;
+			width: 100%
+		}
+
+		div#MenuSidebar a.external {
+			background: none;
+			padding-right: auto
+		}
+
+		div#MenuSidebar>:first-child {
+			margin-top: 0px;
+			border-top: 2px solid #f4c430
+		}
+
+		div#MenuSidebar>:first-child>:first-child {
+			box-shadow: none
+		}
+
+		div#MenuSidebar>ul {
+			list-style: none none;
+			width: 100%;
+			margin: 0px;
+			background-color: rgba(20, 20, 20, 0.6);
+			border-top: 2px solid #f4c430;
+			border-bottom-right-radius: 5px
+		}
+
+		div#MenuSidebar ul {
+			position: relative;
+			font-size: 0.9rem
+		}
+
+		div#MenuSidebar>ul>li ul {
+			display: block;
+			opacity: 0;
+			pointer-events: none;
+			visibility: hidden;
+			transition: 0.2s all ease-in-out;
+			z-index: 1;
+			background-color: #373737;
+			width: unset !important;
+			white-space: nowrap
+		}
+
+		div#MenuSidebar>ul>li ul a,
+		div#MenuSidebar>ul>li ul b {
+			padding-right: 18px
+		}
+
+		div#MenuSidebar>ul ul {
+			list-style: none none;
+			position: absolute;
+			left: 100%;
+			width: 100%;
+			top: 0px;
+			margin: 0px;
+			z-index: 1;
+			background-color: #333;
+			box-shadow: -1px 2px 10px 0px rgba(0, 0, 0, 0.4), -1px -2px 10px 0px rgba(0, 0, 0, 0.4)
+		}
+
+		div#MenuSidebar ul li:first-child {
+			box-shadow: none
+		}
+
+		div#MenuSidebar>p {
+			padding: 8px 10px;
+			margin: 0px;
+			cursor: default;
+			color: #f4c430;
+			font-weight: bold;
+			margin-top: 8px;
+			background-color: rgba(30, 30, 30, 0.6)
+		}
+
+		div#MenuSidebar>ul li:hover>ul {
+			display: block;
+			opacity: 1;
+			pointer-events: auto;
+			visibility: visible
+		}
+
+		div#MenuSidebar li {
+			position: relative;
+			margin: 0px;
+			box-shadow: inset 0 1px rgba(244, 196, 48, 0.5);
+			transition: 0.15s all ease-in;
+			z-index: 1
+		}
+
+		div#MenuSidebar li b,
+		div#MenuSidebar li a {
+			padding: 5px 0px;
+			padding-left: 18px;
+			display: block;
+			width: auto;
+			height: 100%;
+			font-weight: normal
+		}
+
+		div#MenuSidebar a {
+			transition: all 0.15s ease-in;
+			color: #eaeaea
+		}
+
+		div#MenuSidebar a:hover,
+		div#MenuSidebar b:hover {
+			color: black;
+			background-color: #f4c430;
+			text-decoration: none !important
+		}
+
+		div#MenuSidebar b {
+			cursor: default
+		}
+
+		div#MenuSidebar li.child>a::after,
+		div#MenuSidebar li.child>b::after {
+			float: right;
+			content: "\f0da";
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+			display: inherit;
+			-moz-osx-font-smoothing: grayscale;
+			-webkit-font-smoothing: antialiased;
+			display: inline-block;
+			font-style: normal;
+			font-variant: normal;
+			text-rendering: auto;
+			line-height: 100%;
+			font-size: 1rem;
+			padding-top: 2%;
+			margin-right: 3px
+		}
+
+		div#MenuSidebar a.selflink {
+			font-weight: bold;
+			color: #f4c430;
+			cursor: default
+		}
+
+		div#MenuSidebar a.selflink:hover {
+			background-color: inherit;
+			color: #f4c430
+		}
+
+		div#MenuSidebar>ul>li:last-child>a,
+		div#MenuSidebar>ul>li:last-child>b {
+			border-bottom-right-radius: 5px
+		}
+
+		div#MenuSidebar a.selflink::before {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0px;
+			top: 50%;
+			transform: translateY(-50%);
+			border-top: 6px solid transparent;
+			border-bottom: 6px solid transparent;
+			border-left: 6px solid #f4c430
+		}
+
+		#MenuSidebar .copyUrl::after {
+			content: "\f0c1";
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+			-webkit-font-smoothing: antialiased;
+			display: inline-block;
+			font-style: normal;
+			font-variant: normal;
+			text-rendering: auto;
+			line-height: 1;
+			font-size: 70%;
+			margin-left: .4em;
+			color: var(--production);
+			pointer-events: auto;
+			cursor: pointer
+		}
+	</style>
+	<link rel="preload" href="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/lazysizes/4.1.8/lazysizes.min.js"
+		as="script">
+	<script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-3-y/lazysizes/4.1.8/lazysizes.min.js"
+		type="application/javascript"></script>
+	<meta property="og:title" content="星熊" />
+	<meta property="og:site_name" content="PRTS" />
+	<meta property="og:url" content="http://prts.wiki/w/%E6%98%9F%E7%86%8A" />
+	<meta property="og:image" content="http://prts.wiki/images/ak.png" />
+	<meta property="article:modified_time" content="2022-11-01T15:02:37Z" />
+	<meta property="article:published_time" content="2022-11-01T15:02:37Z" />
+	<script type="application/ld+json">
+		{"@context":"http:\/\/schema.org","@type":"article","name":"\u67e5\u770b\u201c\u661f\u718a\u201d\u7684\u6e90\u4ee3\u7801 - PRTS - \u73a9\u5bb6\u81ea\u7531\u6784\u7b51\u7684\u660e\u65e5\u65b9\u821f\u4e2d\u6587Wiki","headline":"\u67e5\u770b\u201c\u661f\u718a\u201d\u7684\u6e90\u4ee3\u7801 - PRTS - \u73a9\u5bb6\u81ea\u7531\u6784\u7b51\u7684\u660e\u65e5\u65b9\u821f\u4e2d\u6587Wiki","mainEntityOfPage":"\u67e5\u770b\u201c\u661f\u718a\u201d\u7684\u6e90\u4ee3\u7801","identifier":"http:\/\/prts.wiki\/w\/%E6%98%9F%E7%86%8A","url":"http:\/\/prts.wiki\/w\/%E6%98%9F%E7%86%8A","dateModified":"2022-11-01T15:02:37Z","datePublished":"2022-11-01T15:02:37Z","image":{"@type":"ImageObject","url":"http:\/\/prts.wiki\/images\/ak.png"},"author":{"@type":"Organization","name":"PRTS","url":"\/\/prts.wiki","logo":{"@type":"ImageObject","url":"http:\/\/prts.wiki\/images\/ak.png","caption":"PRTS"}},"publisher":{"@type":"Organization","name":"PRTS","url":"\/\/prts.wiki","logo":{"@type":"ImageObject","url":"http:\/\/prts.wiki\/images\/ak.png","caption":"PRTS"}},"potentialAction":{"@type":"SearchAction","target":"http:\/\/prts.wiki\/index.php?title=%E7%89%B9%E6%AE%8A:Search&search={search_term}","query-input":"required name=search_term"}}
+	</script>
+	<!--[if lt IE 9]><script src="/resources/lib/html5shiv/html5shiv.js"></script><![endif]-->
+</head>
+
+<body
+	class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-星熊 rootpage-星熊 skin-vector action-edit skin-vector-legacy minerva--history-page-action-enabled">
+	<div id="mw-page-base" class="noprint"></div>
+	<div id="mw-head-base" class="noprint"></div>
+	<div id="content" class="mw-body" role="main">
+		<a id="top"></a>
+		<div id="siteNotice" class="mw-body-content">
+			<div id="localNotice" lang="zh-Hans-CN" dir="ltr">
+				<div class="nomobile"></div>
+			</div>
+		</div>
+		<div class="mw-indicators mw-body-content">
+		</div>
+		<h1 id="firstHeading" class="firstHeading" lang="zh-Hans-CN">查看“星熊”的源代码</h1>
+		<div id="bodyContent" class="mw-body-content">
+
+			<div id="contentSub">←<a href="/w/%E6%98%9F%E7%86%8A" title="星熊">星熊</a></div>
+			<div id="contentSub2"></div>
+
+			<div id="jump-to-nav"></div>
+			<a class="mw-jump-link" href="#mw-head">跳到导航</a>
+			<a class="mw-jump-link" href="#searchInput">跳到搜索</a>
+			<div id="mw-content-text">
+				<p>因为以下原因，您没有权限编辑本页：
+				</p>
+				<ul class="permissions-errors">
+					<li>您请求的操作仅限属于这些用户组的用户执行：<a href="/w/PRTS:%E7%94%A8%E6%88%B7" title="PRTS:用户">用户</a>、​Editor</li>
+					<li>此页面已被保护以防止编辑或其他操作。</li>
+				</ul>
+				<hr />
+				<p>您可以查看和复制此页面的源代码。
+				</p><textarea readonly="" accesskey="," id="wpTextbox1" cols="80" rows="25" style="" class="mw-editfont-monospace" lang="zh-Hans-CN" dir="ltr" name="wpTextbox1">{{干员页面名|星熊|Hoshiguma|ホシグマ}}{{pathnav2|干员一览}}
+
+==干员信息==
+{{CharinfoV2
+|干员名=星熊
+|干员名jp=ホシグマ
+|干员外文名=Hoshiguma
+|干员id=char_136_hsguma
+|干员序号=80
+|特性=能够阻挡三个敌人
+|稀有度=5
+|职业=重装
+|分支=铁卫
+|情报编号=LM05
+|所属国家=炎-龙门
+|所属组织=龙门近卫局
+|所属团队=
+|位置=近战位
+|标签=防护 输出
+|画师=Infukun
+|中文配音=蔡欣纯
+|中文方言配音=师欣
+|日文配音=安野希世乃
+|韩文配音=李清晨
+|英文配音=Meaghan Martin
+
+|精英0缩放=2
+|精英0坐标x=2
+|精英0坐标y=-10
+|精英2缩放=2
+|精英2坐标x=16
+|精英2坐标y=-250
+|时装1缩放=2
+|时装1坐标x=30
+|时装1坐标y=-85
+|精英0介绍=干员平时最常穿着的服装。&lt;br/>虽然不一定比制服更实用，但是一定是干员最舒适的搭配之一。
+|精英2介绍=晋升后，经过调整的服装。&lt;br/>根据干员的经验，对服装细节进行改进，针对一些作战环境进行了特化处理。在满足战斗需求的同时，最大程度还原各位干员熟悉的舒适穿着体验。
+|时装1名称=狩标浪人
+|时装1系列=0011/飙系列
+|时装1颜色=#00736d
+|时装1介绍=0011子品牌，飙系列新款/狩标浪人。多位设计师联手呈现，挑战街头风格。特别改装了一面近卫局制式盾，配以东国传统元素，压迫感十足。
+}}
+
+==获得方式==
+{{干员获得方式
+|获得方式=公开招募 标准寻访
+|上线时间=2019-04-30 10:00
+}}
+==属性==
+{{属性
+|再部署=70s
+|部署费用=19→21→23
+|阻挡数=3
+|攻击速度=1.2s
+|精英0_1级_生命上限=1602
+|精英0_1级_攻击=221
+|精英0_1级_防御=257
+|精英0_1级_法术抗性=0
+|精英0_满级=50
+|精英0_满级_生命上限=2165
+|精英0_满级_攻击=284
+|精英0_满级_防御=384
+|精英0_满级_法术抗性=0
+|精英1_满级=80
+|精英1_满级_生命上限=2849
+|精英1_满级_攻击=356
+|精英1_满级_防御=527
+|精英1_满级_法术抗性=0
+|精英2_满级=90
+|精英2_满级_生命上限=3850
+|精英2_满级_攻击=430
+|精英2_满级_防御=723
+|精英2_满级_法术抗性=0
+|信赖加成_生命上限=0
+|信赖加成_攻击=60
+|信赖加成_防御=60
+|潜能=-1,,30,-1,
+|潜能类型=cost,,def,cost,
+|初始模组名=星熊证章
+|模组1名=友人们的赠礼
+|模组1数据=atk:70;def:100;block_cnt:1
+|模组2名=护身符
+|模组2数据=max_hp:200;def:140
+}}
+==攻击范围==
+{{干员攻击范围
+|精英0范围=1-1
+|精英1范围=1-1
+|精英2范围=1-1
+}}
+==天赋==
+{{天赋列表2
+|第一天赋1=战术装甲
+|第一天赋1条件=精英1
+|第一天赋1效果=获得12%{{修正|几率|原因=游戏文本存在疏漏|name=修正1|group=注}}的伤害抵挡
+|第一天赋2=战术装甲
+|第一天赋2条件=精英1 潜能3
+|第一天赋2效果=获得15%{{color|#F49800|（+3%）}}{{修正|几率|原因=游戏文本存在疏漏|name=修正1|group=注}}的伤害抵挡
+|第一天赋3=战术装甲
+|第一天赋3条件=精英2
+|第一天赋3效果=获得25%{{修正|几率|原因=游戏文本存在疏漏|name=修正1|group=注}}的伤害抵挡
+|第一天赋4=战术装甲
+|第一天赋4条件=精英2 潜能3
+|第一天赋4效果=获得28%{{color|#F49800|（+3%）}}{{修正|几率|原因=游戏文本存在疏漏|name=修正1|group=注}}的伤害抵挡
+|第二天赋1=特种作战策略
+|第二天赋1条件=精英2
+|第二天赋1效果=在场时所有友方【重装】职业干员的防御力{{*|6%|提升6%}}
+|第二天赋2=特种作战策略
+|第二天赋2条件=精英2 潜能6
+|第二天赋2效果=在场时所有友方【重装】职业干员的防御力{{*|8%|提升8%}}{{color|#F49800|（+2%）}}
+}}
+&lt;references group=注/>
+
+==潜能提升==
+{{潜能提升
+|潜能2=部署费用-1
+|潜能3=第一天赋效果增强
+|潜能4=防御力+30
+|潜能5=部署费用-1
+|潜能6=第二天赋效果增强
+}}
+==技能==
+'''技能1（精英0开放）'''
+{{技能2
+|技能名=战意
+|技能名jp=戦意昂揚
+|技能名en=Warpath
+|技能类型1=自动回复
+|技能类型2=手动触发
+|技能1描述=防御力{{*|35%|{{color|#0098DC|+35%}}}}，攻击力{{*|10%|{{color|#0098DC|+10%}}}}
+|技能1初始=20
+|技能1消耗=50
+|技能1持续=20
+|技能2描述=防御力{{*|40%|{{color|#0098DC|+40%}}}}，攻击力{{*|10%|{{color|#0098DC|+10%}}}}
+|技能2初始=20
+|技能2消耗=49
+|技能2持续=21
+|技能3描述=防御力{{*|45%|{{color|#0098DC|+45%}}}}，攻击力{{*|10%|{{color|#0098DC|+10%}}}}
+|技能3初始=20
+|技能3消耗=48
+|技能3持续=22
+|技能4描述=防御力{{*|50%|{{color|#0098DC|+50%}}}}，攻击力{{*|20%|{{color|#0098DC|+20%}}}}
+|技能4初始=20
+|技能4消耗=47
+|技能4持续=23
+|技能5描述=防御力{{*|55%|{{color|#0098DC|+55%}}}}，攻击力{{*|20%|{{color|#0098DC|+20%}}}}
+|技能5初始=20
+|技能5消耗=46
+|技能5持续=24
+|技能6描述=防御力{{*|60%|{{color|#0098DC|+60%}}}}，攻击力{{*|20%|{{color|#0098DC|+20%}}}}
+|技能6初始=20
+|技能6消耗=45
+|技能6持续=25
+|技能7描述=防御力{{*|65%|{{color|#0098DC|+65%}}}}，攻击力{{*|30%|{{color|#0098DC|+30%}}}}
+|技能7初始=20
+|技能7消耗=44
+|技能7持续=26
+|技能专精1描述=防御力{{*|70%|{{color|#0098DC|+70%}}}}，攻击力{{*|30%|{{color|#0098DC|+30%}}}}
+|技能专精1初始=20
+|技能专精1消耗=43
+|技能专精1持续=27
+|技能专精2描述=防御力{{*|75%|{{color|#0098DC|+75%}}}}，攻击力{{*|30%|{{color|#0098DC|+30%}}}}
+|技能专精2初始=20
+|技能专精2消耗=42
+|技能专精2持续=28
+|技能专精3描述=防御力{{*|80%|{{color|#0098DC|+80%}}}}，攻击力{{*|40%|{{color|#0098DC|+40%}}}}
+|技能专精3初始=20
+|技能专精3消耗=40
+|技能专精3持续=30
+}}
+'''技能2（精英1开放）'''
+{{技能2
+|技能名=荆棘
+|技能名jp=荊棘
+|技能名en=Thorns
+|技能类型1=被动
+|技能1描述=防御力{{*|5%|{{color|#0098DC|+5%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|50%}}的物理伤害
+|技能1初始=0
+|技能1消耗=0
+|技能1持续=
+|技能2描述=防御力{{*|7%|{{color|#0098DC|+7%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|55%}}的物理伤害
+|技能2初始=0
+|技能2消耗=0
+|技能2持续=
+|技能3描述=防御力{{*|9%|{{color|#0098DC|+9%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|60%}}的物理伤害
+|技能3初始=0
+|技能3消耗=0
+|技能3持续=
+|技能4描述=防御力{{*|13%|{{color|#0098DC|+13%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|65%}}的物理伤害
+|技能4初始=0
+|技能4消耗=0
+|技能4持续=
+|技能5描述=防御力{{*|15%|{{color|#0098DC|+15%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|70%}}的物理伤害
+|技能5初始=0
+|技能5消耗=0
+|技能5持续=
+|技能6描述=防御力{{*|17%|{{color|#0098DC|+17%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|75%}}的物理伤害
+|技能6初始=0
+|技能6消耗=0
+|技能6持续=
+|技能7描述=防御力{{*|21%|{{color|#0098DC|+21%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|80%}}的物理伤害
+|技能7初始=0
+|技能7消耗=0
+|技能7持续=
+|技能专精1描述=防御力{{*|24%|{{color|#0098DC|+24%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|85%}}的物理伤害
+|技能专精1初始=0
+|技能专精1消耗=0
+|技能专精1持续=
+|技能专精2描述=防御力{{*|27%|{{color|#0098DC|+27%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|90%}}的物理伤害
+|技能专精2初始=0
+|技能专精2消耗=0
+|技能专精2持续=
+|技能专精3描述=防御力{{*|30%|{{color|#0098DC|+30%}}}}&lt;br/>每次受到攻击时对目标造成相当于星熊攻击力{{color|#0098DC|100%}}的物理伤害
+|技能专精3初始=0
+|技能专精3消耗=0
+|技能专精3持续=
+}}
+'''技能3（精英2开放）'''
+{{技能2
+|技能名=力之锯
+|技能名jp=般若
+|技能名en=Saw of Strength
+|技能类型1=自动回复
+|技能类型2=手动触发
+|技能1描述=攻击力{{*|65%|{{color|#0098DC|+65%}}}}，防御力{{*|40%|{{color|#0098DC|+40%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能1初始=20
+|技能1消耗=60
+|技能1持续=25
+|技能2描述=攻击力{{*|70%|{{color|#0098DC|+70%}}}}，防御力{{*|40%|{{color|#0098DC|+40%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能2初始=20
+|技能2消耗=59
+|技能2持续=25
+|技能3描述=攻击力{{*|75%|{{color|#0098DC|+75%}}}}，防御力{{*|40%|{{color|#0098DC|+40%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能3初始=20
+|技能3消耗=58
+|技能3持续=25
+|技能4描述=攻击力{{*|80%|{{color|#0098DC|+80%}}}}，防御力{{*|50%|{{color|#0098DC|+50%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能4初始=23
+|技能4消耗=57
+|技能4持续=25
+|技能5描述=攻击力{{*|85%|{{color|#0098DC|+85%}}}}，防御力{{*|50%|{{color|#0098DC|+50%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能5初始=23
+|技能5消耗=56
+|技能5持续=25
+|技能6描述=攻击力{{*|90%|{{color|#0098DC|+90%}}}}，防御力{{*|50%|{{color|#0098DC|+50%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能6初始=23
+|技能6消耗=55
+|技能6持续=25
+|技能7描述=攻击力{{*|95%|{{color|#0098DC|+95%}}}}，防御力{{*|60%|{{color|#0098DC|+60%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能7初始=26
+|技能7消耗=54
+|技能7持续=25
+|技能专精1描述=攻击力{{*|110%|{{color|#0098DC|+110%}}}}，防御力{{*|70%|{{color|#0098DC|+70%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能专精1初始=27
+|技能专精1消耗=53
+|技能专精1持续=25
+|技能专精2描述=攻击力{{*|125%|{{color|#0098DC|+125%}}}}，防御力{{*|80%|{{color|#0098DC|+80%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能专精2初始=28
+|技能专精2消耗=52
+|技能专精2持续=25
+|技能专精3描述=攻击力{{*|140%|{{color|#0098DC|+140%}}}}，防御力{{*|90%|{{color|#0098DC|+90%}}}}，对前方一格的所有敌人使用盾牌进行切割
+|技能专精3初始=30
+|技能专精3消耗=50
+|技能专精3持续=25
+|备注=※属于[[游戏数据基础#维持技能状态|维持技能状态]]，时间模式为跟随动画
+}}
+
+==后勤技能==
+{{后勤技能
+|后勤技能1-1=重装专精·α
+|后勤技能1-1阶段=精英0
+|后勤技能1-2=般若
+|后勤技能1-2阶段=精英2
+}}
+&lt;!--如需修改技能信息，请前往[[后勤技能一览]]页面-->
+==精英化材料==
+{{精英化材料
+|精1={{材料消耗|龙门币|3w}} {{材料消耗|重装芯片|5}} {{材料消耗|固源岩|11}} {{材料消耗|异铁|5}}
+|精2={{材料消耗|龙门币|18w}} {{材料消耗|重装双芯片|4}} {{材料消耗|聚合剂|4}} {{材料消耗|五水研磨石|5}}
+}}
+==技能升级材料==
+{{技能升级材料
+|2={{材料消耗|技巧概要·卷1|5}}
+|3={{材料消耗|技巧概要·卷1|5}} {{材料消耗|酯原料|6}} {{材料消耗|异铁碎片|4}}
+|4={{材料消耗|技巧概要·卷2|8}} {{材料消耗|糖|5}}
+|5={{材料消耗|技巧概要·卷2|8}} {{材料消耗|聚酸酯|4}} {{材料消耗|异铁|4}}
+|6={{材料消耗|技巧概要·卷2|8}} {{材料消耗|RMA70-12|6}}
+|7={{材料消耗|技巧概要·卷3|8}} {{材料消耗|固源岩组|5}} {{材料消耗|全新装置|4}}
+|一8={{材料消耗|技巧概要·卷3|6}} {{材料消耗|糖聚块|4}} {{材料消耗|RMA70-12|5}}
+|一9={{材料消耗|技巧概要·卷3|12}} {{材料消耗|酮阵列|4}} {{材料消耗|聚酸酯块|7}}
+|一10={{材料消耗|技巧概要·卷3|15}} {{材料消耗|聚合剂|6}} {{材料消耗|五水研磨石|6}}
+|二8={{材料消耗|技巧概要·卷3|6}} {{材料消耗|聚酸酯块|4}} {{材料消耗|固源岩组|8}}
+|二9={{材料消耗|技巧概要·卷3|12}} {{材料消耗|改量装置|3}} {{材料消耗|异铁块|6}}
+|二10={{材料消耗|技巧概要·卷3|15}} {{材料消耗|聚合剂|6}} {{材料消耗|聚酸酯块|6}}
+|三8={{材料消耗|技巧概要·卷3|6}} {{材料消耗|异铁块|4}} {{材料消耗|糖组|4}}
+|三9={{材料消耗|技巧概要·卷3|12}} {{材料消耗|白马醇|4}} {{材料消耗|酮阵列|8}}
+|三10={{材料消耗|技巧概要·卷3|15}} {{材料消耗|D32钢|6}} {{材料消耗|白马醇|7}}
+}}
+==模组==
+===星熊证章===
+{{模组
+|名称=星熊证章
+|基础证章=yes
+|分支=铁卫
+|基础信息=干员星熊擅长维持战线抵御敌人&lt;br>根据外勤部门决议&lt;br>在外勤任务中划分为重装干员，行使铁卫职责&lt;br>特别颁发此证章&lt;br>以兹证明
+}}
+===友人们的赠礼===
+&lt;section begin=专属模组 />
+{{模组
+|名称=友人们的赠礼
+|类型=PRO-Y
+|类型颜色=grey
+|攻击=50
+|防御=70
+|阻挡数=1
+|攻击2=62
+|防御2=90
+|攻击3=70
+|防御3=100
+|特性=能够阻挡{{变动数值lite|up|蓝|四}}个敌人&lt;br/>※已计入基础数值
+|天赋2=天赋【战术装甲】更新&lt;br/>获得{{变动数值lite|up|蓝|30%}}的伤害抵挡，{{变动数值lite||橙|成功抵挡伤害后3秒内攻击力+20%（不叠加）}}&lt;br/>※不限{{color|red|'''抵挡'''}}伤害的方式
+|天赋3=天赋【战术装甲】更新&lt;br/>获得{{变动数值lite|up|蓝|32%}}的伤害抵挡，成功抵挡伤害后{{变动数值lite|up|蓝|5}}秒内攻击力{{变动数值lite|up|蓝|+35%}}（不叠加）&lt;br/>※不限{{color|red|'''抵挡'''}}伤害的方式
+|任务1=由非助战星熊累计造成60歼灭数
+|任务2=3星通关主题曲[[3-1]]；必须编入非助战星熊并上场，其他成员仅可编入4名干员
+|解锁等级=60
+|解锁信赖=100
+|材料消耗={{材料消耗|模组数据块|4}} {{材料消耗|D32钢|2}} {{材料消耗|龙门币|8万}}
+|材料消耗2={{材料消耗|模组数据块|4}} {{材料消耗|数据增补条|60}} {{材料消耗|双极纳米片|3}} {{材料消耗|龙门币|10万}}
+|材料消耗3={{材料消耗|模组数据块|4}} {{材料消耗|数据增补仪|20}} {{材料消耗|晶体电子单元|4}} {{材料消耗|龙门币|12万}}
+|基础信息=■月■日&lt;br>从那个人手里拿到了这面盾，不常见的造型，非常锋利，但是手感很好。&lt;br>般若，那人说这是它的名字。虽然不知道他起名时心里念的是哪一篇经文，或者想着哪一个人，哪一桩过错，但我喜欢这个名字。般若，我会带走它，今后它就是我的搭档了。&lt;br>&lt;br>&lt;br>■月■日&lt;br>出发之前，般若这家伙的“父亲”说还有东西要给我，本以为是什么重要的物品，结果却只是一块废铁。&lt;br>对方说，和般若相配的把手需要我自己打磨。虽然是个古怪的要求，但若说这也是修行的一种，倒也不是不能接受。般若既然已经有了令人丧胆的盾面，和锋利到足以切碎敌人的边缘，由我亲手来制作与其相配的内面，或许也是应有之义。&lt;br>&lt;br>■月■日&lt;br>据说，要一直打磨到空手握着般若战斗，也不会磨手，不会感到任何不适的程度才行。&lt;br>那就是要把棱角都磨平才行的意思咯？&lt;br>行吧，看起来会是一个漫长的过程。&lt;br>&lt;br>■月■日&lt;br>好像已经磨了够久了，但还是硌手。&lt;br>看起来已经很平滑了，这样还是不够吗？&lt;br>&lt;br>■月■日&lt;br>离开东国......也有不少日子了。龙门是个复杂的地方，有好的地方，也有坏的地方，教训了不少该教训的人，也遇到了不少有意思的人，我觉得我喜欢这里。&lt;br>般若的把手已经没有再能打磨的地方了，用了这么久，连弧度都已经被磨平了。但这东西终究是一块铁，不论如何还是做不到让人在使用时没有任何不适，从最开始，这似乎就是一个不可能的任务。&lt;br>就当是我的修行不足吧。就算勉强将棱角都磨平，终究还是瞒不过自己。铁块就是铁块，没法变柔软，就算外表圆滑了，本质却不会变。&lt;br>到了今天，那个人的用意，我似乎也理解了一些。&lt;br>&lt;br>■月■日&lt;br>收到了朋友们合送的礼物。&lt;br>或许不该这么说，不过，确实没有想到，这两位大小姐会花心思替我考虑合适的礼物。最新款的盾牌软带把手啊......确实是现在的我需要的东西，难为她们能考虑到。&lt;br>朋友们的一番心意，明天就来用用看吧。
+}}
+&lt;section end=专属模组 />
+===护身符===
+&lt;section begin=专属模组 />
+{{模组
+|名称=护身符
+|类型=PRO-X
+|类型颜色=yellow
+|生命=125
+|防御=85
+|生命2=165
+|防御2=115
+|生命3=200
+|防御3=140
+|特性=阻挡敌人时防御力{{color|#0098DC|+20%}}|特性追加=yes
+|天赋2=天赋【特种作战策略】更新&lt;br/>在场时所有友方【重装】职业干员的防御力提升{{变动数值lite|up|蓝|9%}}，{{变动数值lite||橙|自身防御力额外提升4%}}
+|天赋3=天赋【特种作战策略】更新&lt;br/>在场时所有友方【重装】职业干员的防御力提升{{变动数值lite|up|蓝|11%}}，自身防御力额外提升{{变动数值lite|up|蓝|6%}}
+|任务1=由非助战星熊累计造成60000点伤害
+|任务2=3星通关主题曲[[6-4]]；必须编入非助战星熊并上场，其他成员不可编入重装干员
+|解锁等级=60
+|解锁信赖=100
+|材料消耗={{材料消耗|模组数据块|4}} {{材料消耗|D32钢|2}} {{材料消耗|龙门币|8万}}
+|材料消耗2={{材料消耗|模组数据块|4}} {{材料消耗|数据增补条|60}} {{材料消耗|双极纳米片|3}} {{材料消耗|龙门币|10万}}
+|材料消耗3={{材料消耗|模组数据块|4}} {{材料消耗|数据增补仪|20}} {{材料消耗|晶体电子单元|4}} {{材料消耗|龙门币|12万}}
+|基础信息=当亡命之徒射出第一支尖锐的弩箭，近卫局的协助人阿祥重重地抽了一口气，难以置信地瞪大双眼。&lt;br/>“我不知道有这回事！”他惊叫出声，“他们怎么敢在城区这么干？他们这是坏了规矩！”&lt;br/>“富贵险中求，不稀奇。”&lt;br/>答话的高大鬼族女性靠在铁桶后头，姿态看似随意放松，手却没离开她的盾。&lt;br/>外头的动静稍歇。&lt;br/>星熊向外看了一眼，尽头处一片漆黑，她知道危机就藏在暗处。&lt;br/>近卫局的支援还在路上，一群打破规矩的亡命之徒已经将他们包围，攻击随时可能到来。&lt;br/>情况可以说糟糕透顶，他们只能等待突围的机会。&lt;br/>阿祥的面色凝重，他原本是下城区不算少见的一个街头青年，大街小巷地四处混过几年时间，是个排不上号的小角色，但出去也自称是混过道上的人。&lt;br/>现在做了近卫局的线人，看着比从前稳重不少，这让星熊不免感到欣慰。&lt;br/>话头分不清是哪边先牵起来的。&lt;br/>“其他人最近怎么样？”&lt;br/>“都挺好的。阿森家里给找了工作，大头开了家酒吧，我记得手续还是当时托鬼姐给办的吧。”&lt;br/>“是有这么回事。你呢？这几年都没回家？”&lt;br/>“没回，身上事多，不好回去。”&lt;br/>“那家里人日子怎么过？”&lt;br/>“领退休金，少是少点，但还能过。”&lt;br/>“也好，稳定。”&lt;br/>“鬼姐你呢？”&lt;br/>“我轻松，糊自己的口就行。”&lt;br/>阿祥没再说话。星熊也没有。&lt;br/>天气很阴，不久前才下过雨。&lt;br/>两人身旁成堆的垃圾沥出颜色奇怪的脏水，从他们脚边爬过，一路淌向不远处的下水口。&lt;br/>窸窸窣窣的动静逐渐停歇，越是一片平静，神经就越是紧绷着。&lt;br/>阿祥在这时忽然变得饶舌起来。&lt;br/>“鬼姐，你怕不怕？”&lt;br/>他兀自问，又兀自说下去，“我是因为鬼姐你在，才答应这次给近卫局干活的。&lt;br/>“之前有一回，他们说要拿刀去吓唬吓唬那个抢生意的老板，事成后能拿利是，鬼姐你还记得不？”&lt;br/>星熊盯着巷口，没点头。&lt;br/>她记得早几年遇到那几个年轻人，他们是这片街头被遗弃的垃圾，被视作不适应社会的渣滓，他们活得稀里糊涂，随时可能莫名其妙地赔掉人生。&lt;br/>所以当魏彦吾邀请她加入近卫局时，星熊想了一晚，点头答应下来。&lt;br/>她相信龙门将会有所改变。&lt;br/>“当时，要不是鬼姐你拦着，我就和那群人一起去了。”&lt;br/>她背后的声音带着颤抖。&lt;br/>“后来我听说，他们真闹出人命，几个人全都栽进去。&lt;br/>“还有一回，那群外头的黑帮找我们麻烦，最后也是鬼姐你把人给拦了。”&lt;br/>身后的人压着嗓子，牙关咯咯，声音显得有些失真。&lt;br/>“我想了想，家里只靠退休金日子还是难过了点。&lt;br/>“要是没我在，我信鬼姐你想冲出去肯定不难。&lt;br/>“我给自己投过保，我不亏。&lt;br/>“所以鬼姐，别管我了——” &lt;br/>&lt;br/>“铛。” &lt;br/>&lt;br/>一声突兀的脆响。&lt;br/>像是某种信号，一直沉默的近卫局督察如山墙般立起，发出怒喝。&lt;br/>一切都在极短的时间内发生，垃圾被踩踏发出的声响，堆积的铁桶被撞击的声响，划开空气的弩声，还有——&lt;br/>沉重的金属撞击声。&lt;br/>未被阻挡的弩箭击穿了星熊搁在胸前的龙门近卫局督察证，而她的盾则横扫所有敌人，一步不让地立在该保护的人身前。&lt;br/>星熊再次将盾抬起，往回咽下一口血，又咳了两嗓子才终于开口。&lt;br/>“别管你这个要求，有点难。”&lt;br/>她抹掉唇角的血渍，声音听起来像是呛了水，“换一个我能做得到的吧——比如，替你申请这次行动的奖金，怎么样？”
+}}
+&lt;section end=专属模组 />
+
+==相关道具==
+{{相关道具
+|干员简介=龙门近卫局特别任务组干员星熊准备完毕，等待你的指示。
+|干员简介补充=害怕的时候可以站在她身边壮胆。
+|信物用途=用于提升星熊的潜能。
+|信物描述=过时的流行漫画。讲述了名不见经传的鬼怪在各色同伴的陪伴下成长为英雄的故事。
+}}
+==干员档案==
+{{人员档案set
+|性别=女
+|战斗经验=七年
+|出身地=东国
+|生日=1月20日
+|种族=鬼
+|身高=184cm
+|矿石病感染情况=参照医学检测报告，确认为非感染者。
+|是否感染者=非感染者
+
+|物理强度=优良
+|战场机动=标准
+|生理耐受=卓越
+|战术规划=标准
+|战斗技巧=优良
+|源石技艺适应性=普通
+
+|体细胞与源石融合率=0%
+|血液源石结晶密度=0.12u/L
+}}
+{{人员档案
+|档案1=基础档案
+|档案1条件=初始开放
+|档案1文本=【代号】星熊
+【性别】女
+【战斗经验】七年
+【出身地】东国
+【生日】1月20日
+【种族】鬼
+【身高】184cm
+【矿石病感染情况】
+参照医学检测报告，确认为非感染者。
+|档案2=综合体检测试
+|档案2条件=初始开放
+|档案2文本=【物理强度】优良
+【战场机动】标准
+【生理耐受】卓越
+【战术规划】标准
+【战斗技巧】优良
+【源石技艺适应性】普通
+|档案3=客观履历
+|档案3条件=初始开放
+|档案3文本=星熊，龙门近卫局特别任务组精英干员。
+存在数项指控记录。
+经龙门总督魏彦吾交涉，龙门近卫局依星熊的优异能力与良好表现，破格将其吸纳进近卫局特别督察组。在处理高危险性犯罪事件、要员保护、灾害紧急救援等领域表现出较高专业性。
+现作为重装干员协助罗德岛行动，并为现场提供战术执行与指挥支援。
+|档案4=临床诊断分析
+|档案4条件=提升信赖至25%以查看更多信息
+|档案4文本=造影检测结果显示，该干员体内脏器轮廓清晰，未见异常阴影，循环系统内源石颗粒检测未见异常，无矿石病感染迹象，现阶段可确认为非矿石病感染者。
+
+【体细胞与源石融合率】0%
+干员星熊没有被源石感染的迹象。
+
+【血液源石结晶密度】0.12u/L
+干员星熊甚少接触源石。
+|档案5=档案资料一
+|档案5条件=提升信赖至50%以查看更多信息
+|档案5文本=十分高大的鬼族女性。
+和陈长官相反，穿着总是十分随意，不过，一开口就能让人回想起其督察的身份。
+喜欢喝酒，至今还没人见过她醉倒的样子。
+|档案6=档案资料二
+|档案6条件=提升信赖至100%以查看更多信息
+|档案6文本=在职位上，陈长官是星熊小姐的上司，不过根据履历，星熊小姐加入近卫局时间还要在陈长官之前，并且两人共事了很久，也无怪乎相互之间完全没有上下级应有的疏离感。
+另外，出人意料的是，在对龙门的了解上，星熊小姐要远胜陈长官，黑道、白道、政治、经济、教育、外交等等等等，龙门的方方面面，她都看在眼里，并且有自己的想法。
+是个文武双全的优秀人才。
+|档案7=档案资料三
+|档案7条件=提升信赖至150%以查看更多信息
+|档案7文本=在好战方面，星熊小姐和她的同族并没有什么区别，在战场上的她比任何人都要骁勇善战。
+但在此之上，星熊小姐有着大部分鬼族欠缺的一项十分重要的特质——冷静。
+从她的言行举止中，能感受到思考，在她的骁勇善战中，能感受到克制。如果说，鬼族的血脉中潜藏着狂躁，那她就是完全克服了这种狂躁。
+这或许与她过去的经历有关。
+|档案8=档案资料四
+|档案8条件=提升信赖至200%以查看更多信息
+|档案8文本=按照近卫局的记录，黑帮打手时期的星熊小姐就显得十分独特，绝不欺压弱小，从不为非作歹，为人讲义气，有人情味，千杯不倒，简直就像是在东国都已经被时代所抛弃的任侠一般光明磊落。
+显然，这也是她能够破格成为龙门督察的理由。
+但这些资料仅仅说明了，星熊小姐在来到龙门时就已经和如今的她别无二致，却并没有解决根本上的疑问——究竟是什么，让星熊小姐变成了如此冷静而博学的人，这样的她又为何会栖身于龙门的黑帮？
+这些故事，显然发生在她来到龙门之前，至少现在，尚且不得而知。
+|档案9=晋升记录
+|档案9条件=提升至精英阶段2以查看更多信息
+|档案9文本=这个人，星熊，我可以借给你们。
+看在我们合作愉快的份上，给你个小提示，博士。
+若你以为她是个理智的人，那说明你还没有完全了解她。
+那面盾——般若，等到有一天你能让她亲自告诉你那面盾的来历......
+你才算真正了解了她。
+——魏彦吾
+}}
+
+==语音记录==
+{{参阅三|{{FULLPAGENAME}}|yy}}
+{{:{{FULLPAGENAME}}/语音记录}}
+==干员模型==
+{{spine}}
+&lt;references/>
+{{干员导航}}
+</textarea>
+				<div class="templatesUsed">
+					<div class="mw-templatesUsedExplanation">
+						<p>本页使用的模板：
+						</p>
+					</div>
+					<ul>
+						<li><a href="/w/%E5%88%86%E6%94%AF%E7%89%B9%E6%80%A7%E4%BF%A1%E6%81%AF/data"
+								title="分支特性信息/data">分支特性信息/data</a>（<a
+								href="/index.php?title=%E5%88%86%E6%94%AF%E7%89%B9%E6%80%A7%E4%BF%A1%E6%81%AF/data&amp;action=edit"
+								title="分支特性信息/data">查看源代码</a>）</li>
+						<li><a href="/w/%E6%98%9F%E7%86%8A/spine" title="星熊/spine">星熊/spine</a>（<a
+								href="/index.php?title=%E6%98%9F%E7%86%8A/spine&amp;action=edit"
+								title="星熊/spine">查看源代码</a>）</li>
+						<li><a href="/w/%E6%98%9F%E7%86%8A/%E8%AF%AD%E9%9F%B3%E8%AE%B0%E5%BD%95"
+								title="星熊/语音记录">星熊/语音记录</a>（<a
+								href="/index.php?title=%E6%98%9F%E7%86%8A/%E8%AF%AD%E9%9F%B3%E8%AE%B0%E5%BD%95&amp;action=edit"
+								title="星熊/语音记录">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:*" title="模板:*">模板:*</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:*&amp;action=edit" title="模板:*">查看源代码</a>）
+						</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Cbox2" title="模板:Cbox2">模板:Cbox2</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Cbox2&amp;action=edit"
+								title="模板:Cbox2">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Cbox2/core" title="模板:Cbox2/core">模板:Cbox2/core</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Cbox2/core&amp;action=edit"
+								title="模板:Cbox2/core">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:CharinfoV2" title="模板:CharinfoV2">模板:CharinfoV2</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:CharinfoV2&amp;action=edit"
+								title="模板:CharinfoV2">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:CharinfoV2/%E5%88%86%E6%94%AF"
+								title="模板:CharinfoV2/分支">模板:CharinfoV2/分支</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:CharinfoV2/%E5%88%86%E6%94%AF&amp;action=edit"
+								title="模板:CharinfoV2/分支">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Color" title="模板:Color">模板:Color</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Color&amp;action=edit"
+								title="模板:Color">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Decode" title="模板:Decode">模板:Decode</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Decode&amp;action=edit"
+								title="模板:Decode">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:DrName" title="模板:DrName">模板:DrName</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:DrName&amp;action=edit"
+								title="模板:DrName">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Fa" title="模板:Fa">模板:Fa</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Fa&amp;action=edit"
+								title="模板:Fa">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Navbox" title="模板:Navbox">模板:Navbox</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Navbox&amp;action=edit"
+								title="模板:Navbox">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Pathnav2" title="模板:Pathnav2">模板:Pathnav2</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Pathnav2&amp;action=edit"
+								title="模板:Pathnav2">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Popup" title="模板:Popup">模板:Popup</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Popup&amp;action=edit"
+								title="模板:Popup">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Spine" title="模板:Spine">模板:Spine</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Spine&amp;action=edit"
+								title="模板:Spine">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:Trim" title="模板:Trim">模板:Trim</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:Trim&amp;action=edit"
+								title="模板:Trim">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:VoiceData/word"
+								title="模板:VoiceData/word">模板:VoiceData/word</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:VoiceData/word&amp;action=edit"
+								title="模板:VoiceData/word">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:VoiceTable" title="模板:VoiceTable">模板:VoiceTable</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:VoiceTable&amp;action=edit"
+								title="模板:VoiceTable">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E4%BA%BA%E5%91%98%E6%A1%A3%E6%A1%88"
+								title="模板:人员档案">模板:人员档案</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E4%BA%BA%E5%91%98%E6%A1%A3%E6%A1%88&amp;action=edit"
+								title="模板:人员档案">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E4%BA%BA%E5%91%98%E6%A1%A3%E6%A1%88set"
+								title="模板:人员档案set">模板:人员档案set</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E4%BA%BA%E5%91%98%E6%A1%A3%E6%A1%88set&amp;action=edit"
+								title="模板:人员档案set">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E4%BF%AE%E6%AD%A3" title="模板:修正">模板:修正</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E4%BF%AE%E6%AD%A3&amp;action=edit"
+								title="模板:修正">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%88%86%E6%94%AF%E5%9B%BE%E6%A0%87"
+								title="模板:分支图标">模板:分支图标</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%88%86%E6%94%AF%E5%9B%BE%E6%A0%87&amp;action=edit"
+								title="模板:分支图标">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%88%86%E6%94%AF%E5%9B%BE%E6%A0%87/%E9%BB%91%E5%BA%95"
+								title="模板:分支图标/黑底">模板:分支图标/黑底</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%88%86%E6%94%AF%E5%9B%BE%E6%A0%87/%E9%BB%91%E5%BA%95&amp;action=edit"
+								title="模板:分支图标/黑底">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%88%86%E7%B1%BB" title="模板:分类">模板:分类</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%88%86%E7%B1%BB&amp;action=edit"
+								title="模板:分类">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%8F%82%E9%98%85" title="模板:参阅">模板:参阅</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%8F%82%E9%98%85&amp;action=edit"
+								title="模板:参阅">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%8F%82%E9%98%85%E4%B8%89" title="模板:参阅三">模板:参阅三</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%8F%82%E9%98%85%E4%B8%89&amp;action=edit"
+								title="模板:参阅三">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%8F%98%E5%8A%A8%E6%95%B0%E5%80%BClite"
+								title="模板:变动数值lite">模板:变动数值lite</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%8F%98%E5%8A%A8%E6%95%B0%E5%80%BClite&amp;action=edit"
+								title="模板:变动数值lite">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%90%8E%E5%8B%A4%E6%8A%80%E8%83%BD"
+								title="模板:后勤技能">模板:后勤技能</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%90%8E%E5%8B%A4%E6%8A%80%E8%83%BD&amp;action=edit"
+								title="模板:后勤技能">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%A4%A9%E8%B5%8B%E5%88%97%E8%A1%A82"
+								title="模板:天赋列表2">模板:天赋列表2</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%A4%A9%E8%B5%8B%E5%88%97%E8%A1%A82&amp;action=edit"
+								title="模板:天赋列表2">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%B1%9E%E6%80%A7" title="模板:属性">模板:属性</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%B1%9E%E6%80%A7&amp;action=edit"
+								title="模板:属性">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E5%AF%BC%E8%88%AA"
+								title="模板:干员导航">模板:干员导航</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E5%AF%BC%E8%88%AA&amp;action=edit"
+								title="模板:干员导航">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E6%94%BB%E5%87%BB%E8%8C%83%E5%9B%B4"
+								title="模板:干员攻击范围">模板:干员攻击范围</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E6%94%BB%E5%87%BB%E8%8C%83%E5%9B%B4&amp;action=edit"
+								title="模板:干员攻击范围">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E8%8E%B7%E5%BE%97%E6%96%B9%E5%BC%8F"
+								title="模板:干员获得方式">模板:干员获得方式</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E8%8E%B7%E5%BE%97%E6%96%B9%E5%BC%8F&amp;action=edit"
+								title="模板:干员获得方式">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E9%A1%B5%E9%9D%A2%E5%90%8D"
+								title="模板:干员页面名">模板:干员页面名</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E5%B9%B2%E5%91%98%E9%A1%B5%E9%9D%A2%E5%90%8D&amp;action=edit"
+								title="模板:干员页面名">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD2" title="模板:技能2">模板:技能2</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD2&amp;action=edit"
+								title="模板:技能2">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD%E5%8D%87%E7%BA%A7%E6%9D%90%E6%96%99"
+								title="模板:技能升级材料">模板:技能升级材料</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD%E5%8D%87%E7%BA%A7%E6%9D%90%E6%96%99&amp;action=edit"
+								title="模板:技能升级材料">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD%E7%B1%BB%E5%9E%8B"
+								title="模板:技能类型">模板:技能类型</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%8A%80%E8%83%BD%E7%B1%BB%E5%9E%8B&amp;action=edit"
+								title="模板:技能类型">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%8B%9B%E8%81%98%E5%90%88%E5%90%8C"
+								title="模板:招聘合同">模板:招聘合同</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%8B%9B%E8%81%98%E5%90%88%E5%90%8C&amp;action=edit"
+								title="模板:招聘合同">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%94%BB%E5%87%BB%E8%8C%83%E5%9B%B4"
+								title="模板:攻击范围">模板:攻击范围</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%94%BB%E5%87%BB%E8%8C%83%E5%9B%B4&amp;action=edit"
+								title="模板:攻击范围">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%9D%90%E6%96%99%E6%B6%88%E8%80%97"
+								title="模板:材料消耗">模板:材料消耗</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%9D%90%E6%96%99%E6%B6%88%E8%80%97&amp;action=edit"
+								title="模板:材料消耗">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%A8%A1%E7%BB%84" title="模板:模组">模板:模组</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%A8%A1%E7%BB%84&amp;action=edit"
+								title="模板:模组">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%A8%A1%E7%BB%84/%E5%9F%BA%E7%A1%80%E8%AF%81%E7%AB%A0"
+								title="模板:模组/基础证章">模板:模组/基础证章</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%A8%A1%E7%BB%84/%E5%9F%BA%E7%A1%80%E8%AF%81%E7%AB%A0&amp;action=edit"
+								title="模板:模组/基础证章">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E6%BD%9C%E8%83%BD%E6%8F%90%E5%8D%87"
+								title="模板:潜能提升">模板:潜能提升</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E6%BD%9C%E8%83%BD%E6%8F%90%E5%8D%87&amp;action=edit"
+								title="模板:潜能提升">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E7%9B%B8%E5%85%B3%E9%81%93%E5%85%B7"
+								title="模板:相关道具">模板:相关道具</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E7%9B%B8%E5%85%B3%E9%81%93%E5%85%B7&amp;action=edit"
+								title="模板:相关道具">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E7%B2%BE%E8%8B%B1%E5%8C%96%E6%9D%90%E6%96%99"
+								title="模板:精英化材料">模板:精英化材料</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E7%B2%BE%E8%8B%B1%E5%8C%96%E6%9D%90%E6%96%99&amp;action=edit"
+								title="模板:精英化材料">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E6%9D%BF:%E9%81%93%E5%85%B7%E5%9B%BE%E6%A0%87"
+								title="模板:道具图标">模板:道具图标</a>（<a
+								href="/index.php?title=%E6%A8%A1%E6%9D%BF:%E9%81%93%E5%85%B7%E5%9B%BE%E6%A0%87&amp;action=edit"
+								title="模板:道具图标">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E5%9D%97:Arguments" title="模块:Arguments">模块:Arguments</a>（<a
+								href="/index.php?title=%E6%A8%A1%E5%9D%97:Arguments&amp;action=edit"
+								title="模块:Arguments">查看源代码</a>）</li>
+						<li><a href="/w/%E6%A8%A1%E5%9D%97:Navbox" title="模块:Navbox">模块:Navbox</a>（<a
+								href="/index.php?title=%E6%A8%A1%E5%9D%97:Navbox&amp;action=edit"
+								title="模块:Navbox">查看源代码</a>）（受保护）</li>
+						<li><a href="/w/%E6%A8%A1%E5%9D%97:SplitFormat" title="模块:SplitFormat">模块:SplitFormat</a>（<a
+								href="/index.php?title=%E6%A8%A1%E5%9D%97:SplitFormat&amp;action=edit"
+								title="模块:SplitFormat">查看源代码</a>）</li>
+					</ul>
+				</div>
+				<p id="mw-returnto">返回至“<a href="/w/%E6%98%9F%E7%86%8A" title="星熊">星熊</a>”。</p>
+				<div id="MenuSidebar" style="display:none">
+					<ul>
+						<li><a href="/w/%E9%A6%96%E9%A1%B5" title="首页">首页</a></li>
+						<li><a class='copyUrl' data-clipboard-text="https://prts.wiki/id/1776">复制短链接</a></li>
+						<li><a href="/w/PRTS:%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E6%88%91%E4%BB%AC%E5%AE%8C%E5%96%84%E7%BD%91%E7%AB%99#.E8.B5.84.E5.8A.A9.E6.88.91.E4.BB.AC.E6.94.B9.E5.96.84.E8.AE.BF.E9.97.AE.E8.B4.A8.E9.87.8F"
+								title="PRTS:如何帮助我们完善网站">支持我们</a></li>
+						<li><a href="/w/PRTS:%E5%8F%8D%E9%A6%88%E4%B8%8E%E5%BB%BA%E8%AE%AE" title="PRTS:反馈与建议">反馈与建议</a>
+						</li>
+					</ul>
+					<p>热门页面
+					</p>
+					<ul>
+						<li class="mw-empty-elt"></li>
+						<li><b>当前活动</b>
+							<ul>
+								<li><a href="/w/%E5%BC%95%E8%88%AA%E8%80%85%E8%AF%95%E7%82%BC/02"
+										title="引航者试炼/02">「引航者试炼」#02</a></li>
+								<li><a href="/w/%E6%B0%B4%E6%9C%88%E4%B8%8E%E6%B7%B1%E8%93%9D%E4%B9%8B%E6%A0%91"
+										title="水月与深蓝之树">集成战略 #3「水月与深蓝之树」</a></li>
+							</ul>
+						</li>
+						<li><b>新增干员<span style="padding-left:10px;"><span style="font-size:10px;color: #ffffff;background-color:red;padding-right: 4px;padding-left: 4px;border-radius: 3px;text-shadow: 0 0 2px rgb(0 0 0 / 40%);font-weight:bold">NEW</span></span></b>
+							<ul>
+								<li><a href="/w/%E7%84%B0%E5%BD%B1%E8%8B%87%E8%8D%89" title="焰影苇草">焰影苇草</a></li>
+								<li><a href="/w/%E5%92%8C%E5%BC%A6" title="和弦">和弦</a></li>
+								<li><a href="/w/%E8%B0%9C%E5%9B%BE" title="谜图">谜图</a></li>
+							</ul>
+						</li>
+						<li><a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="干员一览">干员一览</a></li>
+					</ul>
+					<p>菜单
+					</p>
+					<ul>
+						<li><b>通用</b>
+							<ul>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E4%B8%80%E8%A7%88" title="干员一览">干员一览</a></li>
+								<li><a href="/w/%E6%95%8C%E4%BA%BA%E4%B8%80%E8%A7%88" title="敌人一览">敌人一览</a></li>
+								<li><a href="/w/%E9%81%93%E5%85%B7%E4%B8%80%E8%A7%88" title="道具一览">道具一览</a></li>
+								<li><a href="/w/%E5%90%8E%E5%8B%A4%E6%8A%80%E8%83%BD%E4%B8%80%E8%A7%88"
+										title="后勤技能一览">后勤技能</a></li>
+								<li><a href="/w/%E5%85%B3%E5%8D%A1%E4%B8%80%E8%A7%88" title="关卡一览">关卡一览</a></li>
+								<li><a href="/w/%E5%89%A7%E6%83%85%E4%B8%80%E8%A7%88" title="剧情一览">剧情记录</a></li>
+								<li><a href="/w/%E5%AE%B6%E5%85%B7%E4%B8%80%E8%A7%88" title="家具一览">家具一览</a></li>
+								<li><a href="/w/%E6%97%B6%E8%A3%85%E5%9B%9E%E5%BB%8A" title="时装回廊">时装回廊</a></li>
+								<li><a href="/w/%E9%87%87%E8%B4%AD%E4%B8%AD%E5%BF%83" title="采购中心">采购中心</a></li>
+								<li><a href="/w/%E5%8D%A1%E6%B1%A0%E4%B8%80%E8%A7%88" title="卡池一览">卡池一览</a></li>
+								<li><a href="/w/%E6%B4%BB%E5%8A%A8%E4%B8%80%E8%A7%88" title="活动一览">活动一览</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://prts.wiki/w/CHAR?filter=AAACAAAEQAAAAAAAAAAAAAAAAAAAA">公招计算</a>
+								</li>
+							</ul>
+						</li>
+						<li><b>档案</b>
+							<ul>
+								<li><a href="/w/%E7%94%BB%E5%B8%88%E4%B8%80%E8%A7%88" title="画师一览">画师一览</a></li>
+								<li><a href="/w/%E9%85%8D%E9%9F%B3%E4%B8%80%E8%A7%88" title="配音一览">配音一览</a></li>
+								<li><a href="/w/%E5%88%86%E6%94%AF%E4%B8%80%E8%A7%88" title="分支一览">分支一览</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E5%AF%86%E5%BD%95%E4%B8%80%E8%A7%88"
+										title="干员密录一览">干员密录</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E6%A8%A1%E7%BB%84%E4%B8%80%E8%A7%88"
+										title="干员模组一览">干员模组</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E7%BC%96%E5%8F%B7%E4%B8%80%E8%A7%88"
+										title="干员编号一览">干员编号</a></li>
+								<li><a href="/w/%E8%A7%92%E8%89%B2%E7%9C%9F%E5%90%8D" title="角色真名">角色真名</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E9%A2%84%E5%91%8A" title="干员预告">干员预告</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E4%B8%93%E7%B2%BE" title="干员专精">干员专精</a></li>
+								<li><a href="/w/%E5%B9%B2%E5%91%98%E5%89%A7%E6%83%85%E4%B8%80%E8%A7%88"
+										title="干员剧情一览">干员剧情一览</a></li>
+								<li><a href="/w/%E6%A1%A3%E6%A1%88%E4%BF%A1%E6%81%AF%E4%B8%80%E8%A7%88"
+										title="档案信息一览">档案信息一览</a></li>
+							</ul>
+						</li>
+						<li><b>玩法</b>
+							<ul>
+								<li><a href="/w/%E5%8D%B1%E6%9C%BA%E5%90%88%E7%BA%A6" title="危机合约">危机合约</a></li>
+								<li><a href="/w/%E9%9B%86%E6%88%90%E6%88%98%E7%95%A5" title="集成战略">集成战略</a></li>
+								<li><a href="/w/%E5%A4%9A%E7%BB%B4%E5%90%88%E4%BD%9C" title="多维合作">多维合作</a></li>
+								<li><a href="/w/%E8%8D%B7%E8%B0%9F%E4%BC%8A%E6%99%BA%E5%A2%83" title="荷谟伊智境">联锁竞赛</a>
+								</li>
+								<li><a href="/w/%E4%BF%9D%E5%85%A8%E6%B4%BE%E9%A9%BB" title="保全派驻">保全派驻</a></li>
+								<li><a href="/w/%E5%BC%95%E8%88%AA%E8%80%85%E8%AF%95%E7%82%BC" title="引航者试炼">引航者试炼</a>
+								</li>
+							</ul>
+						</li>
+						<li><b>系统</b>
+							<ul>
+								<li><a href="/w/%E7%BD%97%E5%BE%B7%E5%B2%9B%E5%9F%BA%E5%BB%BA" title="罗德岛基建">基建</a></li>
+								<li><a href="/w/%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8" title="任务列表">任务列表</a></li>
+								<li><a href="/w/%E9%82%AE%E4%BB%B6%E8%AE%B0%E5%BD%95" title="邮件记录">邮件记录</a></li>
+								<li><a href="/w/%E9%A6%96%E9%A1%B5%E5%9C%BA%E6%99%AF%E4%B8%80%E8%A7%88"
+										title="首页场景一览">首页场景</a></li>
+								<li><a href="/w/%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%89%87%E5%A4%B4%E5%83%8F%E4%B8%80%E8%A7%88"
+										title="个人名片头像一览">名片头像</a></li>
+								<li><a href="/w/%E5%85%89%E8%8D%A3%E4%B9%8B%E8%B7%AF" title="光荣之路">光荣之路</a></li>
+								<li><a href="/w/%E6%83%85%E6%8A%A5%E5%A4%84%E7%90%86%E5%AE%A4" title="情报处理室">情报处理室</a>
+								</li>
+							</ul>
+						</li>
+						<li><b>扩展</b>
+							<ul>
+								<li><a href="/w/%E6%B8%B8%E6%88%8F%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80"
+										title="游戏数据基础">基础数据</a></li>
+								<li><a href="/w/%E4%BD%9C%E6%88%98%E6%9C%BA%E5%88%B6" title="作战机制">作战机制</a></li>
+								<li><a href="/w/%E6%96%B0%E4%BA%BA%E5%85%A5%E9%97%A8" title="新人入门">新人入门</a></li>
+								<li><a href="/w/%E8%B4%B4%E5%A3%AB%E4%B8%80%E8%A7%88" title="贴士一览">贴士一览</a></li>
+								<li><a href="/w/%E8%AF%8D%E6%B1%87%E4%B8%80%E8%A7%88" class="mw-redirect"
+										title="词汇一览">词汇一览</a></li>
+								<li><a href="/w/%E5%88%B6%E4%BD%9C%E7%BB%84%E9%80%9A%E8%AE%AF" title="制作组通讯">制作组通讯</a>
+								</li>
+								<li><a href="/w/%E5%89%A7%E6%83%85%E8%A7%92%E8%89%B2%E4%B8%80%E8%A7%88"
+										title="剧情角色一览">剧情角色一览</a></li>
+								<li><a href="/w/%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9%E5%89%8D%E7%9E%BB"
+										title="游戏内容前瞻">游戏内容前瞻</a></li>
+								<li><a href="/w/%E5%89%A7%E6%83%85%E8%B5%84%E6%BA%90%E6%A6%82%E8%A7%88"
+										title="剧情资源概览">剧情资源概览</a></li>
+								<li><a href="/w/%E5%88%86%E7%B1%BB:%E6%B1%87%E6%80%BB" title="分类:汇总">各类信息汇总</a></li>
+							</ul>
+						</li>
+						<li><b>趣味</b>
+							<ul>
+								<li><a href="/w/%E6%B3%B0%E6%8B%89%E5%A4%A7%E5%85%B8:Index" title="泰拉大典:Index">泰拉大典</a>
+								</li>
+								<li><a href="/w/%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F" title="音乐鉴赏">音乐鉴赏</a></li>
+								<li><a href="/w/%E5%88%86%E7%B1%BB:%E5%AF%BB%E8%AE%BF%E6%A8%A1%E6%8B%9F"
+										title="分类:寻访模拟">寻访模拟</a></li>
+								<li><a href="/w/%E8%A1%8D%E7%94%9F%E4%BD%9C%E5%93%81" title="衍生作品">衍生作品</a></li>
+								<li><a href="/w/%E5%85%89%E8%8D%A3%E4%B9%8B%E8%B7%AF%E6%A8%A1%E6%8B%9F%E5%99%A8"
+										title="光荣之路模拟器">光荣之路模拟器</a></li>
+							</ul>
+						</li>
+						<li><a href="/w/%E7%89%B9%E6%AE%8A:%E9%9A%8F%E6%9C%BA" title="特殊:随机">随机页面</a></li>
+					</ul>
+					<p>探索
+					</p>
+					<ul class="mooncell-link">
+						<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+								href="https://fgo.wiki">Mooncell主站</a></li>
+					</ul>
+					<ul>
+						<li><b>官方网站</b>
+							<ul>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://ak.hypergryph.com">明日方舟简中服官网</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://monster-siren.hypergryph.com/">塞壬唱片</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://terra-historicus.hypergryph.com/">泰拉记事社</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://www.arknights.jp">明日方舟日服官网</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://www.arknights.global">明日方舟美服官网</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://ak.txwy.tw/">明日方舟台服官网</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://www.arknights.kr">明日方舟韩服官网</a></li>
+							</ul>
+						</li>
+						<li><b>友情链接</b>
+							<ul>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="http://riesa.cn">拖把日记</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="http://www.gfwiki.org">少前百科GFwiki</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://penguin-stats.cn">企鹅物流数据统计</a></li>
+								<li><a target="_blank" rel="nofollow noreferrer noopener" class="external text"
+										href="https://www.bigfun.cn/forum/31/new">Bigfun社区-明日方舟版块</a></li>
+							</ul>
+						</li>
+					</ul>
+					<p>管理与编辑
+					</p>
+					<ul>
+						<li><a href="/w/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9"
+								title="特殊:最近更改">最近更改</a></li>
+						<li><a href="/w/PRTS:%E7%BC%96%E8%BE%91%E6%8C%87%E5%8D%97" class="mw-redirect"
+								title="PRTS:编辑指南">编辑指南</a></li>
+						<li><a href="/w/PRTS:%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81" title="PRTS:常用代码">常用代码</a></li>
+						<li><a href="/w/%E5%88%86%E7%B1%BB:PRTS%E6%A8%A1%E6%9D%BF" title="分类:PRTS模板">模板一览</a></li>
+						<li><a href="/w/%E7%89%B9%E6%AE%8A:%E8%B4%A1%E7%8C%AE%E5%BE%97%E5%88%86"
+								title="特殊:贡献得分">贡献分数</a></li>
+						<li><a href="/w/PRTS:%E6%94%B6%E6%94%AF%E4%B8%80%E8%A7%88" title="PRTS:收支一览">收支一览</a></li>
+					</ul>
+					<p>Languages
+					</p>
+					<ul>
+						<li>
+							<script src="https://s2.pstatp.com/cdn/expire-1-M/js-cookie/2.2.0/js.cookie.min.js"
+								type="application/javascript"></script>
+							<script>
+								function changeUserLang(langCode) {
+var params = { action: 'options', change: 'language=' + langCode, format: 'json'};
+api = new mw.Api();
+api.postWithToken( 'csrf', params ).done( function( data ) {
+    window.location.reload();
+});
+}
+
+function changeAnonLang(langCode) {
+    Cookies.set('ak_aklanguage', langCode);
+    window.location.reload();
+}
+
+function changeLang(langCode){
+    var username = mw.config.get("wgUserName");
+    if ( !!username ) {
+        changeUserLang( langCode );
+    }
+    else {
+        changeAnonLang( langCode );
+    }
+}
+							</script>
+							<a id="switcher-ja" onclick="changeLang('ja')">日本語</a>
+						</li>
+						<li><a id="switcher-en" onclick="changeLang('en')">English</a></li>
+						<li><a id="switcher-zh-cn" onclick="changeLang('zh-cn')">中文</a></li>
+					</ul>
+					<p id="vmsTB">工具</p>
+					<ul id="MSToolbox"></ul>
+					<div>
+						<div style="width:80%;margin:0 auto;margin-top:20px"><ins class="adsbygoogle"
+								style="display:block" data-ad-client="ca-pub-3703762592545424" data-ad-slot="2056115646"
+								data-ad-format="auto" data-full-width-responsive="true"></ins>
+							<script>
+								__VECTOR_MENU_SIDE_BAR_MOUNTED__=function(){(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-3703762592545424",});}
+							</script>
+						</div>
+					</div>
+				</div>
+				<script>
+					window.addEventListener("DOMContentLoaded",(function(){document.querySelector("#MSToolbox").innerHTML=document.querySelector("#p-tb ul").innerHTML,document.querySelectorAll("#mw-panel > *:not(#p-logo)").forEach((function(e){return e.remove()}));for(var e=document.querySelectorAll("#MenuSidebar li>ul"),n=0;n<e.length;n++)e[n].parentElement.classList.add("child");e=document.querySelectorAll("#MenuSidebar > ul#MSToolbox > li");for(var o=0;o<e.length;o++)""===e[o].innerHTML&&e[o].parentNode.removeChild(e[o]);var r=document.querySelector("#MenuSidebar");r.setAttribute("style",""),document.querySelector("#mw-panel").appendChild(r),window.__VECTOR_MENU_SIDE_BAR_MOUNTED__&&window.__VECTOR_MENU_SIDE_BAR_MOUNTED__()}));
+				</script>
+			</div>
+			<div class="printfooter">取自“<a dir="ltr" href="https://prts.wiki/w/星熊">https://prts.wiki/w/星熊</a>”</div>
+			<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+		</div>
+	</div>
+
+	<div id="mw-navigation">
+		<h2>导航菜单</h2>
+		<div id="mw-head">
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+			<nav id="p-personal" class="vector-menu" aria-labelledby="p-personal-label" role="navigation">
+				<h3 id="p-personal-label">
+					<span>个人工具</span>
+				</h3>
+				<!-- Please do not use the .body class, it is deprecated. -->
+				<div class="body vector-menu-content">
+					<!-- Please do not use the .menu class, it is deprecated. -->
+					<ul class="vector-menu-content-list">
+						<li id="pt-uls" class="active"><a href="#" class="uls-trigger">中文（中国大陆）‎</a></li>
+						<li id="pt-createaccount"><a
+								href="/index.php?title=%E7%89%B9%E6%AE%8A:%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7&amp;returnto=%E6%98%9F%E7%86%8A&amp;returntoquery=action%3Dedit"
+								title="建议您创建一个账户并登录，不过这不是强制的">创建账号</a></li>
+						<li id="pt-login"><a
+								href="/index.php?title=%E7%89%B9%E6%AE%8A:%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95&amp;returnto=%E6%98%9F%E7%86%8A&amp;returntoquery=action%3Dedit"
+								title="我们建议您登录，不过这不是强制的[o]" accesskey="o">登录</a></li>
+					</ul>
+
+				</div>
+			</nav>
+
+
+			<div id="left-navigation">
+				<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+				<nav id="p-namespaces" class="vector-menu vector-menu-tabs vectorTabs"
+					aria-labelledby="p-namespaces-label" role="navigation">
+					<h3 id="p-namespaces-label">
+						<span>命名空间</span>
+					</h3>
+					<!-- Please do not use the .body class, it is deprecated. -->
+					<div class="body vector-menu-content">
+						<!-- Please do not use the .menu class, it is deprecated. -->
+						<ul class="vector-menu-content-list">
+							<li id="ca-nstab-main" class="selected"><a href="/w/%E6%98%9F%E7%86%8A" title="查看内容页面[c]"
+									accesskey="c">页面</a></li>
+							<li id="ca-talk"><a href="/w/%E8%AE%A8%E8%AE%BA:%E6%98%9F%E7%86%8A" rel="discussion"
+									title="关于内容页面的讨论[t]" accesskey="t">讨论</a></li>
+						</ul>
+
+					</div>
+				</nav>
+
+
+				<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+				<nav id="p-variants" class="vector-menu-empty emptyPortlet vector-menu vector-menu-dropdown vectorMenu"
+					aria-labelledby="p-variants-label" role="navigation">
+					<input type="checkbox" class="vector-menu-checkbox vectorMenuCheckbox" aria-labelledby="p-variants-label" />
+					<h3 id="p-variants-label">
+						<span>变体</span>
+					</h3>
+					<!-- Please do not use the .body class, it is deprecated. -->
+					<div class="body vector-menu-content">
+						<!-- Please do not use the .menu class, it is deprecated. -->
+						<ul class="menu vector-menu-content-list"></ul>
+
+					</div>
+				</nav>
+
+
+			</div>
+			<div id="right-navigation">
+				<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+				<nav id="p-views" class="vector-menu vector-menu-tabs vectorTabs" aria-labelledby="p-views-label"
+					role="navigation">
+					<h3 id="p-views-label">
+						<span>查看</span>
+					</h3>
+					<!-- Please do not use the .body class, it is deprecated. -->
+					<div class="body vector-menu-content">
+						<!-- Please do not use the .menu class, it is deprecated. -->
+						<ul class="vector-menu-content-list">
+							<li id="ca-view" class="collapsible"><a href="/w/%E6%98%9F%E7%86%8A">阅读</a></li>
+							<li id="ca-viewsource" class="collapsible selected"><a
+									href="/index.php?title=%E6%98%9F%E7%86%8A&amp;action=edit"
+									title="本页面受到保护。&#10;您可以查看其源代码[e]" accesskey="e">查看源代码</a></li>
+							<li id="ca-history" class="collapsible"><a
+									href="/index.php?title=%E6%98%9F%E7%86%8A&amp;action=history" title="本页面过去的版本[h]"
+									accesskey="h">查看历史</a></li>
+						</ul>
+
+					</div>
+				</nav>
+
+
+				<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+				<nav id="p-cactions" class="vector-menu-empty emptyPortlet vector-menu vector-menu-dropdown vectorMenu"
+					aria-labelledby="p-cactions-label" role="navigation">
+					<input type="checkbox" class="vector-menu-checkbox vectorMenuCheckbox" aria-labelledby="p-cactions-label" />
+					<h3 id="p-cactions-label">
+						<span>更多</span>
+					</h3>
+					<!-- Please do not use the .body class, it is deprecated. -->
+					<div class="body vector-menu-content">
+						<!-- Please do not use the .menu class, it is deprecated. -->
+						<ul class="menu vector-menu-content-list"></ul>
+
+					</div>
+				</nav>
+
+
+				<div id="p-search" role="search">
+					<h3>
+						<label for="searchInput">搜索</label>
+					</h3>
+					<form action="/index.php" id="searchform">
+						<div id="simpleSearch">
+							<input type="search" name="search" placeholder="在PRTS搜索" title="在PRTS搜索[f]" accesskey="f" id="searchInput"/>
+							<input type="hidden" name="title" value="特殊:搜索">
+							<input type="submit" name="fulltext" value="搜索" title="搜索含这些文字的页面" id="mw-searchButton" class="searchButton mw-fallbackSearchButton"/>
+							<input type="submit" name="go" value="前往" title="若相同标题存在，则直接前往该页面" id="searchButton" class="searchButton"/>
+		</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div id="mw-panel">
+			<div id="p-logo" role="banner">
+				<a title="访问首页" class="mw-wiki-logo" href="/w/%E9%A6%96%E9%A1%B5"></a>
+			</div>
+			<!-- Please do not use role attribute as CSS selector, it is deprecated. -->
+			<nav id="p-tb" class="vector-menu vector-menu-portal portal portal-first" aria-labelledby="p-tb-label"
+				role="navigation">
+				<h3 id="p-tb-label">
+					<span>工具</span>
+				</h3>
+				<!-- Please do not use the .body class, it is deprecated. -->
+				<div class="body vector-menu-content">
+					<!-- Please do not use the .menu class, it is deprecated. -->
+					<ul class="vector-menu-content-list">
+						<li id="t-whatlinkshere"><a
+								href="/w/%E7%89%B9%E6%AE%8A:%E9%93%BE%E5%85%A5%E9%A1%B5%E9%9D%A2/%E6%98%9F%E7%86%8A"
+								title="所有链接至本页面的wiki页面列表[j]" accesskey="j">链入页面</a></li>
+						<li id="t-recentchangeslinked"><a
+								href="/w/%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E9%93%BE%E5%87%BA%E6%9B%B4%E6%94%B9/%E6%98%9F%E7%86%8A"
+								rel="nofollow" title="链自本页的页面的最近更改[k]" accesskey="k">相关更改</a></li>
+						<li id="t-specialpages"><a href="/w/%E7%89%B9%E6%AE%8A:%E7%89%B9%E6%AE%8A%E9%A1%B5%E9%9D%A2"
+								title="所有特殊页面的列表[q]" accesskey="q">特殊页面</a></li>
+						<li id="t-info"><a href="/index.php?title=%E6%98%9F%E7%86%8A&amp;action=info"
+								title="关于此页面的更多信息">页面信息</a></li>
+					</ul>
+
+				</div>
+			</nav>
+
+
+
+
+		</div>
+
+	</div>
+
+	<footer id="footer" class="mw-footer" role="contentinfo">
+		<ul id="footer-places">
+			<li id="footer-places-privacy"><a href="/w/PRTS:%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96"
+					title="PRTS:隐私政策">隐私政策</a></li>
+			<li id="footer-places-about"><a href="/w/PRTS:%E5%85%B3%E4%BA%8E" title="PRTS:关于">关于PRTS</a></li>
+			<li id="footer-places-disclaimer"><a href="/w/PRTS:%E5%85%8D%E8%B4%A3%E5%A3%B0%E6%98%8E"
+					title="PRTS:免责声明">免责声明</a></li>
+			<li id="footer-places-mobileview"><a
+					href="//m.prts.wiki/index.php?title=%E6%98%9F%E7%86%8A&amp;action=edit&amp;mobileaction=toggle_view_mobile"
+					class="noprint stopMobileRedirectToggle">手机版视图</a></li>
+			<li id="footer-places-beian"><a href="https://beian.miit.gov.cn/">京ICP备20024624号-1</a></li>
+			<li id="footer-places-comment"><a href="/w/PRTS:%E8%AF%84%E8%AE%BA%E9%A1%BB%E7%9F%A5"
+					title="PRTS:评论须知">评论须知</a></li>
+		</ul>
+		<ul id="footer-icons" class="noprint">
+			<li id="footer-copyrightico"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+					target="_blank"><img src="/resources/assets/licenses/cc-by-nc-sa.png" alt="知识共享署名-非商业性使用-相同方式共享" width="88" height="31" loading="lazy"/></a>
+			</li>
+			<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/"
+					target="_blank"><img src="/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" loading="lazy"/></a><a
+						href="//project.mooncell.wiki"
+						target="_blank"><img src="/images/project1.png" alt="a Mooncell project" height="31" width="88" loading="lazy"/></a><a
+							href="https://www.semantic-mediawiki.org/wiki/Semantic_MediaWiki"
+							target="_blank"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAAAfCAYAAACMCmHeAAAACXBIWXMAAAFdAAABXQHy1U8XAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAADgFJREFUaIHlmn1U1dWaxz/n/M45gLwcgQMiRKK8qyiIImrX6M1wFG3ZjE4xmTGtdDlO4FTmlKxrjuNt8qVb2LK6kkqQ0ZSVKfgS5c2CwCuKKAd5J0HUgyIinDfO2fMH8hME9Di3dauZ71p7sX7P3vvZz9t59rP3RsENlJWV/b2Tk9NyjUYTAGj4lUAI8UuLcLcwWyyW811dXRmxsbGfAygAysvL/zhy5MhnvL29Pe6G22/QAH8ztLa2tp8/f/6D6Ojof1McP358YWBg4J90Ot1dGfiXxm/BwQaDob2hoeGfVRqNZrm3t7eHo0JXN3WwPquC+pYuJoUNZ83isei0ToOOvdRm4j+yKiiraSckwJU1i8cyxt/t59Tjb467ca5Op9O2tLT8q0qtVo90dFJHVzeL1hbRctkE9Bi8vqWLLzfMGLC4ELB4QwllNVflseX11zjyxwSGOUsOC/pbh5OTk59KCKFx1Ds/VrTKBu5Fif4y2z7WM9xN3Y9uaLfIBu5F06Uu/nL2CjMn+vx1kt+CX3PqEEI4qYQQDgs5zGlgBCoUEDZai7uLqh/d87plSB6/ZqPcDRzRw2azobobheMivYgOGc7JPhGa/PC9PDDFb9DF/yHhHv77SJNMnxLhSXSo1mEjt7W1UV5ejk6nIyIiAqVS6bCsPweOHj3KuHHj8PLywmKxcO7cOYKDg++KhxACVXd3t8NKKxUwP9absfe4olBLTA735PH7A4acv/lfJjB1rBcnqq9is3QTOdIVpULh0Fr79+8nOTkZX19f2tramDJlCnl5eQ4p9XPhySefJCsri4SEBPR6PZs3b2bXrl13xcNutyMtW7YsTafTDXdkwpmaNk5VXuHfU8aTGOfH2CAP+plM2EDYuVF+owDGj/bg4Vhf7o/24UjJebyHO+M9fPBqpC9SUlJ45plnyM3NZeXKlcTGxuLj44PJZGLXrl3s3bsXV1dX/P39OXv2LDk5OZhMJj766CNUKhVarZadO3dy5MgRQkNDcXV1pampiaysLA4dOiTPbWhoIDMzE4VCQVZWFu3t7YSHh7Njxw727dvH9evXkSQJHx8furq6iI+Px2az8emnn/LJJ5/Q2dlJWFjYkM41GAxXlY563tpt59D3zcyaEYCTpk9utluQGt9DXXg/mq8D0Hx9D+qiB5DObQdhpTfna9RKHpjqT/5357B222T6UM3Ly4uvvvqKgoIC7HY7kZGRCCFYsGABu3fvxmQykZSUREFBATU1NaxZs4YXXniBsrIyZs2aRXx8PAUFBezevZvExETsdjurVq2itLSUxsZGEhISOH36ND/99BNr165l2bJlVFdXk5ycTE5ODm5ubiiVStzc3HBxcaGqqooPPvgAIQTPPvss6enpGAwGli5dSk5OzpB2E0LA8ePH600mk7hTO/BdvXg7q0wYjX3o1y8J23cPCfGVdtBm+z5RmK5flscbjSaRkVUmvv6h8Y7rnTt3TiQnJwutVis8PT3FG2+8IYqLi4Wzs7P49ttvRWFhoXj++edFUlKS2LNnj3BychIXL14UJpNJzJgxQyxYsEAYjUah1+sFIOrq6kRnZ6coKysThYWFIiYmRmzatEkcOnRIKBQK0djYKIxGo1i+fLlYuHChMBqNYsSIESI/P18YjUaRm5srwsPDRU1NjVAoFKKiokIYjUaZr9FoHLQVFxfXq2w225Chbu22o2/sQFIqKDxhIDlpDCDoHa4+nYqy/S9DelHZVoRKvwrr+K0y7dH7AsjZV4fW0xm7gMhRbqilgRuaTqdj+/btWCwWcnNzee6559i6dSt2u52MjAx5XEREBEIIdDodHh4eCCHw8/OTNyg/v55NuaOjgxUrVtDU1ERISAgXLlygs7MTAK1Wi6+vrzy+oaFhSJ1aW1uRJInAwEAARo4ceMzoa08hxNDVRcOFLpa8fpz6lh5BYoK1rBox7KYBO04jGe68EUkXPqN79PMI15685efjwvfV7Wz7uhCAkAA3dq6exD0+Lv3mrVu3junTpzNx4kRGjBiBJElMmzYNjUbDww8/zLx58zh48CCJiYn8+OOPKBSKfsr1fvfSuru7OXz4MN988w1hYWHcd999cn/fuX1TlqurK7W1tYwfP17uj4iIwMvLi02bNrF48WLef/99HnnkEaZPnz6o/kIIlEPlxLU7KmQDA5yobeezPzffFKy14I4GvrEMytZvZSFzv22ivPG63FvTfJ31H54dMMvd3Z0VK1YQFBRESkoKmzZtIjIykuzsbLZu3UpQUBBvv/02BoPBISkkSSItLY3Zs2cTHx/PsGHDZCP0/r01ApcuXcrKlSt54okn5H61Wk1OTg7Z2dkEBweTl5eHn5/fbfcXRWFhYf3EiRODbhUqfvmfudhm7kdbkngvv386AgBN9e9RnfuTQwpa712ONWQNAK9sr2B3QVO//nt8XDj69u8GnWs2m3FyGliN2O12uW62Wq0YjUY8PHruuDo7O1Eqlbi4uCCEoL29HXd3dyRJoru7G5VKRWdnJ5Ik4ezsfHvZrVbUajVWqxWTyYS7u7vcZ7FY0Ghufyt8/PjxhiGri3FBAy/l+tKExvGjsdD49uHhPqB/XJD7kFGg0WgGj44+6UClUuHufpPHsGHDOHXqFFevXuXKlSs9P1mlEiEEkiTJY5ycnO5Y5ahUKmpra5EkiZqaGi5dutQvqg0GA+3t7bfloezd+G5t6YvDGe13MwdPCvbgsftu/iy6vRIcNLECm3eCPG9hQgBRfQwd7O/Kq/8UNmBWTEwM1dXV/WgrVqxw+DCQmpqKXq8nIyODzMxMmd5Xx9TUVHbu3Cl/JyUlkZWV1e/72LFjPPbYY1y6dIn09HSKior68di4cSPZ2dm3d5Tdbu8nQC/u9XUm/4149I3XUSlhX0ETzRe7CLxheJvrWLp95qIy7Lutst1+j2NzCaG3JGm51MWMYHf+89lIbALGjnJHJfXftADq6+t5+eWX+eyzzwAoKipi165dhIaGIoSgtraWvLw8Ro0aRVJSEgqFgrq6OvLy8oiMjJT1SUxMRK1WYzabyc/Pp7Gxkfj4eOLi4oiNjeXjjz/m6aefpqqqisLCQmw2G0899RQ1NTWcPXuW2NhY0tLSGD68/3ntwIED+Pj4MG/ePDlNDQa73d5/47sVaknJhDEejA3yYHqMD4cKW+g7zByxCZvH5CEXsA2fhjnsD/K3EHCosIXfxfoybrQHE8Z4yAa+tQE0Nzdz8OBBbDYbq1evJioqCiEE5eXlzJ07F4Ds7GxWr15NTU0NM2fOpLm5mczMTPR6PUII9uzZQ35+PkVFRRw+fBiLxcKiRYsoKSlh9uzZFBcX09rayueff86yZcsoLy+ntbWVL7/8Ul4jNTUVk8kkO27jxo1s2LCBkJAQcnNzKSgoGDKK7XZ7TyQPlZf7YmqUFyf1VzhV1caEsB6vCqUrXRNz0bR8iPpCLsrOqh7vuUZg8ftHrP7JoFDLUVyqv4LJbCN2nKdDa77++uu8+OKLtLS0EBwcLEdTbm4uY8aMwWq1MmHCBLZt24a3tzdz585lw4YNCCHkaO5FXFwc9fX1XLlyhcDAQIqLi5k8eTJTp04lPz+fL774gnfffZfm5mb279/P3r17ee211wZUH2+99RalpaWcOnWq3z4wlD52ux2VzWYbtPPWSZKk4KF4Pw7+0ELYKHecNDcOEAo1Zv8UzP4pPXcXAAqpLyMAzBYb3x0z8HczRyIpB6aHwRAdHc20adN45ZVXKCkpYcuWLXL9qlQqiY6ORgjBlClTqK6uxmAwIISgs7OTrq6ufmts3ryZiooK0tLSKC4uxmq1AjBv3jzeeecdjEYjUVFRzJ8/n40bN3L+/PlBa1+VSsWsWbNYv34927Ztu6MOA9LFnbwSPtodrbua13ZU8mpmJZ9+14K971iF1M/ANrvgkyPneTWzknU7zuKpVRM6amB10Rd91xdCkJ6eTkZGhnyyEkKwZMkSmpqa2LJlC2vXrqWuro5FixZRW1vLo48+yoMPPtiPlxCC0aNHU1lZyYcffkhpaancP2fOHCoqKpg/fz5CCB566CGqq6tJTEyUK5HesQDLly/nvffe49ixY2RlZQ2Qe9BK6MCBA/Xx8fFBd3TJDaMtWlfKqbprMm1hgj/rU8IHHb/qvQq++OGi/D0p1IOP1kxy6LqzrKyM8ePHI0k3ndbc3IxarcbX1xebzcaZM2dwdXWVj9Bms5kTJ04QFBTEtWvXCAgIoL29HaVSiZ+fH9XV1ZjNZry9vVEqlYwYMQKAM2fO4O/vL6ejqqoqPD098fHpKVNPnjxJVFQUDQ0N6HQ6tFotBoOBy5cv4+bmhkajkY/lt6KwsLBBkZeXVz99+vSg2ync68WSyqs89YeT/foUCtieOh63W15G2q5bWZZxZgCv3PRJRIf8ph7G/yocPXq0weGND6DLPDB/CwG1TV0Md+1v5NZrgz8/dZq6HRbQUbl+zRCi52XE4qgysaFa/DyduNDnuB0bpmXx3MBBmEP+ycuU13fItACdMzEhjj8//VL4OeWzWq1mac6cOY+HhYUFOTJBo1Yyc6IXF9rMKFDwYIw365aE4jLIAyvAgzE6rnRYsXQLJodr+a/nIvD2UA869v8qysvLTysyMjIej4uLywwJCdH+0gLdDr/26B8MlZWVV0tKSlKk/Px8fUxMjK9arY709va+/ZXU/0P8b52r1+uvnjhx4oO0tLS35FrqzTfffMzDw+N5Nzc3f5VK9bP/i89vMRLvFkIIrFarraOj4/y1a9feeumll74E+B8IfU2SKqfhuAAAAABJRU5ErkJggg==" alt="Powered by Semantic MediaWiki" class="smw-footer" width="88" height="31" loading="lazy"/></a>
+			</li>
+		</ul>
+		<div style="clear: both;"></div>
+	</footer>
+
+
+
+	<script>
+		(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":288});});
+	</script>
+</body>
+
+</html>
