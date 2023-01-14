@@ -14,4 +14,4 @@ plt.plot(x, y)
 plt.show()
 
 # 4.save pic
-plt.savefig("./data/test.png")
+plt.savefig("./data/Test.png")
