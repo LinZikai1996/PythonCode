@@ -135,7 +135,8 @@ def get_skill_info(source_info):
         if skill_info != '':
 
             for key in ('技能名', '技能类型1', '技能类型2'):
-                skill[key] = re.search(rf'\|{key}=(.*)\n', skill_info).group(1)
+                if key in skill_info:
+                    skill[key] = re.search(rf'\|{key}=(.*)\n', skill_info).group(1)
 
             for key in ('描述', '初始', '消耗', '持续'):
                 if '技能专精3' in skill_info:
@@ -148,11 +149,27 @@ def get_skill_info(source_info):
     return skill_list
 
 
-def get_model_info(source_info):
+def get_module_info(source_info):
     module_info = {}
 
     if '==模组==' not in source_info:
         return module_info
+
+    source_info_list = re.findall(r'{{模组[\s\S]*?\n}}', source_info)
+    index = 1
+    for module_source in source_info_list:
+        module = {}
+        name = '模组'
+        for line in module_source.split('\n'):
+            pair = line.split('=')
+            key = pair[0].lstrip('|')
+            if key in ('名称', '类型', '类型颜色', '攻击3', '防御3', '特性', '天赋2', '天赋3'):
+                module[key] = pair[1]
+
+        module_info[name + str(index)] = module
+        index = index + 1
+
+    return module_info
 
 
 def get_string_between_start_and_end(source: str, start: str, end: str):
