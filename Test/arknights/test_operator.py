@@ -1,11 +1,15 @@
 from unittest import mock
 from unittest.mock import Mock, patch
 
-from Arknights.operator import get_information_from_wiki, update_operator_info, get_all_operator_name_from_wiki
-from Arknights.util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
-    get_potential_info, get_skill_info, get_module_info
+import pytest
+
+from Arknights.operator import get_information_from_wiki, get_all_operator_name_from_wiki, \
+    get_operator_info_by_name
 from Test.arknights import get_local_information, mock_information_from_wiki, mock_all_operator_name_from_wiki, \
     mock_hoshiguma_information_from_wiki
+from util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
+    get_potential_info, get_skill_info, get_module_info
+from util.translate_word import covert_english_to_chinese
 
 information_list = [
     get_local_information("6"), get_local_information("5"), get_local_information("4"), get_local_information("3"),
@@ -77,4 +81,25 @@ def test_get_module_info():
 
 @mock.patch('Arknights.operator.get_information_from_wiki', new=Mock(return_value=mock_information_from_wiki("6")))
 def test_update_operator_info():
-    print(update_operator_info("XXX"))
+    print(get_operator_info_by_name("XXX"))
+
+
+@pytest.mark.skip(reason="翻译函数，不能访问超过1000次/小时")
+def test_translate_key_name():
+    for key in get_general_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")
+
+    for key in get_attribute_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")
+
+    for key in get_talent_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")
+
+    for key in get_potential_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")
+
+    for key in get_skill_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")
+
+    for key in get_module_info(information_list[0]).keys():
+        print(f"{key} : {str(covert_english_to_chinese(key))}")

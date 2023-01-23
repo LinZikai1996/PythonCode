@@ -1,16 +1,7 @@
 import re
 
-LIST_OF_GENERAL_INFO = ('干员名', '干员外文名', '情报编号', '特性', '稀有度', '职业', '分支', '位置', '标签', '所属组织')
-
-LIST_OF_ATTRIBUTE_INFO = ('再部署', '部署费用', '阻挡数', '攻击速度',
-                          '精英0_满级', '精英0_满级_生命上限', '精英0_满级_攻击', '精英0_满级_防御', '精英0_满级_法术抗性',
-                          '精英1_满级', '精英1_满级_生命上限', '精英1_满级_攻击', '精英1_满级_防御', '精英1_满级_法术抗性',
-                          '精英2_满级', '精英2_满级_生命上限', '精英2_满级_攻击', '精英2_满级_防御', '精英2_满级_法术抗性',
-                          '信赖加成_生命上限', '信赖加成_攻击', '信赖加成_防御', '潜能', '潜能类型')
-
 
 def preprocess_data_from_wiki(source_info):
-    source_info = source_info[:source_info.index('==相关道具==')]
 
     source_info = re.sub(re.compile(r'<br/>'), ' ', source_info)
     source_info = re.sub(re.compile(r'br/>'), ' ', source_info)
@@ -51,7 +42,7 @@ def preprocess_data_from_wiki(source_info):
 def get_general_info(source_info):
     general_info = {}
 
-    for key in LIST_OF_GENERAL_INFO:
+    for key in ('干员名', '干员外文名', '情报编号', '特性', '稀有度', '职业', '分支', '位置', '标签', '所属组织'):
         if result := re.search(rf'\|{key}=(.*)\n', source_info):
             general_info[key] = result.group(1)
     return general_info
@@ -69,15 +60,13 @@ def get_attribute_info(source_info):
                    '信赖加成_生命上限', '信赖加成_攻击', '信赖加成_防御', '潜能', '潜能类型'):
             attribute_info[key] = pair[1]
 
-        if "精英2_满级" in source_info:
-            if key in ('精英2_满级_生命上限', '精英2_满级_攻击', '精英2_满级_防御', '精英2_满级_法术抗性'):
-                attribute_info[key] = pair[1]
-        elif "精英1_满级" in source_info:
-            if key in ('精英1_满级_生命上限', '精英1_满级_攻击', '精英1_满级_防御', '精英1_满级_法术抗性'):
-                attribute_info[key] = pair[1]
-        elif "精英0_满级" in source_info:
-            if key in ('精英0_满级_生命上限', '精英0_满级_攻击', '精英0_满级_防御', '精英0_满级_法术抗性'):
-                attribute_info[key] = pair[1]
+        for index in ['0', '1', '2']:
+            if f"精英{index}_满级" in source_info:
+                if key in (f'精英{index}_满级_生命上限', f'精英{index}_满级_攻击', f'精英{index}_满级_防御', f'精英{index}_满级_法术抗性'):
+                    attribute_info[key] = pair[1]
+            else:
+                for key in (f'精英{index}_满级_生命上限', f'精英{index}_满级_攻击', f'精英{index}_满级_防御', f'精英{index}_满级_法术抗性'):
+                    attribute_info[key] = ''
 
     return attribute_info
 
@@ -89,7 +78,7 @@ def get_talent_info(source_info):
     for line in source_info.split('\n')[1:]:
         pair = line.split('=')
         key = pair[0].lstrip('|')
-        if re.compile(r'第.天赋.效果').search(key) or re.compile(r'第.天赋.$').search(key):
+        if re.compile(r'第.天赋.效果').search(key) or re.compile(r'第.天赋[1-9]+$').search(key):
             talent_info[key] = pair[1]
 
     return talent_info
@@ -97,12 +86,13 @@ def get_talent_info(source_info):
 
 def get_potential_info(source_info):
     potential_info = {}
-    source_info = get_string_between_start_and_end(source_info, '{{潜能提升', '\n}}').strip()
+    if not ('该干员无法提升潜能' in source_info):
+        source_info = get_string_between_start_and_end(source_info, '{{潜能提升', '\n}}').strip()
 
-    for line in source_info.split('\n')[1:]:
-        pair = line.split('=')
-        key = pair[0].lstrip('|')
-        potential_info[key] = pair[1]
+        for line in source_info.split('\n')[1:]:
+            pair = line.split('=')
+            key = pair[0].lstrip('|')
+            potential_info[key] = pair[1]
 
     return potential_info
 

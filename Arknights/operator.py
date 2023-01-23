@@ -1,14 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
 
-from Arknights.util.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
+from util.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
     get_talent_info, get_potential_info, get_skill_info, get_module_info
+from util.file_util import write_path
+from util.json_util import dict_to_json
 
 
-class Operator(object):
-
-    def __init__(self):
-        pass
+# 跟新干员信息
+def update_operator_info(operator_name=None):
+    if operator_name is not None:
+        print(f"更新 {operator_name} 的数据")
+        write_path(dict_to_json(get_operator_info_by_name(operator_name)),
+                   f'/Volumes/mobile_hard_disk/project/PythonCode/Arknights/operator_data/{operator_name}.json')
+    else:
+        name_list = get_all_operator_name_from_wiki()
+        print(f"总共有 {len(name_list)} 干员")
+        for name in name_list:
+            print(f"更新 {name} 的数据")
+            write_path(dict_to_json(get_operator_info_by_name(name)),
+                       f'/Volumes/mobile_hard_disk/project/PythonCode/Arknights/operator_data/{name}.json')
+    print("更新完毕")
 
 
 def get_all_operator_name_from_wiki():
@@ -20,7 +32,7 @@ def get_all_operator_name_from_wiki():
     return operator_list
 
 
-def update_operator_info(operator_name: str):
+def get_operator_info_by_name(operator_name: str):
     source = preprocess_data_from_wiki(
         get_information_from_wiki(operator_name)
     )
@@ -39,7 +51,10 @@ def update_operator_info(operator_name: str):
 def get_information_from_wiki(operator_name: str):
     response = requests.get(f'https://prts.wiki/index.php?title={operator_name}&action=edit')
     if response.ok:
-        return BeautifulSoup(response.text, features='html.parser').find(id='wpTextbox1')
+        return BeautifulSoup(response.text, features='html.parser').find(id='wpTextbox1').text
     else:
         print(f"ERROR: 未找到干员 ** {operator_name} ** 的wiki页面")
         return None
+
+
+# 展示数据

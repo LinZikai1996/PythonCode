@@ -5,13 +5,14 @@ import imagehash
 from PIL import ImageGrab, Image
 
 
-def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path):
+def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path, to_gray=True):
     if os.path.exists(path):
         os.remove(path)
     ImageGrab.grab((left_top_x, left_top_y, bottom_right_x, bottom_right_y)).save(path)
     img = cv2.imread(path, 1)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite(path, gray)
+    if to_gray:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(path, img)
 
 
 def check_image_similarity(source_path, target_path):
