@@ -1,8 +1,7 @@
-import os
 import time
 
-from tool.image_tool import get_image_size_info, screenshot, check_image_similarity
 from tool.operation_window import OperationWindowUtil
+from util.image_util import get_image_size_info, screenshot, check_image_similarity
 
 
 class MingRiFangZhouAuto(object):
