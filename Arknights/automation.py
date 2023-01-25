@@ -7,9 +7,13 @@ from util.image_util import screenshot, check_target_img_is_from_source_img_or_n
 
 class ArknightsAuto(object):
 
-    def __init__(self):
+    def __init__(self, operation_type=1):
         self._new_image_path = '/Volumes/mobile_hard_disk/work_temp/screenshot/now_img.png'
         self._source_image_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
+
+        # operation_type = 1 前往上次作战活动
+        # operation_type = 2 获取资源
+        self._operation_type = operation_type
         self._top_x = 0
         self._top_y = 0
 

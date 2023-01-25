@@ -1,3 +1,4 @@
+import math
 import os
 
 import cv2
@@ -47,7 +48,7 @@ def search_return_point(source_img, template_img):
     template_img_gray = cv2.cvtColor(template_img, cv2.COLOR_BGR2GRAY)
     result = cv2.matchTemplate(source_img_gray, template_img_gray, cv2.TM_CCOEFF_NORMED)
 
-    # res大于95%
+    # res大于80%
     loc = np.where(result >= 0.8)
     points = zip(*loc[::-1])
 
@@ -59,7 +60,7 @@ def search_return_point(source_img, template_img):
         y = y + int(pt[1])
         index = index + 1
     if x != 0 and y != 0:
-        return x / index, y / index
+        return math.floor(x / index), math.floor(y / index)
     else:
         return None, None
 
