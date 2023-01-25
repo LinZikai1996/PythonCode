@@ -1,10 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-from util.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
+from Util.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
     get_talent_info, get_potential_info, get_skill_info, get_module_info
-from util.file_util import write_path
-from util.json_util import dict_to_json
+from Util.file_util import write_path
+from Util.json_util import dict_to_json
 
 
 # 跟新干员信息

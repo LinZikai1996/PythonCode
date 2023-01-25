@@ -1,7 +1,7 @@
 import time
 
-from util.control_mouse_and_keyboard import left_click
-from util.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
+from Util.control_mouse_and_keyboard import left_click
+from Util.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
     check_image_similarity
 
 

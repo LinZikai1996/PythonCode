@@ -1,4 +1,4 @@
-from util.connect_mysql import connect_db, select_sql, close_connect
+from Util.connect_mysql import connect_db, select_sql, close_connect
 
 
 def test_connect_mysql():

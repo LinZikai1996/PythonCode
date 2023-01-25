@@ -7,9 +7,9 @@ from Arknights.operator import get_information_from_wiki, get_all_operator_name_
     get_operator_info_by_name
 from Test.arknights import get_local_information, mock_information_from_wiki, mock_all_operator_name_from_wiki, \
     mock_hoshiguma_information_from_wiki
-from util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
+from Util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
     get_potential_info, get_skill_info, get_module_info
-from util.translate_word import covert_english_to_chinese
+from Util.translate_word import covert_english_to_chinese
 
 information_list = [
     get_local_information("6"), get_local_information("5"), get_local_information("4"), get_local_information("3"),
