@@ -68,3 +68,9 @@ def search_return_point(source_img, template_img):
 def get_image_size_info(path):
     image = Image.open(path)
     return image.size
+
+
+def show_img(name: str, img):
+    cv2.imshow(name, img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
