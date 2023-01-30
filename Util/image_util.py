@@ -92,3 +92,8 @@ def resize(image, height_size=None, width_size=None):
     width = int(width / scale)
     # resize
     return cv2.resize(image, (width, height))
+
+
+def bgr_to_rgb(image):
+    B, G, R = cv2.split(image)
+    return cv2.merge([R, G, B])

@@ -46,7 +46,7 @@ def get_template(image_path):
 
     contours = sort_contours(contours)[0]
 
-    return get_number_template(template_gray_img, contours)
+    return get_number_template(template_binary, contours, template_img)
 
 
 def sort_contours(contour_list, method="left-to-right"):
@@ -72,15 +72,15 @@ def sort_contours(contour_list, method="left-to-right"):
     return contour_list, minimum_circumscribed_rectangle_list
 
 
-def get_number_template(image, contour_list):
+def get_number_template(image, contour_list, source_image):
     image_temp = image.copy()
     contour_dict = {}
     for (index, contour) in enumerate(contour_list):
         (x, y, w, h) = cv2.boundingRect(contour)
         # 最小外接矩形范围
         minimum_circumscribed_rectangle = image[y:y + h, x:x + w]
-        cv2.rectangle(image_temp, (x, y), (x + w, y + + h), (0, 0, 255), 3)
-        show_img("template", image_temp)
+        cv2.rectangle(source_image, (x, y), (x + w, y + + h), (0, 0, 255), 3)
+        show_img("source image", source_image)
         minimum_circumscribed_rectangle = cv2.resize(minimum_circumscribed_rectangle, (57, 88))
 
         contour_dict[index] = minimum_circumscribed_rectangle
@@ -148,7 +148,7 @@ def get_train_img(image_path, digit_dict: dict):
         if 2.5 < scope < 4.0 and 40 < w < 55 and 10 < h < 20:
             location.append((x, y, w, h))
 
-    location = sorted(location, key=lambda x: x[0])
+    location = sorted(location, key=lambda d: d[0])
 
     for (i, (gx, gy, gw, gh)) in enumerate(location):
         group_output = []
