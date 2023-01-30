@@ -74,3 +74,21 @@ def show_img(name: str, img):
     cv2.imshow(name, img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+
+def resize(image, height_size=None, width_size=None):
+    # 获取原始图像宽高。
+    height, width = image.shape[0], image.shape[1]
+
+    if height_size:
+        scale = height / height_size
+    elif width_size:
+        scale = width / width_size
+    else:
+        return None
+    # 等比例缩放尺度。
+    height = int(height / scale)
+    # 获得相应等比例的图像宽度。
+    width = int(width / scale)
+    # resize
+    return cv2.resize(image, (width, height))
