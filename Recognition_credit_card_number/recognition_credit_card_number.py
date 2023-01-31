@@ -73,7 +73,6 @@ def sort_contours(contour_list, method="left-to-right"):
 
 
 def get_number_template(image, contour_list, source_image):
-    image_temp = image.copy()
     contour_dict = {}
     for (index, contour) in enumerate(contour_list):
         (x, y, w, h) = cv2.boundingRect(contour)
@@ -198,4 +197,4 @@ if __name__ == '__main__':
     # 获取模版字典
     contours_dict = get_template(img_list[len(img_list) - 1])
 
-    get_train_img(img_list[0], contours_dict)
+    get_train_img(img_list[1], contours_dict)
