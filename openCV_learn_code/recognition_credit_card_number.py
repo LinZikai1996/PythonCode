@@ -192,7 +192,7 @@ def get_train_img(image_path, digit_dict: dict):
 
 if __name__ == '__main__':
     img_list = get_all_files_under_folder(
-        "/Volumes/mobile_hard_disk/project/PythonCode/Recognition_credit_card_number/resource/image")
+        "/openCV_learn_code/resource/image")
 
     # 获取模版字典
     contours_dict = get_template(img_list[len(img_list) - 1])
