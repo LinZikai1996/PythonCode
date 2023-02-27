@@ -1,4 +1,4 @@
-from Util.process_operator_info import preprocess_data_from_wiki
+from tool.process_operator_info import preprocess_data_from_wiki
 
 source_folder_path = '/Volumes/mobile_hard_disk/project/PythonCode/Test/resource'
 

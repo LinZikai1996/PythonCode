@@ -3,8 +3,8 @@ import cv2
 # 信用卡数字识别
 import numpy as np
 
-from Util.folder_util import get_all_files_under_folder
-from Util.image_util import show_img, resize
+from tool.folder_util import get_all_files_under_folder
+from tool.image_util import show_img, resize
 
 
 def get_template(image_path):
@@ -192,7 +192,7 @@ def get_train_img(image_path, digit_dict: dict):
 
 if __name__ == '__main__':
     img_list = get_all_files_under_folder(
-        "/openCV_learn_code/resource/image")
+        "/opencv_learn_code/resource/image")
 
     # 获取模版字典
     contours_dict = get_template(img_list[len(img_list) - 1])

@@ -3,13 +3,13 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from Arknights.operator import get_information_from_wiki, get_all_operator_name_from_wiki, \
+from Arknights.operator_info import get_information_from_wiki, get_all_operator_name_from_wiki, \
     get_operator_info_by_name
 from Test.arknights import get_local_information, mock_information_from_wiki, mock_all_operator_name_from_wiki, \
     mock_hoshiguma_information_from_wiki
-from Util.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
+from tool.process_operator_info import get_general_info, get_attribute_info, get_talent_info, \
     get_potential_info, get_skill_info, get_module_info
-from Util.translate_word import covert_english_to_chinese
+from tool.translate_word import covert_english_to_chinese
 
 information_list = [
     get_local_information("6"), get_local_information("5"), get_local_information("4"), get_local_information("3"),

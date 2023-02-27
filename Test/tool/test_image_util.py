@@ -1,7 +1,7 @@
 import cv2
 from matplotlib import pyplot as plt
 
-from Util.image_util import check_target_img_is_from_source_img_or_no, get_image_size_info
+from tool.image_util import check_target_img_is_from_source_img_or_no, get_image_size_info
 
 
 def test_check_target_img_is_from_source_img_or_no():

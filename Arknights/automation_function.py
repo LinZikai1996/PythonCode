@@ -1,7 +1,8 @@
+import sys
 import time
 
-from Util.control_mouse_and_keyboard import left_click
-from Util.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
+from tool.control_mouse_and_keyboard import left_click
+from tool.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
     check_image_similarity
 
 
@@ -13,6 +14,7 @@ class ArknightsAuto(object):
 
         # operation_type = 1 前往上次作战活动
         # operation_type = 2 获取资源
+        # operation_type = 3 生息演算
         self._operation_type = operation_type
         self._top_x = 0
         self._top_y = 0
@@ -32,6 +34,8 @@ class ArknightsAuto(object):
             left_click(x=105, y=105)
             while not self.check_home_page():
                 left_click(x=105, y=105)
+        else:
+            left_click(x=400, y=400)
 
     def check_home_page(self):
         self.screenshot_from_app()
@@ -46,9 +50,12 @@ class ArknightsAuto(object):
         while stat_action_or_no:
             print("开始行动 ... ")
             if index == 0:
-                self.start_action(True)
+                result = self.start_action(True)
             else:
-                self.start_action()
+                result = self.start_action()
+            if result is False:
+                print("退出")
+                sys.exit(0)
             self.check_action_status()
             index = index + 1
 

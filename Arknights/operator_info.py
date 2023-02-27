@@ -1,10 +1,10 @@
-import requests
 from bs4 import BeautifulSoup
 
-from Util.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
+from tool.process_operator_info import get_general_info, preprocess_data_from_wiki, get_attribute_info, \
     get_talent_info, get_potential_info, get_skill_info, get_module_info
-from Util.file_util import write_path
-from Util.json_util import dict_to_json
+from tool.file_util import write_path
+from tool.json_util import dict_to_json
+import requests
 
 
 # 跟新干员信息
@@ -55,6 +55,5 @@ def get_information_from_wiki(operator_name: str):
     else:
         print(f"ERROR: 未找到干员 ** {operator_name} ** 的wiki页面")
         return None
-
 
 # 展示数据

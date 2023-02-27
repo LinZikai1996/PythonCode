@@ -1,4 +1,4 @@
-from Arknights.automation import ArknightsAuto
+from Arknights.automation_function import ArknightsAuto
 
 auto = ArknightsAuto()
 
