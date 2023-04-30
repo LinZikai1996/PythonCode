@@ -48,8 +48,8 @@ def search_return_point(source_img, template_img):
     template_img_gray = cv2.cvtColor(template_img, cv2.COLOR_BGR2GRAY)
     result = cv2.matchTemplate(source_img_gray, template_img_gray, cv2.TM_CCOEFF_NORMED)
 
-    # res大于80%
-    loc = np.where(result >= 0.8)
+    # res大于70%
+    loc = np.where(result >= 0.7)
     points = zip(*loc[::-1])
 
     x = 0
