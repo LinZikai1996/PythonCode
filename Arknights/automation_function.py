@@ -1,6 +1,5 @@
 import sys
 import time
-from dataclasses import dataclass
 
 import psutil
 
@@ -13,17 +12,17 @@ from tool.run_os_command import run_command
 log = Logger()
 
 
-@dataclass
 class ArknightsAuto:
-    # operation_type = 1 前往上次作战活动
-    # operation_type = 2 获取资源
-    # operation_type = 3 生息演算
-    operation_type: int = 1
+    def __init__(self, operation_type=1):
+        # operation_type = 1 前往上次作战活动
+        # operation_type = 2 获取资源
+        # operation_type = 3 生息演算
+        self.operation_type = operation_type
 
-    _new_image_path = '/Volumes/mobile_hard_disk/work_temp/screenshot/now_img.png'
-    _source_image_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
-    _top_x = 0
-    _top_y = 0
+        self._new_image_path = '/Volumes/mobile_hard_disk/work_temp/screenshot/now_img.png'
+        self._source_image_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
+        self._top_x = 0
+        self._top_y = 0
 
     def start(self):
         if open_emulator():
@@ -65,13 +64,9 @@ class ArknightsAuto:
 
     def go_back_to_home_page(self):
         log.info("检查下是否在首页")
-        if self._check_image_in_screenshot("home_page.png") is False:
+        while self._check_image_in_screenshot("home_page.png") is False:
             log.info("返回首页")
             self._left_click(x=105, y=105)
-            while not self._check_image_in_screenshot("home_page.png"):
-                self._left_click(x=105, y=105)
-        else:
-            self._left_click(x=400, y=400)
 
     def start_game(self):
         stat_action_or_no = True
@@ -119,7 +114,7 @@ class ArknightsAuto:
 
     def check_action_status(self):
         while True:
-            if self.check_similarity_between_source_and_screenshot(
+            if self.check_image_similarity_at_position(
                     source_image_path=f"{self._source_image_folder}finish_action.png", start_position_x=55,
                     start_position_y=255):
                 log.info("行动结束")
@@ -130,7 +125,7 @@ class ArknightsAuto:
             else:
                 time.sleep(20)
 
-    def check_similarity_between_source_and_screenshot(self, source_image_path, start_position_x, start_position_y):
+    def check_image_similarity_at_position(self, source_image_path, start_position_x, start_position_y):
         length, width = get_image_size_info(source_image_path)
         left_top_x, left_top_y, bottom_right_x, bottom_right_y = self.get_location(start_position_x, start_position_y,
                                                                                    length, width)
