@@ -1,29 +1,32 @@
 import sys
 import time
+from dataclasses import dataclass
+
+import psutil
 
 from tool.control_mouse_and_keyboard import left_click
 from tool.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
     check_image_similarity
 from tool.logger import Logger
+from tool.run_os_command import run_command
 
 log = Logger()
 
 
-class ArknightsAuto(object):
+@dataclass
+class ArknightsAuto:
+    # operation_type = 1 前往上次作战活动
+    # operation_type = 2 获取资源
+    # operation_type = 3 生息演算
+    operation_type: int = 1
 
-    def __init__(self, operation_type=1):
-        self._new_image_path = '/Volumes/mobile_hard_disk/work_temp/screenshot/now_img.png'
-        self._source_image_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
-
-        # operation_type = 1 前往上次作战活动
-        # operation_type = 2 获取资源
-        # operation_type = 3 生息演算
-        self._operation_type = operation_type
-        self._top_x = 0
-        self._top_y = 0
+    _new_image_path = '/Volumes/mobile_hard_disk/work_temp/screenshot/now_img.png'
+    _source_image_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
+    _top_x = 0
+    _top_y = 0
 
     def start(self):
-        if self.check_image_in_screenshot("home_page.png") is False:
+        if open_emulator():
             self.open_app_and_login()
         self.prepare_for_action()
         self.start_game()
@@ -31,7 +34,7 @@ class ArknightsAuto(object):
     def open_app_and_login(self):
 
         log.info("检查下模拟器主页面")
-        while self.check_image_in_screenshot("emulator_home.png") is False:
+        while self._check_image_in_screenshot("emulator_home.png") is False:
             log.info("还未打开，等待 10s 继续检查")
             time.sleep(10)
 
@@ -47,9 +50,9 @@ class ArknightsAuto(object):
         self._left_click(x=760, y=666)
         time.sleep(20)
 
-        if self.check_image_in_screenshot("announcement_1.png") is False \
+        if self._check_image_in_screenshot("announcement_1.png") is False \
                 and \
-                self.check_image_in_screenshot("announcement_2.png") is False:
+                self._check_image_in_screenshot("announcement_2.png") is False:
             log.info("登录无公告栏")
         else:
             log.info("关闭公告栏")
@@ -62,10 +65,10 @@ class ArknightsAuto(object):
 
     def go_back_to_home_page(self):
         log.info("检查下是否在首页")
-        if self.check_image_in_screenshot("home_page.png") is False:
+        if self._check_image_in_screenshot("home_page.png") is False:
             log.info("返回首页")
             self._left_click(x=105, y=105)
-            while not self.check_image_in_screenshot("home_page.png"):
+            while not self._check_image_in_screenshot("home_page.png"):
                 self._left_click(x=105, y=105)
         else:
             self._left_click(x=400, y=400)
@@ -97,8 +100,8 @@ class ArknightsAuto(object):
         self._left_click(1360, 860)
 
         log.info("检查我们是否有理智液")
-        if not self.check_image_in_screenshot("have_potion_or_no.png"):
-            if self.add_potion():
+        if not self._check_image_in_screenshot("have_potion_or_no.png"):
+            if self._check_image_in_screenshot("add_potion.png"):
                 log.info("添加理智液")
                 self._left_click(1310, 745)
                 time.sleep(5)
@@ -113,20 +116,6 @@ class ArknightsAuto(object):
         log.info("确认阵容，开始行动")
         self._left_click(1325, 675)
         return True
-
-    def check_have_potion_or_no(self):
-        self.screenshot_from_app()
-        result, x, y = check_target_img_is_from_source_img_or_no(
-            source_path=f"{self._source_image_folder}have_potion_or_no.png",
-            target_path=self._new_image_path)
-        return result
-
-    def add_potion(self):
-        self.screenshot_from_app()
-        result, x, y = check_target_img_is_from_source_img_or_no(
-            source_path=f"{self._source_image_folder}add_potion.png",
-            target_path=self._new_image_path)
-        return result
 
     def check_action_status(self):
         while True:
@@ -155,15 +144,42 @@ class ArknightsAuto(object):
         br_y = tl_y + width
         return tl_x, tl_y, br_x, br_y
 
-    def screenshot_from_app(self, size_x=1560, size_y=920):
-        screenshot(self._top_x, self._top_y, size_x, size_y, self._new_image_path)
-
     def _left_click(self, x, y):
         left_click(x=x + self._top_x, y=y + self._top_y)
 
-    def check_image_in_screenshot(self, image_name):
-        self.screenshot_from_app()
+    def _check_image_in_screenshot(self, image_name):
+        screenshot(self._top_x, self._top_y, 1560, 920, self._new_image_path)
         result, x, y = check_target_img_is_from_source_img_or_no(
             source_path=f"{self._source_image_folder}{image_name}",
             target_path=self._new_image_path)
         return result
+
+
+def open_emulator():
+    log.info("开始运行明日方舟脚本")
+    need_login = True
+
+    if is_app_exist('qemu-system-aarch64') is False:
+
+        log.info("打开安卓模拟器")
+        run_command("screen -S emulator -d -m $HOME/Library/Android/sdk/emulator/emulator -avd Robot")
+
+        log.info("等待 5 秒模拟器后再继续执行 ....")
+        time.sleep(5)
+    else:
+        need_login = False
+
+    log.info("移动模拟器归位")
+    run_command('osascript script/set_position.scpt')
+
+    log.info("使模拟器活跃")
+    left_click(x=760, y=37)
+
+    return need_login
+
+
+def is_app_exist(process_name):
+    for proc in psutil.process_iter():
+        if proc.name() == process_name:
+            return True
+    return False
