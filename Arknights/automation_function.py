@@ -55,6 +55,7 @@ class ArknightsAuto:
             log.info("登录无公告栏")
         else:
             log.info("关闭公告栏")
+            self._left_click(x=1480, y=120)
 
         log.info("登录完成")
 
@@ -142,7 +143,7 @@ class ArknightsAuto:
     def _left_click(self, x, y):
         left_click(x=x + self._top_x, y=y + self._top_y)
 
-    def _check_image_in_screenshot(self, image_name):
+    def _check_image_in_screenshot(self, image_name: str) -> bool:
         screenshot(self._top_x, self._top_y, 1560, 920, self._new_image_path)
         result, x, y = check_target_img_is_from_source_img_or_no(
             source_path=f"{self._source_image_folder}{image_name}",
@@ -150,7 +151,7 @@ class ArknightsAuto:
         return result
 
 
-def open_emulator():
+def open_emulator() -> bool:
     log.info("开始运行明日方舟脚本")
     need_login = True
 
@@ -173,7 +174,7 @@ def open_emulator():
     return need_login
 
 
-def is_app_exist(process_name):
+def is_app_exist(process_name: str) -> bool:
     for proc in psutil.process_iter():
         if proc.name() == process_name:
             return True
