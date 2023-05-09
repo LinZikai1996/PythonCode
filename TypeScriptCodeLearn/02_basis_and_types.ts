@@ -109,3 +109,29 @@ k = function(n1, n2): number{
 let l: string[];
 l = ['a', 'b'];
 let m: Array<string>
+
+
+// 元组，元组固定长度的数组
+let n: [string, number];
+n = ['hello', 123]
+
+
+// enum 枚举
+enum Gender{
+    Male = 0,
+    Female = 1,
+}
+
+let o: {name: string, gender: Gender}
+o = {
+    name: "ccc",
+    gender: Gender.Male
+}
+
+// console.log(o.gender === Gender.Male)
+
+
+// 类型别名
+type myType = 1 | 2 | 3 | 4 | 5;
+let p: myType;
+let q: myType;
