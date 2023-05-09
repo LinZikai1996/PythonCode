@@ -1,0 +1,68 @@
+{
+    // 此文件是ts编译器配置文件，ts编译器可以根据他的信息来对代码进行编译
+
+    // include 用来指定那些 ts 文件需要被编译
+    "include": [
+        // ** 任意目录，* 任意文件
+        "./src/**/*",
+    ],
+    // exclude 用来指定不需要被编译的部分, 默认值是 "exclude": [  "node_modules",  "bower_components",  "jspm_packages",  "tmp",  "temp"]
+    "exclude": [],
+    // extends 指定继承的配置文件
+    // files 指定编译文件
+
+    // compilerOptions 属性指定了编译器的各种选项
+    "compilerOptions": {
+        // target : 指定要生成的 JavaScript 代码的版本，例如 "es5"、"es6" 等
+        "target": "ES2015",
+
+        //  module : 指定要使用的模块系统，例如 "commonjs"、"amd"、"es6" 等
+        "module": "ES2015",
+
+        // lib : 选项用于指定 TypeScript 编译器可以使用的库文件， 一般不改
+
+        // outDir : 指定输出目录，即编译器生成的 JavaScript 文件将被保存到的目录
+        "outDir": "./dist",
+
+        // outFile : 使用 "outFile" 选项需要将 "module" 选项设置为 "amd" 或 "system"，这是因为这两种模块系统支持将多个模块合并为一个文件。
+        // 另外，由于 "outFile" 选项已经被废弃，推荐使用模块打包工具（如 webpack、rollup 等）来打包和合并 TypeScript 项目中的文件
+
+        // allowJS : 用于允许编译器编译 JavaScript 文件
+        // "allowJS": true
+
+        // checkJS : 用于启用对 JavaScript 文件的类型检查
+        // "checkJS": true,
+
+        // removeComments : 用于控制编译器是否移除编译后的 JavaScript 代码中的注释
+        "removeComments": true,
+
+        // noEmit : 用于控制编译器是否生成编译后的 JavaScript 代码，这对于只需要进行类型检查或生成其他类型的输出（如声明文件）的项目非常有用
+        // "noEmit": true
+        
+        // noEmitOnError : 用于控制编译器在出现错误时是否生成编译后的 JavaScript 代码，这有助于避免在出现错误时部署不完整或无效的代码
+        // "noEmitOnError": true,
+
+        // strict : 是一组开启了多个严格模式的选项的快捷方式，总开关
+        // 启用 "strict" 选项将启用以下严格模式选项：
+        //  "noImplicitAny"：禁止将隐式 any 类型分配给变量。
+        //  "noImplicitThis"：禁止在类成员函数中使用未明确声明 "this" 的情况。
+        //  "alwaysStrict"：在生成的 JavaScript 代码中启用 "use strict" 指令。
+        //  "strictNullChecks"：对 null 和 undefined 的使用进行严格检查。
+        //  "strictFunctionTypes"：对函数类型的使用进行严格检查。
+        //  "strictPropertyInitialization"：强制对类成员变量进行初始化。
+        "strict": true,
+
+        // alwaysStrict : 用于控制编译器是否始终在生成的 JavaScript 代码中包含 "use strict" 语句
+        // 启用严格模式可能会导致一些旧的 JavaScript 代码无法正常工作，因此请谨慎使用该选项
+        "alwaysStrict": true,
+
+        // noImplicitAny : 用于控制编译器是否允许未明确声明类型的参数和变量使用 "any" 类型
+        "noImplicitAny": true,
+        
+        // noImplicitThis : 用于控制编译器是否允许在类成员函数中使用未明确声明 "this" 的情况
+        "noImplicitThis": true,
+        
+        // strictNullChecks : 用于控制编译器是否允许使用 null 和 undefined 类型，以及如何检查它们的使用
+        "strictNullChecks": true,
+    }
+}
