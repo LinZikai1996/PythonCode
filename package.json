@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.1"
   }
 }

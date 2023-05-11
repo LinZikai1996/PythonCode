@@ -2,6 +2,8 @@
 
 const path = require('path')
 
+const htmlWebpackPlugin = require('html-webpack-plugin')
+
 // webpack 中所有配置信息都应该写在 module.exports 中
 module.exports = {
     // 指定入口文件
@@ -28,5 +30,10 @@ module.exports = {
                 exclude: /node-modules/
             }
         ]
+    },
+    plugins:{
+        new htmlWebpackPlugin({
+            titile: "我是自定义title"
+        })
     }
 };
