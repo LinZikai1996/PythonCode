@@ -3,6 +3,7 @@
         "target": "ES2015",
         "module": "ES2015",
         "strict": true,
+        "noEmitOnError": true,
     },
     "include": [
         "./src/**/*",

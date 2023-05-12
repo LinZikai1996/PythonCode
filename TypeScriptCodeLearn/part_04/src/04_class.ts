@@ -44,16 +44,17 @@ class Dog{
     }
 }
 
-class Animal{
+// 抽象类，可以添加抽象方法，不能 new
+abstract class Animal{
     name: string;
     age: number;
     constructor(name:string, age: number){
         this.age = age
         this.name = name
     }
-    sayHello(): void{
-        console.log("动物在叫")
-    }
+
+    // 抽象方法
+    abstract sayHello(): void;
 }
 
 
@@ -80,7 +81,79 @@ class Duck extends Animal{
     }
 
     sayHello(): void {
-        super.sayHello();
+        console.log("嘎嘎嘎")
     }
 }
 
+// 接口，接口中所有方法都是抽象方法
+type myType = {
+    name: string;
+    age: number;
+}
+
+interface myInterface{
+    name: string;
+}
+
+interface myInterface{
+    age: number;
+
+    sayHello():void
+}
+
+// 接口实现
+class myClass implements myInterface{
+    
+    name: string
+    age: number
+
+    constructor(name:string, age: number){
+        this.age = age
+        this.name = name
+    }
+
+    sayHello(): void {
+        throw new Error("Method not implemented.")
+    }
+    
+}
+
+
+// 属性封装
+class A{
+    // 默认public，子类也可以访问
+    private _name: string;
+    private _age: number;
+    
+    constructor(name:string, age: number){
+        this._age = age
+        this._name = name
+    }
+
+    getAge(){
+        return this._age
+    }
+
+    setAge(value: number){
+        if (value >= 0 ){
+            this._age = value
+        } else{
+            this._age = 0
+        }   
+    }
+
+    get name(){
+        return this._name
+    }
+
+    set name(value: string){
+        this._name = value
+    }
+}
+
+//语法糖
+class B{
+    constructor(public name:string, public age:number){
+
+    }
+}
