@@ -1,4 +1,5 @@
-
 import "./style/index.less"
-console.log("Hi")
+
+import GameControl from "./modules/GameControl"
+new GameControl()
 
