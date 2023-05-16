@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  /*
+  表示元素将首先尝试使用名为 "Inter" 的字体，如果该字体不可用，则回退到使用默认的无衬线字体（sans-serif)
+  */
+  font-family: "Inter", sans-serif;
+  background-color: #1f2026;
+}
