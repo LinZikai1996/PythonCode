@@ -27,8 +27,12 @@ def get_all_operator_name_from_wiki():
     operator_list = []
     response = requests.get("https://prts.wiki/w/CHAR?filter=AAAAAAAggAAAAAAAAAAAAAAAAAAAAAAA")
     if response.ok:
-        for soup in BeautifulSoup(response.text, features='html.parser').find_all('div', class_='smwdata'):
-            operator_list.append(soup['data-cn'])
+        soup = BeautifulSoup(response.text, 'html.parser')
+        divs = soup.find_all('div')
+        for div in divs:
+            data_zh = div.get('data-zh')  # 获取'data-zh'的值
+            if data_zh:  # 如果'data-zh'存在
+                operator_list.append(data_zh)
     return operator_list
 
 
