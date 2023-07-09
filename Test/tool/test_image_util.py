@@ -1,12 +1,13 @@
 import cv2
 from matplotlib import pyplot as plt
 
-from tool.image_util import check_target_img_is_from_source_img_or_no, get_image_size_info
+from tool.image_util import check_target_img_is_from_source_img_or_no, get_image_size_info, screenshot
 
 
 def test_check_target_img_is_from_source_img_or_no():
     source_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
     source_path = f"{source_folder}source_img.png"
+    screenshot(0, 0, 1560, 920, source_path)
     target_path = f"{source_folder}target_img.png"
     img = cv2.imread(source_path)
     length, width = get_image_size_info(target_path)

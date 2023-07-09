@@ -3,7 +3,7 @@ import time
 
 import psutil
 
-from tool.control_mouse_and_keyboard import left_click
+from tool.control_mouse_and_keyboard import left_click, ActionConfigFile
 from tool.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, \
     check_image_similarity
 from tool.logger import Logger
@@ -24,6 +24,11 @@ class ArknightsAuto:
         self._top_x = 0
         self._top_y = 0
 
+        self._action = ActionConfigFile(
+            config_file_path="/Volumes/mobile_hard_disk/project/PythonCode/Arknights/resource/click_position.csv",
+            corrected_position_x=0,
+            corrected_position_y=0)
+
     def start(self):
         if open_emulator():
             self.open_app_and_login()
@@ -32,42 +37,44 @@ class ArknightsAuto:
 
     def open_app_and_login(self):
 
-        log.info("检查下模拟器主页面")
-        while self._check_image_in_screenshot("emulator_home.png") is False:
-            log.info("还未打开，等待 10s 继续检查")
-            time.sleep(10)
+        def check_emulator_home():
+            return self._check_image_in_screenshot_or_no("emulator_home.png")
 
-        log.info("打开明日方舟")
-        self._left_click(x=660, y=730)
-        time.sleep(10)
+        def check_interlude_animation():
+            return self._check_image_in_screenshot_or_no("interlude_animation.png")
 
-        log.info("跳过过场")
-        self._left_click(x=760, y=580)
-        time.sleep(5)
+        def check_login_page():
+            return self._check_image_in_screenshot_or_no("login_page.png")
 
-        log.info("登录明日方舟")
-        self._left_click(x=760, y=666)
-        time.sleep(20)
+        def check_announcement():
+            return not any(self._check_image_in_screenshot_or_no(image) for image in
+                           ["announcement_1.png", "announcement_2.png", "announcement_3.png"])
 
-        if self._check_image_in_screenshot("announcement_1.png") is False \
-                and \
-                self._check_image_in_screenshot("announcement_2.png") is False:
-            log.info("登录无公告栏")
-        else:
-            log.info("关闭公告栏")
-            self._left_click(x=1480, y=120)
+        self._action.run("使模拟器活跃")
+        self.check_screen_status(check_emulator_home, "模拟器主页面还未打开，等待 10s 继续检查", "打开明日方舟")
+        self.check_screen_status(check_interlude_animation, "明日方舟还未打开，等待 10s 继续检查", "跳过过场")
+        self.check_screen_status(check_login_page, "登录页面还未打开，等待 10s 继续检查", "登录明日方舟")
+        self.check_screen_status(check_announcement, "检查公告栏", "关闭公告栏")
 
         log.info("登录完成")
 
+    def check_screen_status(self, condition, log_msg, action_name=None, interval=10):
+        while not condition():
+            log.info(log_msg)
+            time.sleep(interval)
+
+        if action_name:
+            self._action.run(action_name)
+
     def prepare_for_action(self):
         log.info("为开始游戏做些准备 ....")
+        self._action.run("使模拟器活跃")
         self.go_back_to_home_page()
 
     def go_back_to_home_page(self):
         log.info("检查下是否在首页")
-        while self._check_image_in_screenshot("home_page.png") is False:
-            log.info("返回首页")
-            self._left_click(x=105, y=105)
+        while self._check_image_in_screenshot_or_no("home_page.png") is False:
+            self._action.run("返回首页")
 
     def start_game(self):
         stat_action_or_no = True
@@ -86,31 +93,23 @@ class ArknightsAuto:
 
     def start_action(self, first_time=False):
         if first_time:
-            log.info("点击 '终端'")
-            self._left_click(x=1160, y=250)
-
-            log.info("点击 '前往上一次作战'")
-            self._left_click(x=1350, y=750)
-
-        log.info("点击 '开始行动'")
-        self._left_click(1360, 860)
+            self._action.run("点击 '终端'")
+            self._action.run("点击 '前往上一次作战'")
+        self._action.run("点击 '开始行动'")
 
         log.info("检查我们是否有理智液")
         if not self._check_image_in_screenshot("have_potion_or_no.png"):
             if self._check_image_in_screenshot("add_potion.png"):
                 log.info("添加理智液")
-                self._left_click(1310, 745)
-                time.sleep(5)
-                self._left_click(1360, 860)
+                self._action.run("添加理智液")
+                self._action.run("点击 '开始行动'")
 
         else:
-            log.info("我们没有理智液了，退出游戏")
-            self._left_click(1360, 860)
+            self._action.run("我们没有理智液了，退出游戏")
             self.go_back_to_home_page()
             return False
 
-        log.info("确认阵容，开始行动")
-        self._left_click(1325, 675)
+        self._action.run("确认阵容，开始行动")
         return True
 
     def check_action_status(self):
@@ -118,10 +117,8 @@ class ArknightsAuto:
             if self.check_image_similarity_at_position(
                     source_image_path=f"{self._source_image_folder}finish_action.png", start_position_x=55,
                     start_position_y=255):
-                log.info("行动结束")
-                self._left_click(1325, 675)
-                self._left_click(1325, 675)
-                time.sleep(5)
+                self._action.run("行动结束，确认成果")
+                self._action.run("行动结束，关闭")
                 break
             else:
                 time.sleep(20)
@@ -150,6 +147,13 @@ class ArknightsAuto:
             target_path=self._new_image_path)
         return result
 
+    def _check_image_in_screenshot_or_no(self, image_name: str) -> bool:
+        screenshot(self._top_x, self._top_y, 1560, 920, self._new_image_path)
+        result, x, y = check_target_img_is_from_source_img_or_no(
+            source_path=self._new_image_path,
+            target_path=f"{self._source_image_folder}{image_name}")
+        return result
+
 
 def open_emulator() -> bool:
     log.info("开始运行明日方舟脚本")
@@ -167,9 +171,6 @@ def open_emulator() -> bool:
 
     log.info("移动模拟器归位")
     run_command('osascript script/set_position.scpt')
-
-    log.info("使模拟器活跃")
-    left_click(x=760, y=37)
 
     return need_login
 

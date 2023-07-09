@@ -1,0 +1,4 @@
+operation_name,x,y,right_or_left,wait_time
+测试第一步,100,100,L,5
+测试第二步,200,200,L,5
+测试第三步,300,300,L,5
