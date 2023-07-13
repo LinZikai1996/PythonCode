@@ -1,3 +1,4 @@
+import math
 import sys
 import time
 
@@ -15,7 +16,7 @@ log = Logger()
 class ArknightsAuto:
     def __init__(self, operation_type=1):
         # operation_type = 1 前往上次作战活动
-        # operation_type = 2 获取资源
+        # operation_type = 2 日常任务
         # operation_type = 3 生息演算
         self.operation_type = operation_type
 
@@ -33,7 +34,8 @@ class ArknightsAuto:
         if open_emulator():
             self.open_app_and_login()
         self.prepare_for_action()
-        self.start_game()
+        if self.operation_type == 1:
+            self.to_last_battle()
 
     def open_app_and_login(self):
 
@@ -73,23 +75,23 @@ class ArknightsAuto:
 
     def go_back_to_home_page(self):
         log.info("检查下是否在首页")
-        while self._check_image_in_screenshot_or_no("home_page.png") is False:
+        while not self._check_image_in_screenshot_or_no("home_page.png"):
             self._action.run("返回首页")
 
-    def start_game(self):
-        stat_action_or_no = True
+    def to_last_battle(self):
+        result = True
         index = 0
-        while stat_action_or_no:
+        while result:
             log.info("开始行动 ... ")
             if index == 0:
                 result = self.start_action(True)
             else:
                 result = self.start_action()
-            if result is False:
-                log.info("退出")
-                sys.exit(0)
             self.check_action_status()
             index = index + 1
+
+        self.go_back_to_home_page()
+        log.info("行动结束，退出")
 
     def start_action(self, first_time=False):
         if first_time:
@@ -98,54 +100,25 @@ class ArknightsAuto:
         self._action.run("点击 '开始行动'")
 
         log.info("检查我们是否有理智液")
-        if not self._check_image_in_screenshot("have_potion_or_no.png"):
-            if self._check_image_in_screenshot("add_potion.png"):
+        if not self._check_image_in_screenshot_or_no("have_potion_or_no.png"):
+            if self._check_image_in_screenshot_or_no("add_potion.png"):
                 log.info("添加理智液")
                 self._action.run("添加理智液")
                 self._action.run("点击 '开始行动'")
 
         else:
             self._action.run("我们没有理智液了，退出游戏")
-            self.go_back_to_home_page()
             return False
 
         self._action.run("确认阵容，开始行动")
         return True
 
     def check_action_status(self):
-        while True:
-            if self.check_image_similarity_at_position(
-                    source_image_path=f"{self._source_image_folder}finish_action.png", start_position_x=55,
-                    start_position_y=255):
-                self._action.run("行动结束，确认成果")
-                self._action.run("行动结束，关闭")
-                break
-            else:
-                time.sleep(20)
+        def check_action_end_or_no():
+            return self._check_image_in_screenshot_or_no("finish_action.png")
 
-    def check_image_similarity_at_position(self, source_image_path, start_position_x, start_position_y):
-        length, width = get_image_size_info(source_image_path)
-        left_top_x, left_top_y, bottom_right_x, bottom_right_y = self.get_location(start_position_x, start_position_y,
-                                                                                   length, width)
-        screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, self._new_image_path)
-        return check_image_similarity(source_image_path, self._new_image_path)
-
-    def get_location(self, tl_x, tl_y, length, width):
-        tl_x = self._top_x + tl_x
-        tl_y = self._top_y + tl_y
-        br_x = tl_x + length
-        br_y = tl_y + width
-        return tl_x, tl_y, br_x, br_y
-
-    def _left_click(self, x, y):
-        left_click(x=x + self._top_x, y=y + self._top_y)
-
-    def _check_image_in_screenshot(self, image_name: str) -> bool:
-        screenshot(self._top_x, self._top_y, 1560, 920, self._new_image_path)
-        result, x, y = check_target_img_is_from_source_img_or_no(
-            source_path=f"{self._source_image_folder}{image_name}",
-            target_path=self._new_image_path)
-        return result
+        self.check_screen_status(check_action_end_or_no, "作战还未结束，等待 10s 继续检查", "行动结束，确认成果")
+        self._action.run("行动结束，关闭")
 
     def _check_image_in_screenshot_or_no(self, image_name: str) -> bool:
         screenshot(self._top_x, self._top_y, 1560, 920, self._new_image_path)
