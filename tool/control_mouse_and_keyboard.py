@@ -1,7 +1,7 @@
 import csv
 import time
 
-import pyautogui
+from pynput.mouse import Controller, Button
 
 from tool.logger import Logger
 
@@ -9,7 +9,9 @@ log = Logger()
 
 
 def left_click(x, y):
-    pyautogui.click(x=x, y=y)
+    mouse = Controller()
+    mouse.position = (x, y)
+    mouse.click(Button.left)
     time.sleep(2)
 
 
@@ -30,11 +32,13 @@ class ClickAction:
             raise ValueError(f"Invalid wait time: {self._wait_time}")
 
     def click(self):
+        mouse = Controller()  # 创建鼠标控制器对象
+        mouse.position = (self._x, self._y)  # 设置鼠标位置
         try:
             if self._right_or_left == 'L':
-                pyautogui.click(x=self._x, y=self._y)
+                mouse.click(Button.left)  # 左键点击
             else:
-                pyautogui.rightClick(x=self._x, y=self._y)
+                mouse.click(Button.right)  # 右键点击
             log.info(self.operation_name)
         except Exception as e:
             log.error(f"Failed to perform operation {self.operation_name}: {str(e)}")
