@@ -46,10 +46,10 @@ pyasn1-modules==0.3.0
 pygame==2.5.0
 pyglet==1.5.21
 pynput==1.7.6
-pyobjc-core==9.2
-pyobjc-framework-ApplicationServices==9.2
-pyobjc-framework-Cocoa==9.2
-pyobjc-framework-Quartz==9.2
+pyobjc-core==9.2; sys_platform == 'darwin'
+pyobjc-framework-ApplicationServices==9.2; sys_platform == 'darwin'
+pyobjc-framework-Cocoa==9.2; sys_platform == 'darwin'
+pyobjc-framework-Quartz==9.2; sys_platform == 'darwin'
 pyparsing==3.0.9
 pytest==7.4.0
 python-dateutil==2.8.2
