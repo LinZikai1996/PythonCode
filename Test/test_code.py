@@ -1,7 +1,7 @@
 import time
 
-import pyautogui
+from PreadtorGames.preadtor_game import Cube
 
 
 def test():
-    print("")
+    Cube(10)
