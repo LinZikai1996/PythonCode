@@ -45,7 +45,7 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
 
     for number in range(number_of_game):
 
-        if number % print_time == 0:
+        if number % print_time == 0 and number != 0:
             log.info(f"游戏的次数是 {number}, 近 {print_time} 平均奖励是 {np.mean(number_of_game_rewards[-print_time:])}")
 
         player = Cube("player", size)
