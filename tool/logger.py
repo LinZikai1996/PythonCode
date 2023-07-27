@@ -21,17 +21,18 @@ class Logger(object):
         # 日志输出格式
         self.formatter = logging.Formatter('[%(asctime)s] - %(levelname)s: %(message)s')
 
-        # 创建一个RotatingFileHandler，用于写到本地，最大文件大小为1GB，最多保留5个文件
-        fh = RotatingFileHandler(self.logFileName, 'a', maxBytes=1 << 30, backupCount=5, encoding='utf-8')
-        fh.setLevel(logging.DEBUG)
-        fh.setFormatter(self.formatter)
-        self.logger.addHandler(fh)
+        if not self.logger.hasHandlers():
+            # 创建一个RotatingFileHandler，用于写到本地，最大文件大小为1GB，最多保留5个文件
+            fh = RotatingFileHandler(self.logFileName, 'a', maxBytes=1 << 30, backupCount=5, encoding='utf-8')
+            fh.setLevel(logging.DEBUG)
+            fh.setFormatter(self.formatter)
+            self.logger.addHandler(fh)
 
-        # 创建一个StreamHandler,用于输出到控制台
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.INFO)
-        ch.setFormatter(self.formatter)
-        self.logger.addHandler(ch)
+            # 创建一个StreamHandler,用于输出到控制台
+            ch = logging.StreamHandler()
+            ch.setLevel(logging.INFO)
+            ch.setFormatter(self.formatter)
+            self.logger.addHandler(ch)
 
     def __console(self, level, message):
         if level == 'info':
