@@ -27,15 +27,11 @@ def init_q_table(q_table_file, size_for_map):
     return q_table
 
 
-def train(q_table_file='q_table_file'):
-    size = 10
-    number_of_game = 300000000
+def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game=3000000):
     epsilon = 0.6
     learning_rate = 0.1
     discount = 0.95
     epsilon_decay = 0.99
-
-    print_time = 10000
 
     rewards_detail = {
         "eat_food": 100,
