@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-from PreadtorGames.preadtor_game import Cube
+from RL.preadtor_game import Cube
 from tool.logger import Logger
 
 matplotlib.use('TkAgg')
@@ -32,6 +32,10 @@ def init_q_table(q_table_file, size_for_map):
 
 def show_result(number_for_game: int, frequency: int, rewards_list: list, finish_step_list: list):
     log.info(f"游戏的次数是 {number_for_game}, 近 {frequency} 平均奖励是 {np.mean(rewards_list[-frequency:])}")
+
+    rewards_list = rewards_list[-frequency * 10:]
+    finish_step_list = finish_step_list[-frequency * 10:]
+
     moving_avg_for_rewards = np.convolve(rewards_list,
                                          np.ones((frequency,)) / frequency,
                                          mode='valid')

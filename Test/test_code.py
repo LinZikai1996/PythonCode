@@ -1,7 +1,6 @@
-import time
-
-from PreadtorGames.preadtor_game import Cube, EnvCube
+from RL.preadtor_game import EnvCubeV1
 
 
 def test():
-    print(EnvCube().reset())
+    env = EnvCubeV1()
+    print(env.q_table[(1, 1, 1, 1)])

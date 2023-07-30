@@ -1,3 +1,8 @@
+import collections
+import os
+import pickle
+
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -49,7 +54,7 @@ class Cube:
         return self._y
 
 
-class EnvCube:
+class EnvCubeV1:
 
     def __init__(self, size=10, action_space_values=9, return_image=False,
                  rewards_detail=None, total_number_of_executions=300000000):
@@ -85,6 +90,9 @@ class EnvCube:
         self.color_for_enemy = self.color_map.get(3)
 
         self.execute_count = 0
+
+        self.q_table = None
+        self._init_q_table()
 
     def reset(self):
         self._init_position()
@@ -134,3 +142,18 @@ class EnvCube:
         pic_info[self.enemy.x()][self.enemy.y()] = self.color_for_enemy
         pic_info[self.player.x()][self.player.y()] = self.color_for_player
         return Image.fromarray(pic_info, 'RGB')
+
+    def render(self):
+        cv2.imshow('Predator', np.array(self._return_image().resize((800, 800))))
+        cv2.waitKey(1)
+
+    def _init_q_table(self, q_table_file=None):
+        q_table = collections.defaultdict(lambda: [0] * 9)
+        if q_table_file and os.path.exists(q_table_file):
+            try:
+                with open(q_table_file, 'rb') as f:
+                    loaded_q_table = pickle.load(f)
+                q_table.update(loaded_q_table)
+            except Exception as e:
+                print(f"Error in loading q_table: {e}")
+        self.q_table = q_table
