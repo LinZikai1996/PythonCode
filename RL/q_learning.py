@@ -4,10 +4,13 @@ import time
 from itertools import product
 
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 
 from PreadtorGames.preadtor_game import Cube
 from tool.logger import Logger
 
+matplotlib.use('TkAgg')
 log = Logger()
 
 
@@ -27,14 +30,39 @@ def init_q_table(q_table_file, size_for_map):
     return q_table
 
 
-def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game=3000000):
+def show_result(number_for_game: int, frequency: int, rewards_list: list, finish_step_list: list):
+    log.info(f"游戏的次数是 {number_for_game}, 近 {frequency} 平均奖励是 {np.mean(rewards_list[-frequency:])}")
+    moving_avg_for_rewards = np.convolve(rewards_list,
+                                         np.ones((frequency,)) / frequency,
+                                         mode='valid')
+    finish_game_step = np.convolve(finish_step_list,
+                                   np.ones((frequency,)) / frequency,
+                                   mode='valid')
+    plt.figure(1)  # 创建新图
+
+    plt.subplot(211)  # 第一个子图
+    plt.plot([index for index in range(len(moving_avg_for_rewards))], moving_avg_for_rewards)
+    plt.xlabel('Number of game ')
+    plt.ylabel(f'Mean {frequency} reward')
+
+    plt.subplot(212)  # 第二个子图
+    plt.plot([index for index in range(len(finish_game_step))], finish_game_step)
+    plt.xlabel('Number of game ')
+    plt.ylabel('Finish game step')
+
+    plt.suptitle(f'Title game {number_for_game}')
+    plt.savefig('resource/temp/result.png')
+
+
+def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game=300000000):
+    log.info(f"开始训练")
     epsilon = 0.6
     learning_rate = 0.1
-    discount = 0.95
+    discount = 0.9
     epsilon_decay = 0.99
 
     rewards_detail = {
-        "eat_food": 100,
+        "eat_food": 300,
         "be_caught": -300,
         "moving": -1,
     }
@@ -42,26 +70,28 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
     q_table = init_q_table(q_table_file, size)
 
     number_of_game_rewards = []
+    finish_game_step = []
 
     for number in range(number_of_game):
 
         if number % print_time == 0 and number != 0:
-            log.info(f"游戏的次数是 {number}, 近 {print_time} 平均奖励是 {np.mean(number_of_game_rewards[-print_time:])}")
+            show_result(number, print_time, number_of_game_rewards, finish_game_step)
 
         player = Cube("player", size)
         food = Cube("food", size)
         enemy = Cube("enemy", size)
 
         title_reward = 0
-        for i in range(1000):
+        step = 0
+        for step in range(20000):
             obs = (player - food, player - enemy)
             if np.random.random() > epsilon:
                 action = np.argmax(q_table[obs])
             else:
                 action = np.random.randint(0, 9)
             player.action(action)
-            food.action()
-            enemy.action()
+            # food.action()
+            # enemy.action()
 
             need_to_stop_train = False
 
@@ -91,6 +121,7 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
                   f"enemy 所在 {enemy.__str__()}, "
                   f"奖励 {title_reward}")
         number_of_game_rewards.append(title_reward)
+        finish_game_step.append(step)
         epsilon = epsilon * epsilon_decay
 
     with open(f'q_table_{int(time.time())}.pickle', 'wb') as f:

@@ -4,7 +4,7 @@ import os
 import cv2
 import imagehash
 import numpy as np
-from PIL import ImageGrab, Image
+from PIL import ImageGrab, Image, ImageChops
 
 
 def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path):
@@ -49,7 +49,7 @@ def search_return_point(source_img, template_img):
     result = cv2.matchTemplate(source_img_gray, template_img_gray, cv2.TM_CCOEFF_NORMED)
 
     # res大于70%
-    loc = np.where(result >= 0.7)
+    loc = np.where(result >= 0.9)
     points = zip(*loc[::-1])
 
     x = 0
@@ -97,3 +97,15 @@ def resize(image, height_size=None, width_size=None):
 def bgr_to_rgb(image):
     B, G, R = cv2.split(image)
     return cv2.merge([R, G, B])
+
+
+def is_same_image(img_file1, img_file2) -> bool:
+    img1 = Image.open(img_file1)
+    img2 = Image.open(img_file2)
+
+    diff = ImageChops.difference(img1, img2)
+
+    if diff.getbbox():
+        return False
+    else:
+        return True

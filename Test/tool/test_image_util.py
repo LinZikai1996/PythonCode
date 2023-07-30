@@ -8,7 +8,7 @@ def test_check_target_img_is_from_source_img_or_no():
     source_folder = "/Volumes/mobile_hard_disk/work_temp/screenshot/"
     source_path = f"{source_folder}source_img.png"
     screenshot(0, 0, 1560, 920, source_path)
-    target_path = f"{source_folder}finish_action.png"
+    target_path = "/Volumes/mobile_hard_disk/project/PythonCode/Arknights/resource/image/emulator_home.png"
     img = cv2.imread(source_path)
     length, width = get_image_size_info(target_path)
     result, x, y = check_target_img_is_from_source_img_or_no(source_path=source_path, target_path=target_path)
