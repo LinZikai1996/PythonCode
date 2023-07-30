@@ -1,3 +1,4 @@
+import glob
 import os
 import pickle
 import time
@@ -55,7 +56,19 @@ def show_result(number_for_game: int, frequency: int, rewards_list: list, finish
     plt.ylabel('Finish game step')
 
     plt.suptitle(f'Title game {number_for_game}')
-    plt.savefig('resource/temp/result.png')
+    # 搜索所有的结果文件
+    result_files = glob.glob('resource/temp/result_*.png')
+
+    # 按文件的修改时间排序
+    result_files.sort(key=os.path.getmtime)
+
+    # 如果文件数量超过10个，删除最早的文件
+    while len(result_files) > 10:
+        os.remove(result_files[0])
+        del result_files[0]
+
+    # 保存新的结果文件
+    plt.savefig(f'resource/temp/result_{number_for_game}.png')
 
 
 def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game=300000000):
