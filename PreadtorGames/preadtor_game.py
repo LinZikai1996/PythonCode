@@ -1,5 +1,5 @@
-
 import numpy as np
+from PIL import Image
 
 
 class Cube:
@@ -41,3 +41,96 @@ class Cube:
             self._y = 0
         elif self._y >= self._size:
             self._y = self._size - 1
+
+    def x(self):
+        return self._x
+
+    def y(self):
+        return self._y
+
+
+class EnvCube:
+
+    def __init__(self, size=10, action_space_values=9, return_image=False,
+                 rewards_detail=None, total_number_of_executions=300000000):
+        self.size = size
+        self.observation_space_values = (self.size, self.size, 3)
+        self.action_space_values = action_space_values
+        self.return_image = return_image
+        self._total_number_of_executions = total_number_of_executions
+
+        if rewards_detail is None:
+            rewards_detail = {
+                "eat_food": 25,
+                "be_caught": -300,
+                "moving": -1,
+            }
+        self.rewards_detail = rewards_detail
+
+        self.player = None
+        self.food = None
+        self.enemy = None
+
+        self.color_map = {
+            # blue
+            1: (255, 0, 0),
+            # green
+            2: (0, 255, 0),
+            # red
+            3: (0, 0, 255),
+        }
+
+        self.color_for_player = self.color_map.get(1)
+        self.color_for_food = self.color_map.get(2)
+        self.color_for_enemy = self.color_map.get(3)
+
+        self.execute_count = 0
+
+    def reset(self):
+        self._init_position()
+        return self._return_observation()
+
+    def _init_position(self):
+        self.player = Cube("player", self.size)
+        self.food = Cube("food", self.size)
+        while self.player.__eq__(self.food):
+            self.food = Cube("food", self.size)
+
+        self.enemy = Cube("enemy", self.size)
+        while self.enemy.__eq__(self.food) or self.enemy.__eq__(self.player):
+            self.enemy = Cube("enemy", self.size)
+
+        self.execute_count = 0
+
+    def step(self, action_value):
+        self.execute_count += 1
+
+        need_to_stop_train = False
+        self.player.action(action_value)
+
+        if self.player.__eq__(self.food):
+            reward = self.rewards_detail.get("eat_food")
+            need_to_stop_train = True
+        elif self.enemy.__eq__(self.player):
+            reward = self.rewards_detail.get("be_caught")
+            need_to_stop_train = True
+        else:
+            reward = self.rewards_detail.get("moving")
+            self.food.action()
+            self.enemy.action()
+
+        return self._return_observation(), reward, (
+                need_to_stop_train or self.execute_count >= self._total_number_of_executions)
+
+    def _return_observation(self):
+        if self.return_image:
+            return self._return_image()
+        else:
+            return (self.player - self.food) + (self.player - self.enemy)
+
+    def _return_image(self):
+        pic_info = np.zeros((self.size, self.size, 3), dtype=np.uint8)
+        pic_info[self.food.x()][self.food.y()] = self.color_for_food
+        pic_info[self.enemy.x()][self.enemy.y()] = self.color_for_enemy
+        pic_info[self.player.x()][self.player.y()] = self.color_for_player
+        return Image.fromarray(pic_info, 'RGB')

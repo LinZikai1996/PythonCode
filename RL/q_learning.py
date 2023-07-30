@@ -83,15 +83,13 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
 
         title_reward = 0
         step = 0
-        for step in range(20000):
+        for step in range(500):
             obs = (player - food, player - enemy)
             if np.random.random() > epsilon:
                 action = np.argmax(q_table[obs])
             else:
                 action = np.random.randint(0, 9)
             player.action(action)
-            # food.action()
-            # enemy.action()
 
             need_to_stop_train = False
 
@@ -104,6 +102,8 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
                 need_to_stop_train = True
                 new_q = reward
             else:
+                food.action()
+                enemy.action()
                 reward = rewards_detail.get("moving")
                 current_q_table_value = q_table[obs][action]
                 max_future_q = np.argmax(q_table[(player - food, player - enemy)])

@@ -1,7 +1,7 @@
 import time
 
-from PreadtorGames.preadtor_game import Cube
+from PreadtorGames.preadtor_game import Cube, EnvCube
 
 
 def test():
-    Cube(10)
+    print(EnvCube().reset())
