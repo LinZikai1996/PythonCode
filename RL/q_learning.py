@@ -203,6 +203,7 @@ def start_train_v2():
             title_reward_per_game = title_reward_per_game + reward
             title_step_per_game += 1
 
+        number_of_game_rewards.append(title_reward_per_game)
         finish_game_step.append(title_step_per_game)
         # 在每轮训练后，衰减 ε
         epsilon *= epsilon_decay
@@ -211,4 +212,4 @@ def start_train_v2():
 
 
 if __name__ == '__main__':
-    start_train_v1()
+    start_train_v2()
