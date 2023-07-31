@@ -1,10 +1,12 @@
 import collections
+import glob
 import os
 import pickle
 
 import cv2
 import numpy as np
 from PIL import Image
+import time
 
 
 class Cube:
@@ -54,15 +56,19 @@ class Cube:
         return self._y
 
 
-class EnvCubeV1:
+class EnvCubeV2:
 
     def __init__(self, size=10, action_space_values=9, return_image=False,
-                 rewards_detail=None, total_number_of_executions=300000000):
+                 rewards_detail=None, total_number_of_executions=300000000, print_result=10000,
+                 games_executed_per_game=200):
         self.size = size
         self.observation_space_values = (self.size, self.size, 3)
         self.action_space_values = action_space_values
         self.return_image = return_image
-        self._total_number_of_executions = total_number_of_executions
+        self.total_number_of_executions = total_number_of_executions
+        self.print_result = min(total_number_of_executions // 100, print_result)
+        self.games_executed_per_game = games_executed_per_game
+        self._pickle_folder = 'resource/pickle'
 
         if rewards_detail is None:
             rewards_detail = {
@@ -128,7 +134,7 @@ class EnvCubeV1:
             self.enemy.action()
 
         return self._return_observation(), reward, (
-                need_to_stop_train or self.execute_count >= self._total_number_of_executions)
+                need_to_stop_train or self.execute_count >= self.total_number_of_executions)
 
     def _return_observation(self):
         if self.return_image:
@@ -157,3 +163,20 @@ class EnvCubeV1:
             except Exception as e:
                 print(f"Error in loading q_table: {e}")
         self.q_table = q_table
+
+    def save_q_table(self):
+        if not os.path.exists(self._pickle_folder):
+            os.makedirs(self._pickle_folder)
+        with open(f'{self._pickle_folder}/q_table_{int(time.time())}.pickle', 'wb') as f:
+            pickle.dump(self.q_table, f)
+
+        # 获取所有 pickle 文件
+        pickle_files = glob.glob(f'{self._pickle_folder}/q_table_*.pickle')
+
+        # 按文件的修改时间排序
+        pickle_files.sort(key=os.path.getmtime)
+
+        # 只保留最新的三个文件，删除其他文件
+        while len(pickle_files) > 3:
+            os.remove(pickle_files[0])
+            del pickle_files[0]

@@ -1,7 +1,6 @@
 import logging
 import os
 import time
-import shutil
 from logging.handlers import RotatingFileHandler
 
 cur_path = os.path.dirname(os.path.realpath(__file__))

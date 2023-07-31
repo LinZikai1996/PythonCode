@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-from RL.preadtor_game import Cube
+from RL.preadtor_game import Cube, EnvCubeV2
 from tool.logger import Logger
 
 matplotlib.use('TkAgg')
@@ -43,7 +43,7 @@ def show_result(number_for_game: int, frequency: int, rewards_list: list, finish
     finish_game_step = np.convolve(finish_step_list,
                                    np.ones((frequency,)) / frequency,
                                    mode='valid')
-    plt.figure(1)  # 创建新图
+    plt.figure(number_for_game)  # 创建新图, 使用number_for_game作为唯一的标识符
 
     plt.subplot(211)  # 第一个子图
     plt.plot([index for index in range(len(moving_avg_for_rewards))], moving_avg_for_rewards)
@@ -55,6 +55,7 @@ def show_result(number_for_game: int, frequency: int, rewards_list: list, finish
     plt.xlabel('Number of game ')
     plt.ylabel('Finish game step')
 
+    plt.subplots_adjust(hspace=.5)  # 调整子图之间的间距
     plt.suptitle(f'Title game {number_for_game}')
     # 搜索所有的结果文件
     result_files = glob.glob('resource/temp/result_*.png')
@@ -145,5 +146,69 @@ def train(q_table_file='q_table_file', size=10, print_time=10000, number_of_game
         pickle.dump(q_table, f)
 
 
-if __name__ == '__main__':
+def start_train_v1():
     train()
+
+
+def start_train_v2():
+    log.info(f"开始训练")
+    env = EnvCubeV2()
+    # 初始 ε
+    epsilon = 1.0
+    # ε 的衰减因子，每轮训练后，ε 将乘以这个因子
+    epsilon_decay = 0.99
+    # 初始学习率
+    learning_rate = 0.5
+    # 学习率的衰减因子，每轮训练后，学习率将乘以这个因子
+    learning_rate_decay = 0.99
+    discount = 0.9
+    epsilon_decay = 0.99
+
+    number_of_game_rewards = []
+    finish_game_step = []
+
+    max_moving_avg = 0
+
+    for number in range(env.total_number_of_executions):
+        obs = env.reset()
+        done = False
+        if number % env.print_result == 0 and number != 0:
+            show_result(number, env.print_result, number_of_game_rewards, finish_game_step)
+
+            if number * 10 % env.print_result == 0 and number != 0:
+                moving_avg = np.mean(number_of_game_rewards[-env.print_result * 10:])
+                if moving_avg > max_moving_avg:
+                    max_moving_avg = moving_avg
+                    env.save_q_table()
+
+        title_reward_per_game = 0
+        title_step_per_game = 0
+        while not done:
+            if np.random.random() > epsilon:
+                action = np.argmax(env.q_table[obs])
+            else:
+                action = np.random.randint(0, env.action_space_values)
+            new_obs, reward, done = env.step(action)
+
+            if done:
+                new_q = reward
+            else:
+                current_q_table_value = env.q_table[obs][action]
+                max_future_q = np.argmax(env.q_table[(env.player - env.food, env.player - env.enemy)])
+                new_q = 1 - learning_rate * current_q_table_value + learning_rate * (reward + discount * max_future_q)
+
+            env.q_table[obs][action] = new_q
+            obs = new_obs
+
+            title_reward_per_game = title_reward_per_game + reward
+            title_step_per_game += 1
+
+        finish_game_step.append(title_step_per_game)
+        # 在每轮训练后，衰减 ε
+        epsilon *= epsilon_decay
+        # 在每轮训练后，衰减学习率
+        learning_rate *= learning_rate_decay
+
+
+if __name__ == '__main__':
+    start_train_v1()
