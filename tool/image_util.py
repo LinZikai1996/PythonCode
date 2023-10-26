@@ -46,7 +46,7 @@ def check_target_img_is_from_source_img_or_no(source_path, target_path):
 def search_return_point(source_img, template_img):
     source_img_gray = cv2.cvtColor(source_img, cv2.COLOR_BGR2GRAY)
     template_img_gray = cv2.cvtColor(template_img, cv2.COLOR_BGR2GRAY)
-    result = cv2.matchTemplate(source_img_gray, template_img_gray, cv2.TM_CCOEFF_NORMED)
+    result = cv2.matchTemplate(source_img_gray, template_img_gray, cv2.TM_CCORR_NORMED)
 
     # res大于70%
     loc = np.where(result >= 0.9)

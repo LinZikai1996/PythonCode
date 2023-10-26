@@ -4,7 +4,7 @@ import time
 import psutil
 from pynput.mouse import Controller, Button
 
-from tool.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info
+from tool.image_util import screenshot, check_target_img_is_from_source_img_or_no, get_image_size_info, is_same_image
 from tool.logger import Logger
 from tool.run_os_command import run_command
 
@@ -20,29 +20,76 @@ class Arknights:
             os.makedirs(self._temp_folder)
         self._source_image_folder = "resource/image"
 
-    def start(self):
-        if open_emulator():
+    def start_auto(self):
+        open_emulator()
+        if confirm_position_and_click(target_image_path=f'{self._source_image_folder}/home_page.png',
+                                      need_click=False,
+                                      behavior_interpretation="检查是否在主页") is False:
             self.open_app_and_login()
-        self.prepare_for_action()
+
+        self.start_last_battle()
 
     def open_app_and_login(self):
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/emulator_home.png',
+                                   behavior_interpretation="检查模拟器是否准备好",
+                                   need_click=False,
+                                   need_continuous_monitoring=True,
+                                   need_continuous_monitoring_interval_time=5)
+        log.info("模拟器已经准备完毕")
 
-        confirm_position(target_image_path=f'{self._source_image_folder}/emulator_home.png',
-                         need_click=True,
-                         need_continuous_monitoring=True,
-                         need_continuous_monitoring_interval_time=5)
-        log.info("模拟器已经开启，并且已是活跃")
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/app.png',
+                                   behavior_interpretation="点击明日方舟图标")
 
-        log.info(f'打开明日方舟app')
-        confirm_position(target_image_path=f'{self._source_image_folder}/app.png', need_click=True)
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/interlude_animation.png',
+                                   behavior_interpretation="跳过过场动画",
+                                   need_continuous_monitoring=True,
+                                   click_x=(1540 // 2),
+                                   click_y=(900 // 2))
 
-    def prepare_for_action(self):
-        log.info("为开始游戏做些准备 ....")
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/login_button.png',
+                                   behavior_interpretation="点击登录按钮",
+                                   need_continuous_monitoring=True,
+                                   after_click_wait_time=10)
+
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/login_button.png',
+                                   behavior_interpretation="检查并且点击关闭公告栏",
+                                   click_x=1444,
+                                   click_y=130)
+
+    def start_last_battle(self):
+        result = self.start_action(True)
+        # result = True
+        # index = 0
+        # while result:
+        #     log.info("开始重复最近作战 ... ")
+        #     if index == 0:
+        #         result = self.start_action(True)
+        #     else:
+        #         result = self.start_action()
+        #     self.check_action_status()
+        #     index = index + 1
+        #
+        # self.go_back_to_home_page()
+        # log.info("行动结束，退出")
+
+    def start_action(self, first_time=False):
+        if first_time:
+            confirm_position_and_click(target_image_path=f'{self._source_image_folder}/terminal.png',
+                                       behavior_interpretation="点击 '终端'", )
+            confirm_position_and_click(target_image_path=f'{self._source_image_folder}/last_battle_button.png',
+                                       behavior_interpretation="点击 '前往上一次作战'", )
+        confirm_position_and_click(target_image_path=f'{self._source_image_folder}/start_action_blue_button.png',
+                                   behavior_interpretation="点击 '开始行动'", )
+        if confirm_position_and_click(target_image_path=f'{self._source_image_folder}/have_potion_or_no.png',
+                                      need_click=False,
+                                      behavior_interpretation="是否还有理智液") is True:
+            log.info("我们没有理智液了，退出游戏")
+        else:
+            log.info("我们还有理智液")
 
 
-def open_emulator() -> bool:
+def open_emulator():
     log.info("开始运行明日方舟脚本")
-    need_login = True
     if is_app_exist('qemu-system-aarch64') is False:
         log.info("打开安卓模拟器")
         run_command("screen -S emulator -d -m $HOME/Library/Android/sdk/emulator/emulator -avd Robot")
@@ -50,12 +97,13 @@ def open_emulator() -> bool:
         log.info("等待 5 秒模拟器后再继续执行 ....")
         time.sleep(5)
     else:
-        need_login = False
+        log.info("模拟器已经启动")
 
     log.info("移动模拟器归位")
     run_command('osascript script/set_position.scpt')
 
-    return need_login
+    log.info("使得窗口活跃")
+    run_command('osascript script/set_activate.scpt')
 
 
 def is_app_exist(process_name: str) -> bool:
@@ -65,14 +113,17 @@ def is_app_exist(process_name: str) -> bool:
     return False
 
 
-def confirm_position(target_image_path: str,
-                     after_click_wait_time: int = 2,
-                     need_click: bool = False,
-                     double_click: bool = False,
-                     double_click_interval: float = 0.5,
-                     right_or_left: str = 'L',
-                     need_continuous_monitoring=False,
-                     need_continuous_monitoring_interval_time: int = 2) -> bool:
+def confirm_position_and_click(target_image_path: str,
+                               behavior_interpretation: str,
+                               after_click_wait_time: int = 3,
+                               need_click: bool = True,
+                               right_or_left: str = 'L',
+                               need_continuous_monitoring=False,
+                               need_continuous_monitoring_interval_time: int = 2,
+                               click_x: int = None,
+                               click_y: int = None) -> bool:
+    log.info(behavior_interpretation)
+
     if right_or_left not in ['L', 'R']:
         raise ValueError("Parameter right_or_left must be 'L' or 'R'")
     result, x, y = _contrast_image(target_image_path,
@@ -80,49 +131,20 @@ def confirm_position(target_image_path: str,
                                    interval_time=need_continuous_monitoring_interval_time)
 
     if result and need_click:
-        length, width = get_image_size_info(target_image_path)
-        _click(x + length // 2, y + width // 2, right_or_left=right_or_left)
-        if double_click:
-            time.sleep(double_click_interval)
+        if click_x is not None and click_y is not None:
+            _click(click_x, click_y, right_or_left=right_or_left)
+        else:
+            length, width = get_image_size_info(target_image_path)
             _click(x + length // 2, y + width // 2, right_or_left=right_or_left)
         time.sleep(after_click_wait_time)
 
     return result
 
 
-def confirm_click_effect(target_image_path: str,
-                         after_click_wait_time: int = 2,
-                         double_click: bool = False,
-                         double_click_interval: float = 0.5,
-                         right_or_left: str = 'L',
-                         need_continuous_monitoring=False,
-                         need_continuous_monitoring_interval_time: int = 2) -> bool:
-    if right_or_left not in ['L', 'R']:
-        raise ValueError("Parameter right_or_left must be 'L' or 'R'")
-    result, x, y = _contrast_image(target_image_path,
-                                   need_continuous_monitoring=need_continuous_monitoring,
-                                   interval_time=need_continuous_monitoring_interval_time)
-
-    if result:
-        length, width = get_image_size_info(target_image_path)
-        before_click_image_path = "resource/temp/before_click.png"
-        after_click_image_path = "resource/temp/after_click.png"
-        screenshot(0, 0, 1920, 1080, before_click_image_path)
-        _click(x + length // 2, y + width // 2, right_or_left=right_or_left)
-        if double_click:
-            time.sleep(double_click_interval)
-            _click(x + length // 2, y + width // 2, right_or_left=right_or_left)
-        time.sleep(after_click_wait_time)
-        screenshot(0, 0, 1920, 1080, after_click_image_path)
-        if is_same_image(before_click_image_path, after_click_image_path):
-            return False  # 如果点击前后屏幕没有变化，则需要重新点击
-
-    return True
-
-
-def _click(x: int, y: int, right_or_left):
+def _click(x: int, y: int, right_or_left: str = 'L'):
     mouse = Controller()  # 创建鼠标控制器对象
     mouse.position = (x, y)  # 设置鼠标位置
+    time.sleep(0.1)  # 增加一个小延迟
     if right_or_left == 'L':
         mouse.click(Button.left)  # 左键点击
     else:
@@ -137,11 +159,12 @@ def _contrast_image(target_image_path: str, need_continuous_monitoring: bool, in
             source_path=source_path,
             target_path=target_image_path)
         if not need_continuous_monitoring or result:
+            log.info(f"发现目标图片 {target_image_path} ")
             break
-        log.info(f'等待 {interval_time} s 继续检查')
+        log.info(f'等待 {interval_time}s 继续检查')
         time.sleep(interval_time)
     return result, x, y
 
 
 if __name__ == '__main__':
-    Arknights().start()
+    Arknights().start_auto()

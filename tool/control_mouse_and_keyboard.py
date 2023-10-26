@@ -34,6 +34,7 @@ class ClickAction:
     def click(self):
         mouse = Controller()  # 创建鼠标控制器对象
         mouse.position = (self._x, self._y)  # 设置鼠标位置
+        time.sleep(0.1)  # 增加一个小延迟
         try:
             if self._right_or_left == 'L':
                 mouse.click(Button.left)  # 左键点击
