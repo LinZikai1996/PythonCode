@@ -7,13 +7,14 @@ import numpy as np
 from PIL import ImageGrab, Image, ImageChops
 
 
-def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path):
+def screenshot(left_top_x, left_top_y, bottom_right_x, bottom_right_y, path, need_to_gray:bool = True):
     if os.path.exists(path):
         os.remove(path)
     ImageGrab.grab((left_top_x, left_top_y, bottom_right_x, bottom_right_y)).save(path)
     img = cv2.imread(path, 1)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    cv2.imwrite(path, gray)
+    if need_to_gray:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    cv2.imwrite(path, img)
 
 
 def check_image_similarity(source_path, target_path):
